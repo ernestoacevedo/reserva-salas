@@ -1,4 +1,4 @@
-Sistema de Reserva de Salas
+Sistema de Reserva de Salas.
 ===========================
 
 Proyecto para Ingeniería de Software I 
