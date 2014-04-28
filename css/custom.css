@@ -49,3 +49,7 @@ a.logo {
 #main-content {
 	margin-left: 300px;
 }
+
+#wrapper {
+	padding: 65px 20px 0px;
+}
