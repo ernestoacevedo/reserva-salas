@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Sistema de Reserva de Salas</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/custom.css" />
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
+	<link href="http://cdn.alloyui.com/2.5.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+</head>
+<body>
+	<section id="container">
+		<header class="header blue-bg">
+			<a href="#" class="logo">SIBIB UCM</a>
+		</header>
+		<aside>
+			<div id="sidebar">
+				
+			</div>
+		</aside>
+		<section id="main-content">
+			<div id="wrapper">
+				<div id="myScheduler">
+					
+				</div>
+			</div>
+		</section>
+		<footer>
+			
+		</footer>
+	</section>
+	<script>
+	YUI().use(
+	  'aui-scheduler',
+	  function(Y) {
+	    var events = [
+	      {
+	        content: 'Event1',
+	        endDate: new Date(2013, 1, 4, 5),
+	        startDate: new Date(2013, 1, 4, 1)
+	      }
+	    ];
+
+	    var eventRecorder = new Y.SchedulerEventRecorder();
+	    var weekView = new Y.SchedulerWeekView();
+
+	    new Y.Scheduler(
+	      {
+	        boundingBox: '#myScheduler',
+	        date: new Date(2013, 1, 4),
+	        eventRecorder: eventRecorder,
+	        items: events,
+	        render: true,
+	        views: [weekView]
+	      }
+	    );
+	  }
+	);
+	</script>
+</body>
+</html>
