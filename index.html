@@ -7,9 +7,8 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/custom.css" />
 	<link rel="stylesheet" href="css/aui-scheduler-view-week.css" />
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="http://cdn.alloyui.com/2.5.0/aui/aui-min.js"></script>
+	<link rel="stylesheet" href="css/calendar.css" />
+	<link rel="stylesheet" href="css/custom_2.css" />
 	<link href="http://cdn.alloyui.com/2.5.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
 </head>
 <body>
@@ -19,7 +18,19 @@
 		</header>
 		<aside>
 			<div id="sidebar">
-				
+				<div class="custom-calendar-wrap">
+					<div id="custom-inner" class="custom-inner">
+						<div class="custom-header clearfix">
+							<nav>
+								<span id="custom-prev" class="custom-prev"></span>
+								<span id="custom-next" class="custom-next"></span>
+							</nav>
+							<h2 id="custom-month" class="custom-month"></h2>
+							<h3 id="custom-year" class="custom-year"></h3>
+						</div>
+						<div id="calendar" class="fc-calendar-container"></div>
+					</div>
+				</div>
 			</div>
 		</aside>
 		<section id="main-content">
@@ -33,33 +44,11 @@
 			
 		</footer>
 	</section>
-	<script>
-	YUI().use(
-	  'aui-scheduler',
-	  function(Y) {
-	    var events = [
-	      {
-	        content: 'Event1',
-	        endDate: new Date(2013, 1, 4, 5),
-	        startDate: new Date(2013, 1, 4, 1)
-	      }
-	    ];
-
-	    var eventRecorder = new Y.SchedulerEventRecorder();
-	    var weekView = new Y.SchedulerWeekView();
-
-	    new Y.Scheduler(
-	      {
-	        boundingBox: '#myScheduler',
-	        date: new Date(2013, 1, 4),
-	        eventRecorder: eventRecorder,
-	        items: events,
-	        render: true,
-	        views: [weekView]
-	      }
-	    );
-	  }
-	);
-	</script>
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/aui.js"></script>
+	<script src="js/jquery.calendario.js"></script>
+	<script src="js/modernizr.custom.63321.js"></script>
+	<script src="js/custom.js"></script>
 </body>
 </html>
