@@ -6,10 +6,10 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.min.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/custom.css" />
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/aui-scheduler-view-week.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/calendar.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/custom_2.css" />
-	<link href="http://cdn.alloyui.com/2.5.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables.css" />
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables_themeroller.css" />
 </head>
 <body>
 	<section id="container">
@@ -36,7 +36,30 @@
 		<section id="main-content">
 			<div id="wrapper">
 				<div id="myScheduler">
-					
+					<table id="tabla_horarios" border="1" style="table">
+						<thhead>
+							<tr>
+								<th> Módulo </th>
+								<th> Sala 1 </th>
+								<th> Sala 2 </th>
+								<th> Sala 3 </th>
+							</tr>
+						</thhead>
+						<tbody>
+							<tr>
+								<td> 08:00 - 09:00 </td>
+								<td>0</td>
+								<td>0</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td> 09:00 - 10:00 </td>
+								<td>1</td>
+								<td>1</td>
+								<td>0</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</section>
@@ -46,7 +69,7 @@
 	</section>
 	<script src="<?php echo base_url(); ?>js/jquery.js"></script>
 	<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url(); ?>js/aui.js"></script>
+	<script src="<?php echo base_url(); ?>js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url(); ?>js/jquery.calendario.js"></script>
 	<script src="<?php echo base_url(); ?>js/modernizr.custom.63321.js"></script>
 	<script src="<?php echo base_url(); ?>js/custom.js"></script>
