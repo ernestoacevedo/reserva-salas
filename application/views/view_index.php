@@ -37,7 +37,7 @@
 					<table id="tabla_horarios" border="1" style="table">
 						<thhead>
 							<tr>
-								<th> Módulo </th>
+								<th style="width: 100px;"> Módulo </th>
 								<th> Sala 1 </th>
 								<th> Sala 2 </th>
 								<th> Sala 3 </th>
@@ -48,19 +48,67 @@
 						<tbody>
 							<tr>
 								<td> 08:00 - 09:00 </td>
-								<td>0</td>
-								<td>0</td>
-								<td>1</td>
-								<td>0</td>
-								<td>1</td>
+								<td class="horario">0</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
 							</tr>
 							<tr>
 								<td> 09:00 - 10:00 </td>
-								<td>1</td>
-								<td>1</td>
-								<td>0</td>
-								<td>1</td>
-								<td>0</td>
+								<td class="horario">1</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+							</tr>
+							<tr>
+								<td> 10:00 - 11:00 </td>
+								<td class="horario">1</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+							</tr>
+							<tr>
+								<td> 11:00 - 12:00 </td>
+								<td class="horario">1</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+							</tr>
+							<tr>
+								<td> 12:00 - 13:00 </td>
+								<td class="horario">1</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+							</tr>
+							<tr>
+								<td> 14:00 - 15:00 </td>
+								<td class="horario">1</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+							</tr>
+							<tr>
+								<td> 15:00 - 16:00 </td>
+								<td class="horario">1</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+							</tr>
+							<tr>
+								<td> 17:00 - 18:00 </td>
+								<td class="horario">1</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
+								<td class="horario">1</td>
+								<td class="horario">0</td>
 							</tr>
 						</tbody>
 					</table>

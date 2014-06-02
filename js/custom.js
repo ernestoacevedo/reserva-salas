@@ -46,5 +46,21 @@ $(document).ready(function() {
 		$(this).popover({content: 'Hola '});
 	});
 
+	var actualizarTabla = function($tabla){
+		$tabla.each(function(i,elemento){
+			console.log($(this).html());
+			switch($(this).html()){
+				case "0":
+					$(this).css({'background':'#2ecc71'});
+					break;
+				case "1":
+					$(this).css({'background':'#c0392b'});
+					break;
+			}
+		});
+	};
+
+	actualizarTabla($('#tabla_horarios td'));
+
 	$('#tabla_horarios').dataTable({"bJQueryUI": true,"sDom": "<H><t><F>"});
 });
