@@ -25,7 +25,7 @@ a.logo {
 	height: 100%;
 }
 
-.header {
+.topbar {
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -52,4 +52,23 @@ a.logo {
 
 #wrapper {
 	padding: 65px 20px 0px;
+}
+
+#usermenu {
+  top: 20px;
+  right: 10px;
+}
+
+#usermenu > a {
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+#usermenu b {
+  color: white;
+}
+
+#usermenu ul {
+  left: -77px;
 }
