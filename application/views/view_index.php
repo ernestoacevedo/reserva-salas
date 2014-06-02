@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/font-awesome.min.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/custom.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables.css" />
-	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables_themeroller.css" />
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery-ui-1.10.4.custom.css"/>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bic_calendar.css" />
 </head>
 <body>
@@ -76,6 +76,7 @@
 	<script src="<?php echo base_url(); ?>js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url(); ?>js/modernizr.custom.63321.js"></script>
 	<script src="<?php echo base_url(); ?>js/bic_calendar.js"></script>
+	<script src="<?php echo base_url(); ?>js/moment.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/custom.js"></script>
 </body>
 </html>
