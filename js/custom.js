@@ -36,14 +36,15 @@ $(document).ready(function() {
 	});
 
 	document.addEventListener('bicCalendarSelect', function(e) {
-		console.log(e);
+		moment.lang('es');
+    var date = new moment(e.detail.date);
+		console.log(date.format('DD/MM/YYYY'));
 	});
 
 	$(document).on('click','#tabla_horarios tr td',function(e){
-		console.log(e.pageX);
-		console.log(e.pageY);
-		$(this).popover({content: 'Hola'});
+		console.log('click');
+		$(this).popover({content: 'Hola '});
 	});
 
-	$('#tabla_horarios').dataTable();
+	$('#tabla_horarios').dataTable({"bJQueryUI": true,"sDom": "<H><t><F>"});
 });
