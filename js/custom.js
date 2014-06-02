@@ -41,26 +41,29 @@ $(document).ready(function() {
 		console.log(date.format('DD/MM/YYYY'));
 	});
 
-	$(document).on('click','#tabla_horarios tr td',function(e){
-		console.log('click');
-		$(this).popover({content: 'Hola '});
-	});
-
 	var actualizarTabla = function($tabla){
 		$tabla.each(function(i,elemento){
-			console.log($(this).html());
-			switch($(this).html()){
-				case "0":
-					$(this).css({'background':'#2ecc71'});
-					break;
+			switch($(this).data('reservado')){
 				case "1":
 					$(this).css({'background':'#c0392b'});
+					break;
+				default:
+					if($(this).hasClass('horario')){
+						$(this).css({'background':'#2ecc71'});
+					}
 					break;
 			}
 		});
 	};
 
 	actualizarTabla($('#tabla_horarios td'));
+
+	$(document).on('click','#tabla_horarios tr td',function(e){
+		console.log('click');
+		//$(this).popover({content: 'Hola '});
+		$(this).data('reservado','1');
+		actualizarTabla($('#tabla_horarios td'));
+	});
 
 	$('#tabla_horarios').dataTable({"bJQueryUI": true,"sDom": "<H><t><F>"});
 });
