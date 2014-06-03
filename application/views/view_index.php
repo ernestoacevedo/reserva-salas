@@ -56,7 +56,7 @@
 							</tr>
 							<tr>
 								<td> 09:00 - 10:00 </td>
-								<td class="horario" data-reservado="0"></td>
+								<td class="horario" data-reservado="1"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>

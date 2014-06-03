@@ -43,8 +43,9 @@ $(document).ready(function() {
 
 	var actualizarTabla = function($tabla){
 		$tabla.each(function(i,elemento){
+			console.log($(this).data('reservado'));
 			switch($(this).data('reservado')){
-				case "1":
+				case 1:
 					$(this).css({'background':'#c0392b'});
 					break;
 				default:
@@ -60,10 +61,15 @@ $(document).ready(function() {
 
 	$(document).on('click','#tabla_horarios tr td',function(e){
 		if($(this).hasClass('horario')){
-			$(this).data('reservado','1');
-			//$(this).popover({placement: 'bottom',title: 'Reservar Sala',content: 'Hola ',container: 'body'});
+			$(this).data('reservado',1);
+			$(this).popover({
+				placement: 'bottom',
+				title: 'Reservar Sala',
+				content: '<input type="text" placeholder="Nombre"> <button class="btn btn-primary">Agregar</button',
+				html: 'true',
+				container: 'body'
+			});
 			actualizarTabla($('#tabla_horarios td'));
-			$(this).popover({placement: 'bottom',title: 'Reservar Sala',content: '<input type="text" placeholder="Nombre"> <button class="btn btn-default">+</button',html: 'true',container: 'body'});
 		}
 	});
 
