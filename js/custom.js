@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayor", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+	var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
 	var dayNames = ["L", "M", "M", "J", "V", "S", "D"];
 
