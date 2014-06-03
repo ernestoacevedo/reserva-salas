@@ -59,10 +59,12 @@ $(document).ready(function() {
 	actualizarTabla($('#tabla_horarios td'));
 
 	$(document).on('click','#tabla_horarios tr td',function(e){
-		console.log('click');
-		//$(this).popover({content: 'Hola '});
-		$(this).data('reservado','1');
-		actualizarTabla($('#tabla_horarios td'));
+		if($(this).hasClass('horario')){
+			$(this).data('reservado','1');
+			//$(this).popover({placement: 'bottom',title: 'Reservar Sala',content: 'Hola ',container: 'body'});
+			actualizarTabla($('#tabla_horarios td'));
+			$(this).popover({placement: 'bottom',title: 'Reservar Sala',content: '<input type="text" placeholder="Nombre"> <button class="btn btn-default">+</button',html: 'true',container: 'body'});
+		}
 	});
 
 	$('#tabla_horarios').dataTable({"bJQueryUI": true,"sDom": "<H><t><F>"});
