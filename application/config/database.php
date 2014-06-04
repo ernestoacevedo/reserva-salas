@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'sqlite:'.APPPATH.'db/reserva.db';
+$db['default']['hostname'] = 'sqlite:'.APPPATH.'db/reservas.db';
 $db['default']['username'] = '';
 $db['default']['password'] = '';
 $db['default']['database'] = '';
