@@ -73,15 +73,7 @@ $(document).ready(function() {
 	var $cell = null;
 
 	$(document).on('click', '.btn-reserva', function(e) {
-		$('.popover').hide();
-		$(this).popover({
-			placement: 'bottom',
-			title: 'Reservar Sala',
-			content: '<input type="text" placeholder="Nombre"> <button class="btn btn-primary btn-agregar">Agregar</button>',
-			html: 'true',
-			container: 'body'
-		});
-		$(this).popover('show');
+		$('#modal-reserva').modal('show');
 		actualizarTabla($('#tabla_horarios td'));
 		$cell = $(this).parent();
 	});
@@ -89,7 +81,6 @@ $(document).ready(function() {
 	$(document).on('click','.btn-agregar',function(e){
 		$cell.html($(this).siblings('input').val());
 		$cell.data('reservado',1);
-		$('.popover').hide();
 		actualizarTabla($('#tabla_horarios td'));
 	});
 

@@ -119,6 +119,22 @@
 
 		</footer>
 	</section>
+	<div id="modal-reserva" class="modal fade">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title">Reservar Sala</h4>
+	      </div>
+	      <div class="modal-body">
+	        <input type="text" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary btn-agregar">Reservar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	<script src="<?php echo base_url(); ?>js/jquery.js"></script>
 	<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/jquery.dataTables.js"></script>
