@@ -73,7 +73,24 @@ a.logo {
   left: -77px;
 }
 
+#tabla_horarios {
+  table-layout: fixed;
+}
+
+#tabla_horarios td {
+  width: 75px;
+  height: 30px;
+}
+
 .horario {
   color: white;
   text-align: center;
+}
+
+.btn-reserva {
+  font-size: 11px;
+}
+
+.popover-content input{
+  line-height: 26px;
 }

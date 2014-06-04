@@ -43,7 +43,6 @@ $(document).ready(function() {
 
 	var actualizarTabla = function($tabla){
 		$tabla.each(function(i,elemento){
-			console.log($(this).data('reservado'));
 			switch($(this).data('reservado')){
 				case 1:
 					$(this).css({'background':'#c0392b'});
@@ -59,18 +58,39 @@ $(document).ready(function() {
 
 	actualizarTabla($('#tabla_horarios td'));
 
-	$(document).on('click','#tabla_horarios tr td',function(e){
-		if($(this).hasClass('horario')){
-			$(this).data('reservado',1);
-			$(this).popover({
-				placement: 'bottom',
-				title: 'Reservar Sala',
-				content: '<input type="text" placeholder="Nombre"> <button class="btn btn-primary">Agregar</button',
-				html: 'true',
-				container: 'body'
-			});
-			actualizarTabla($('#tabla_horarios td'));
+	$(document).on('mouseenter', '#tabla_horarios tr td', function(e) {
+		if ($(this).hasClass('horario') && $(this).data('reservado') != 1) {
+			$(this).html('<button class="btn btn-primary btn-reserva">Reservar</button>');
 		}
+	});
+
+	$(document).on('mouseleave', '#tabla_horarios tr td', function(e) {
+		if ($(this).hasClass('horario') && $(this).html() != "" && $(this).data('reservado')!=1) { // Si el elemento no está vacío (tiene un botón), se elimina el contenido
+			$(this).html('');
+		}
+	});
+
+	var $cell = null;
+
+	$(document).on('click', '.btn-reserva', function(e) {
+		$('.popover').hide();
+		$(this).popover({
+			placement: 'bottom',
+			title: 'Reservar Sala',
+			content: '<input type="text" placeholder="Nombre"> <button class="btn btn-primary btn-agregar">Agregar</button>',
+			html: 'true',
+			container: 'body'
+		});
+		$(this).popover('show');
+		actualizarTabla($('#tabla_horarios td'));
+		$cell = $(this).parent();
+	});
+
+	$(document).on('click','.btn-agregar',function(e){
+		$cell.html($(this).siblings('input').val());
+		$cell.data('reservado',1);
+		$('.popover').hide();
+		actualizarTabla($('#tabla_horarios td'));
 	});
 
 	$('#tabla_horarios').dataTable({"bJQueryUI": true,"sDom": "<H><t><F>"});

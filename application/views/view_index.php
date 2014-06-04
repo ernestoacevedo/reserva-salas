@@ -37,7 +37,7 @@
 					<table id="tabla_horarios" border="1" style="table">
 						<thhead>
 							<tr>
-								<th style="width: 100px;"> Módulo </th>
+								<th style="width: 50px;"> Módulo </th>
 								<th style="text-align: center;"> Sala 1 </th>
 								<th style="text-align: center;"> Sala 2 </th>
 								<th style="text-align: center;"> Sala 3 </th>
@@ -56,7 +56,7 @@
 							</tr>
 							<tr>
 								<td> 09:00 - 10:00 </td>
-								<td class="horario" data-reservado="1"></td>
+								<td class="horario" data-reservado="1">Guillermo Becerra</td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
