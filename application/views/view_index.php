@@ -120,14 +120,23 @@
 		</footer>
 	</section>
 	<div id="modal-reserva" class="modal fade">
-	  <div class="modal-dialog modal-sm">
+	  <div class="modal-dialog modal-vertical-centered modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title">Reservar Sala</h4>
 	      </div>
 	      <div class="modal-body">
-	        <input type="text" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
+					<div id="barra-progreso" class="progress progress-striped active">
+					  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+					  	Esperando datos
+						</div>
+					</div> <!-- end .progress -->
+					<form id="form-reserva" action="">
+		        <input type="hidden" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
+						<input type="text" id="nombre" name="nombre" placeholder="Ej: Guillermo Becerra">
+						<input type="hidden" id="carrera" name="carrera" placeholder="Ej: Ingeniería Civil en Informática">
+					</form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-primary btn-agregar">Reservar</button>

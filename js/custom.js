@@ -74,14 +74,22 @@ $(document).ready(function() {
 
 	$(document).on('click', '.btn-reserva', function(e) {
 		$('#modal-reserva').modal('show');
-		actualizarTabla($('#tabla_horarios td'));
+		$('#barra-progreso').show();
+		$('#rut').val('').focus();
+		$('#nombre').val('');
+		$('#carrera').val('');
 		$cell = $(this).parent();
 	});
 
 	$(document).on('click','.btn-agregar',function(e){
-		$cell.html($(this).siblings('input').val());
+		$cell.html($('#nombre').val());
 		$cell.data('reservado',1);
+		$('#modal-reserva').modal('hide');
 		actualizarTabla($('#tabla_horarios td'));
+	});
+
+	$(document).on('input','#nombre',function(e){
+		$('#barra-progreso').hide();
 	});
 
 	$('#tabla_horarios').dataTable({"bJQueryUI": true,"sDom": "<H><t><F>"});
