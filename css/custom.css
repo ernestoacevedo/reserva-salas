@@ -104,3 +104,14 @@ a.logo {
 #form-reserva input{
   width: 100%;
 }
+
+.form-wrapper {
+  top: 70px;
+  left: 10px;
+  width: 100%;
+  position: relative;
+}
+
+.form-wrapper h4{
+  color: white;
+}

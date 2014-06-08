@@ -8,8 +8,9 @@ class reserva extends CI_Model {
 
     public function insertar()
     {
-        $data['id_a'] = $this->input->post('id_a');
-        $this->db->insert('reserva',$data);
+        $data['hora_inicio'] = $this->input->post('hora_inicio');
+        $data['hora_fin'] = $this->input->post('hora_fin');
+        $this->db->insert('modulo',$data);
     }
 
     public function actualizar()
