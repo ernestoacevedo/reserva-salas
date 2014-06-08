@@ -4,8 +4,9 @@ class Home extends CI_Controller {
 function __construct()
 	{
    		parent::__construct();
-
    		$this->load->model('mod_alumno');
+   		$this->load->model('mod_usuario');
+   		$this->load->model('mod_reserva');
    	}
 	public function index()
 	{

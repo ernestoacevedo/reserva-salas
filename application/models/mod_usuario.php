@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-Class mod_alumno extends CI_Model
+Class mod_usuario extends CI_Model
 {
  
-    public function selAlumno() {
+    public function selUsuario() {
 
     	$this->db->select('*');
-        $data=$this->db->get('alumnos');
+        $data=$this->db->get('usuarios');
         return $data->result();
         
     }
