@@ -1,19 +1,20 @@
 $(document).ready(function() {
+	var hoy = new moment(new Date()).format('D/M/YYYY');
+	var fecha_seleccionada = '';
 	var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-
 	var dayNames = ["L", "M", "M", "J", "V", "S", "D"];
-
 	var events = [{
-		date: "28/06/2014",
-		title: 'Evento de prueba',
-		link: 'google.cl',
-		linkTarget: '_blank',
-		color: '',
-		content: 'Hola',
-		class: '',
-		displayMonthController: true,
-		displayYearController: true,
-		nMonths: 6
+		// date: "28/06/2014",
+		// title: 'Evento de prueba',
+		// link: 'google.cl',
+		// linkTarget: '_blank',
+		// color: '',
+		// content: 'Hola',
+		// class: '',
+		// displayMonthController: true,
+		// displayYearController: true,
+		// nMonths: 6
+		"date": hoy,"link":"#","color":"green"
 	}];
 
 	$('#calendar').bic_calendar({
@@ -37,19 +38,24 @@ $(document).ready(function() {
 
 	document.addEventListener('bicCalendarSelect', function(e) {
 		moment.lang('es');
-    var date = new moment(e.detail.date);
+		var date = new moment(e.detail.date);
 		console.log(date.format('DD/MM/YYYY'));
+		fecha_seleccionada = date.format('DD/MM/YYYY');
 	});
 
-	var actualizarTabla = function($tabla){
-		$tabla.each(function(i,elemento){
-			switch($(this).data('reservado')){
+	var actualizarTabla = function($tabla) {
+		$tabla.each(function(i, elemento) {
+			switch ($(this).data('reservado')) {
 				case 1:
-					$(this).css({'background':'#c0392b'});
+					$(this).css({
+						'background': '#c0392b'
+					});
 					break;
 				default:
-					if($(this).hasClass('horario')){
-						$(this).css({'background':'#2ecc71'});
+					if ($(this).hasClass('horario')) {
+						$(this).css({
+							'background': '#2ecc71'
+						});
 					}
 					break;
 			}
@@ -65,7 +71,7 @@ $(document).ready(function() {
 	});
 
 	$(document).on('mouseleave', '#tabla_horarios tr td', function(e) {
-		if ($(this).hasClass('horario') && $(this).html() != "" && $(this).data('reservado')!=1) { // Si el elemento no está vacío (tiene un botón), se elimina el contenido
+		if ($(this).hasClass('horario') && $(this).html() != "" && $(this).data('reservado') != 1) { // Si el elemento no está vacío (tiene un botón), se elimina el contenido
 			$(this).html('');
 		}
 	});
@@ -78,19 +84,40 @@ $(document).ready(function() {
 		$('#rut').val('').focus();
 		$('#nombre').val('');
 		$('#carrera').val('');
+		$('#fecha').val();
 		$cell = $(this).parent();
 	});
 
-	$(document).on('click','.btn-agregar',function(e){
-		$cell.html($('#nombre').val());
-		$cell.data('reservado',1);
-		$('#modal-reserva').modal('hide');
-		actualizarTabla($('#tabla_horarios td'));
+	$(document).on('click', '.btn-agregar', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		console.log($('#form-reserva').serialize());
+		$.ajax({
+			type: 'POST',
+			url: $('#form-reserva').attr('action'),
+			data: $('#form-reserva').serialize(),
+			dataType: 'JSON',
+			success: function(data){
+				if(data.error){
+					alert('Error al reservar sala');
+				}
+				else{
+					$cell.html($('#nombre').val());
+					$cell.data('reservado', 1);
+					$('#modal-reserva').modal('hide');
+					actualizarTabla($('#tabla_horarios td'));
+				}
+			}
+		});
 	});
 
-	$(document).on('input','#nombre',function(e){
+	$(document).on('input', '#nombre', function(e) {
 		$('#barra-progreso').hide();
 	});
 
-	$('#tabla_horarios').dataTable({"bJQueryUI": true,"sDom": "<H><t><F>"});
+	console.log('->'+fecha_seleccionada);
+	$('#tabla_horarios').dataTable({
+		"bJQueryUI": true,
+		"sDom": "<H><t><F>"
+	});
 });

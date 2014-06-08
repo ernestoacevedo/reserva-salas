@@ -132,10 +132,13 @@
 					  	Esperando datos
 						</div>
 					</div> <!-- end .progress -->
-					<form id="form-reserva" action="">
-		        <input type="hidden" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
+					<form id="form-reserva" action="<?php echo site_url('reservas/nuevaReserva');?>">
+		        <input type="text" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
 						<input type="text" id="nombre" name="nombre" placeholder="Ej: Guillermo Becerra">
-						<input type="hidden" id="carrera" name="carrera" placeholder="Ej: Ingeniería Civil en Informática">
+						<input type="text" id="carrera" name="carrera" placeholder="Ej: Ingeniería Civil en Informática">
+						<input type="hidden" id="fecha" name="fecha">
+						<input type="hidden" id="modulo" name="modulo">
+						<input type="hidden" id="sala" name="sala">
 					</form>
 	      </div>
 	      <div class="modal-footer">
