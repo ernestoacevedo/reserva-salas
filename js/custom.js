@@ -1,18 +1,9 @@
 $(document).ready(function() {
-	var hoy = new moment(new Date()).format('D/M/YYYY');
+	var hoy = new moment(new Date()).format('D/M/YYYY');														 // Variable utilizada para setear la fecha actual en el plugin de calendari
+	$('#calendar-wrap').data('fecha',new moment(new Date()).format('DD/MM/YYYY')); 	// Se añade la fecha actual al wrapper del calendario
 	var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 	var dayNames = ["L", "M", "M", "J", "V", "S", "D"];
 	var events = [{
-		// date: "28/06/2014",
-		// title: 'Evento de prueba',
-		// link: 'google.cl',
-		// linkTarget: '_blank',
-		// color: '',
-		// content: 'Hola',
-		// class: '',
-		// displayMonthController: true,
-		// displayYearController: true,
-		// nMonths: 6
 		"date": hoy,"link":"#","color":"green"
 	}];
 
@@ -37,10 +28,7 @@ $(document).ready(function() {
 
 	document.addEventListener('bicCalendarSelect', function(e) {
 		moment.lang('es');
-		var date = new moment(e.detail.date);
-		console.log(date.format('DD/MM/YYYY'));
-		fecha_seleccionada = date.format('DD/MM/YYYY');
-		$('#calendar-wrap').data('fecha',fecha_seleccionada);
+		$('#calendar-wrap').data('fecha',new moment(e.detail.date).format('DD/MM/YYYY'));
 	});
 
 	var actualizarTabla = function($tabla) {
@@ -79,16 +67,19 @@ $(document).ready(function() {
 	var $cell = null;
 
 	$(document).on('click', '.btn-reserva', function(e) {
+		$cell = $(this).parent();
+		$th = $(this).closest('table')[0].rows[0].cells[$(this).parent()[0].cellIndex];
 		$('#modal-reserva').modal('show');
 		$('#barra-progreso').show();
 		$('#rut').val('').focus();
 		$('#nombre').val('');
 		$('#carrera').val('');
-		$('#fecha').val();
-		tabla = $('#tabla_horarios').DataTable();
-		$cell = $(this).parent();
-		$th = $(this).closest('table')[0].rows[0].cells[$(this).parent('td').cellIndex];
-		console.log(tabla.row($(this).parent('tr').index()));
+		$('#fecha').val($('#calendar-wrap').data('fecha'));
+		$('#sala').val($($th).data('num-sala'));
+		$('#modulo').val($(this).parent().parent().children(':first-child').data('id-modulo'));
+		console.log('Sala: '+$($th).data('num-sala'));
+		console.log('Módulo: '+$(this).parent().parent().children(':first-child').data('id-modulo'));
+		console.log('Fecha: '+$('#calendar-wrap').data('fecha'));
 	});
 
 	$(document).on('click', '.btn-agregar', function(e) {

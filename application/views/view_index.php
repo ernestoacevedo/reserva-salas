@@ -38,16 +38,16 @@
 						<thhead>
 							<tr>
 								<th style="width: 50px;"> Módulo </th>
-								<th style="text-align: center;"> Sala 1 </th>
-								<th style="text-align: center;"> Sala 2 </th>
-								<th style="text-align: center;"> Sala 3 </th>
-								<th style="text-align: center;"> Sala 4 </th>
-								<th style="text-align: center;"> Sala 5 </th>
+								<th style="text-align: center;" data-num-sala="1"> Sala 1 </th>
+								<th style="text-align: center;" data-num-sala="2"> Sala 2 </th>
+								<th style="text-align: center;" data-num-sala="3"> Sala 3 </th>
+								<th style="text-align: center;" data-num-sala="4"> Sala 4 </th>
+								<th style="text-align: center;" data-num-sala="5"> Sala 5 </th>
 							</tr>
 						</thhead>
 						<tbody>
 							<tr>
-								<td> 08:00 - 09:00 </td>
+								<td data-id-modulo="1"> 08:00 - 09:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -55,7 +55,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td> 09:00 - 10:00 </td>
+								<td data-id-modulo="2"> 09:00 - 10:00 </td>
 								<td class="horario" data-reservado="1">Guillermo Becerra</td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -63,7 +63,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td> 10:00 - 11:00 </td>
+								<td data-id-modulo="3"> 10:00 - 11:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -71,7 +71,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td> 11:00 - 12:00 </td>
+								<td data-id-modulo="4"> 11:00 - 12:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -79,7 +79,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td> 12:00 - 13:00 </td>
+								<td data-id-modulo="5"> 12:00 - 13:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -87,7 +87,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td> 14:00 - 15:00 </td>
+								<td data-id-modulo="6"> 14:00 - 15:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -95,7 +95,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td> 15:00 - 16:00 </td>
+								<td data-id-modulo="7"> 15:00 - 16:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -103,7 +103,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td> 17:00 - 18:00 </td>
+								<td data-id-modulo="8"> 17:00 - 18:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
