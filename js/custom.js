@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	var hoy = new moment(new Date()).format('D/M/YYYY');
-	var fecha_seleccionada = '';
 	var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 	var dayNames = ["L", "M", "M", "J", "V", "S", "D"];
 	var events = [{
@@ -41,6 +40,7 @@ $(document).ready(function() {
 		var date = new moment(e.detail.date);
 		console.log(date.format('DD/MM/YYYY'));
 		fecha_seleccionada = date.format('DD/MM/YYYY');
+		$('#calendar-wrap').data('fecha',fecha_seleccionada);
 	});
 
 	var actualizarTabla = function($tabla) {
@@ -85,7 +85,10 @@ $(document).ready(function() {
 		$('#nombre').val('');
 		$('#carrera').val('');
 		$('#fecha').val();
+		tabla = $('#tabla_horarios').DataTable();
 		$cell = $(this).parent();
+		$th = $(this).closest('table')[0].rows[0].cells[$(this).parent('td').cellIndex];
+		console.log(tabla.row($(this).parent('tr').index()));
 	});
 
 	$(document).on('click', '.btn-agregar', function(e) {
@@ -111,11 +114,10 @@ $(document).ready(function() {
 		});
 	});
 
-	$(document).on('input', '#nombre', function(e) {
+	$(document).on('input', '#nombre,#rut,#carrera', function(e) {
 		$('#barra-progreso').hide();
 	});
 
-	console.log('->'+fecha_seleccionada);
 	$('#tabla_horarios').dataTable({
 		"bJQueryUI": true,
 		"sDom": "<H><t><F>"

@@ -26,7 +26,7 @@
 		</header>
 		<aside>
 			<div id="sidebar">
-				<div class="calendar-wrap">
+				<div id="calendar-wrap" class="calendar-wrap" data-fecha="">
 					<div id="calendar"></div>
 				</div>
 			</div>
