@@ -7,6 +7,8 @@ class Reservas extends CI_Controller {
       $this->load->model('mod_alumno');
       $this->load->model('mod_usuario');
       $this->load->model('mod_reserva');
+
+      $this->load->helper('form','html');
   }
 
 
@@ -55,9 +57,49 @@ class Reservas extends CI_Controller {
     -otros: "confirmada =0", "observacion: Reservada"
 
 
+
+
     */
-    $respuesta = array("error"=>true); // retornar error = false, cuando se registre la reserva
+    $rut = $this->input->post('rut');
+    $fecha = '13/05/2014';
+
+    //data2= $this->mod_reserva->getAlumReserva($fecha, $rut);
+
+//print_r($this->mod_reserva->getAlumReserva($fecha, $rut);
+      //if ($this->mod_reserva->getAlumReserva($fecha, $rut)){
+
+    $data= array(
+          //'fecha'=>$this->input->post('fecha'),
+            'fecha'=>$fecha,
+          //'modulo'=>$this->input->post('modulo'),
+            'modulo'=> 6,
+          //'sala'=>$this->input->post('sala'),
+            'sala' => 3,
+          //'eliminada'=> 0, // dato default
+            'eliminada' => 0,
+          //'id_a'=>$this->input->post('rut'),
+           'id_a'=>$rut,
+          //'confirmada'=> 0, // dato dafault
+            'confirmada' => 0,
+            'estado' => 1,
+          //'id_e'=>$this->input->post('loggin'), // obtener del sesion
+            'id_e' => '17.159.876-9',
+          //'observacion'=> 'Reservada'
+            'observacion' => 'Reservada'
+          );
+    $this->mod_reserva->addReserva($data);
+   
+    $respuesta = array("error"=> false);
+    //$respuesta = array("error"=>false); // retornar error = false, cuando se registre la reserva      
+   /* }
+    else{
+      $respuesta = array("error"=> true);
+    }
+*/
+
     echo json_encode($respuesta);
+
+
   }
 
   public function confirmarReserva(){
@@ -79,6 +121,24 @@ class Reservas extends CI_Controller {
 
 */
 
+
+/*
+    $fecha = $this->input->post('fecha');
+    $modulo = $this->input->post('modulo');
+    $sala = $this->input->post('sala');
+    //$eliminada =0;
+    //$confirmar =1;
+    //$observación = 'Confirmada';
+
+      $data= array(
+      'eliminada' =>  0,
+      'confirmar' => 1,
+      'observacion' => 'Confirmada')
+      );
+
+    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+*/
+
   }
 
   public function eliminarReserva(){
@@ -87,26 +147,90 @@ class Reservas extends CI_Controller {
     vez presionado confirmar se debe leer en la BD el máximo_valor de "eliminada" con parametros
     "fecha", "modulo" y "sala", y actualizar la reserva "fecha", "modulo", "sala" y "eliminada=0",
     a "eliminada = máximo_valor +1" y "observacion" con concatenación. Si el máximo_valor = 0 (no se ha
-    eliminado ninguna reserva), el maximo_valor comienza en 2. el valor "eliminar = 2" nos dice que fue bloqueda
-    en los mantenedores por el ADMINISTRADOR,  maximo_valor>=2 para eliminar.
+    eliminado ninguna reserva), el maximo_valor comienza en 2.  maximo_valor>=1 para eliminar.
 
     -Este procedimiento sirve para la emiminación lógica. el maximo valor aumentado nos permite borrar la misma
-    reserva "fecha", "modulo", "sala" las veces que queramos, siendo maximo_valor >=2 un historial de eliminaciones
+    reserva "fecha", "modulo", "sala" las veces que queramos, siendo maximo_valor >=1 un historial de eliminaciones
     para la reserva.
 
 
     Reglas de "Eliminación":
     - = 0, no eliminada
     - = 1, eliminada por no confirmacion
-    - = 2, eliminada por bloqueo
-    - >2, elimanada por alumno
+    - >1, elimanada por alumno
 
     todas estas banderas no serán ingresadas por usuario, seran activadas por acciones/ eventos Botones
     el unico ingreso de usuario será el rut del alumno, lo demás será seleccionar y apretar botones.
     */
+  
+/*
+    $max = $this->mod_reserva->getMaxReserva($fecha, $modulo, $sala);
+    if ($max < 1){
+      $max =1;
+    }
+
+    $fecha = $this->input->post('fecha');
+    $modulo = $this->input->post('modulo');
+    $sala = $this->input->post('sala');
+    //$eliminada = $max + 1;
+    //$confirmar =0;
+    //$observacion = 'Eliminada:  '.$this->input->post('observacion');
+
+    $data= array(
+      'eliminada' =>  $max +1,
+      'confirmar' => 0,
+      'observacion' => 'Eliminada:   '.$this->input->post('observacion')
+      );
+
+    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+*/
+  }
+
+
+ public function ReservaNoConfirmada(){
+
+/*
+    $fecha = $this->input->post('fecha');
+    $modulo = $this->input->post('modulo');
+    $sala = $this->input->post('sala');
+   // $eliminada = 1;
+    //$confirmar =0;
+    //$observacion = 'Eliminada por no Confirmación');
+
+    $data= array(
+      'eliminada' => 1,
+      'confirmar' => 0,
+      'observacion' => 'Eliminada por no Confirmación')
+      );
+
+    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+*/
+  }
+
+
+ public function BloquearReserva(){
+  
+/* 
+  El valor en el estado "estado = 1 (dato default)"  nos dice que la sala, en ese modulo y fecha está disponible, el valor
+  "estado = 0", nos dice que la sala, modulo, fecha está bloqueado.
+*/
+
+/*
+    $fecha = $this->input->post('fecha');
+    $modulo = $this->input->post('modulo');
+    $sala = $this->input->post('sala');
+    //$estado = 0;
+    //$observacion = 'Eliminada por Bloqueo';
+
+      $data= array(
+      'estado' => $this->input->post('estado'),
+      'observacion' => 'Eliminada por Bloqueo'
+      );
+
+    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+*/
   }
 }
-
 
 /*
 Casos:

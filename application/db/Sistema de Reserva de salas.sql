@@ -42,7 +42,7 @@ create table reservas(
 	alumno varchar (30),
 	confirmada int, -- SI 1 / NO 0
 	asistente varchar(30),
-	--estado int, --SI 1/ No 0     No es necesario ya que el estado se puede saber con eliminada
+	estado int, -- Activa SI 1/ No 0     No es necesario ya que el estado se puede saber con eliminada
 	observación varchar (256), -- o código de observación (00001.txt), en caso de ser texto en almacenado en un ftp
 	--cant_alumnos number, --1 a 8
 	--plumon_borrador int, -- SI 1 / NO 0

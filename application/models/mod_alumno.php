@@ -2,7 +2,7 @@
 Class mod_alumno extends CI_Model
 {
  
-    public function selAlumno() {
+    public function getAlumno() {
 
     	$this->db->select('*');
         $data=$this->db->get('alumnos');

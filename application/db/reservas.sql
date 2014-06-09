@@ -39,7 +39,7 @@ CREATE TABLE "reservas" (
 	`eliminada`	INTEGER NOT NULL,
 	`id_a`	TEXT NOT NULL,
 	`confirmada`	INTEGER NOT NULL,
-	--`estado`	INTEGER NOT NULL,
+	`estado`	INTEGER NOT NULL,
 	`id_e`	TEXT NOT NULL,
 	`observacion`	TEXT,
 	PRIMARY KEY(fecha,modulo,sala,eliminada),
@@ -59,8 +59,8 @@ INSERT INTO `alumnos` VALUES('12.543.653-7','Felipe Santiago','Jorquera Uribe',2
 INSERT INTO `alumnos` VALUES('15.234.654-8','Manuel Eduardo','Wilson Hernandez',22,'Ing. Civil Inf',2011,234565,'mwilson@mail.cl');
 INSERT INTO `alumnos` VALUES('16.345.234-8','Karina Andrea','Pina Allende',21,'Enfermeria',2011,3453213,'kpina@mail.cl');
 INSERT INTO `alumnos` VALUES('12.435.234-9','Patricio Sebastian','Aravena Rojas',20,'Ped. Ed. Fisica',2012,234234,'parvena@mail.cl');
-INSERT INTO `reservas` VALUES('04-06-2014',1,2,0,'18.176.879-7',1,1,'12.312.312-3','nada');
-INSERT INTO `reservas` VALUES('04-06-2014',1,1,0,'18.176.879-7',0,1,'12.312.312-3','nada');
+INSERT INTO `reservas` VALUES('04-06-2014',1,2,0,'18.176.879-7',1,0,'12.312.312-3','nada');
+INSERT INTO `reservas` VALUES('04-06-2014',1,1,0,'18.176.879-7',0,0,'12.312.312-3','nada');
 ;
 ;
 ;

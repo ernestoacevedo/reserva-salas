@@ -10,8 +10,8 @@ function __construct()
    	}
 	public function index()
 	{
-		$data['variable']=$this->mod_alumno->selAlumno();
-
+		//$data['variable']=$this->mod_alumno->getAlumno();
+		//$this->load->view('view_index', $data);
 		$this->load->view('view_index');
 	}
 }
