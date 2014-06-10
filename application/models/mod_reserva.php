@@ -2,10 +2,12 @@
 Class mod_reserva extends CI_Model
 {
  
-    public function getAlumReserva($fecha, $id) {
+    public function getAlumReserva($fecha, $modulo, $sala, $id) {
 
     	$this->db->select('id_a');
     	$this->db->where('fecha',$fecha);
+        $this->db->where('fecha',$modulo);
+        $this->db->where('fecha',$sala);
     	$this->db->where('id_a',$id);
         $data=$this->db->get('reservas',1);
         return $data->result();

@@ -61,30 +61,26 @@ class Reservas extends CI_Controller {
 
     */
     $rut = $this->input->post('rut');
-    $fecha = '13/05/2014';
+    $fecha = $this->input->post('fecha');
+    $modulo = $this->input->post('modulo');
+    $sala = $this->input->post('sala');
 
     //data2= $this->mod_reserva->getAlumReserva($fecha, $rut);
 
-//print_r($this->mod_reserva->getAlumReserva($fecha, $rut);
+//print_r($this->mod_reserva->getAlumReserva($fecha, $modulo, $sala, $rut));
       //if ($this->mod_reserva->getAlumReserva($fecha, $rut)){
 
     $data= array(
-          //'fecha'=>$this->input->post('fecha'),
-            'fecha'=>$fecha,
-          //'modulo'=>$this->input->post('modulo'),
-            'modulo'=> 6,
-          //'sala'=>$this->input->post('sala'),
-            'sala' => 3,
-          //'eliminada'=> 0, // dato default
-            'eliminada' => 0,
+          'fecha'=> $fecha,
+          'modulo'=> $modulo,
+          'sala'=>$sala,
+           'eliminada' => 0,
           //'id_a'=>$this->input->post('rut'),
            'id_a'=>$rut,
-          //'confirmada'=> 0, // dato dafault
             'confirmada' => 0,
             'estado' => 1,
           //'id_e'=>$this->input->post('loggin'), // obtener del sesion
             'id_e' => '17.159.876-9',
-          //'observacion'=> 'Reservada'
             'observacion' => 'Reservada'
           );
     $this->mod_reserva->addReserva($data);
