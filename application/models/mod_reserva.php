@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class mod_reserva extends CI_Model
 {
- 
+
     public function getAlumReserva($fecha, $id) {
 /*
     	$this->db->select('id_a');
@@ -10,15 +10,15 @@ Class mod_reserva extends CI_Model
         $data=$this->db->get('reservas',1);
         //return $data->result();
 */
-  $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  id_a = '$id'");     
-  
+  $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  id_a = '$id'");
+
   foreach ($data->result() as $row)
 {
     $data2= $row->max;
     return $data2;
 }
 
-        
+
 /*
 if ($data =! null){
         	return true;
@@ -28,7 +28,7 @@ if ($data =! null){
         }
 */
 
-        
+
     }
 
     public function getMaxReserva($fecha, $modulo, $sala) {
@@ -40,14 +40,14 @@ if ($data =! null){
         $data=$this->db->get('reservas');
         return $data->result();
 
-        
+
     }
 
 
     public function addReserva($data){
 
     	//data['id_a'] = $this->input->post('id_a');
-        $this->db->insert('reservas',$data); 
+        $this->db->insert('reservas',$data);
 
     }
 
@@ -61,6 +61,14 @@ if ($data =! null){
     	$this->db->where('sala', $sala);
     	$this->db->update('reserva', $data);
 
+    }
+
+    public function obtener_reservas($fecha)
+    {
+      $this->db->select('modulo,sala,eliminada,confirmada,estado,id_a');
+      $this->db->from('reservas');
+      $this->db->where('fecha',$fecha);
+      return $query = $this->db->get();
     }
 
 }

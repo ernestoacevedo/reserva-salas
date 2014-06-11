@@ -26,9 +26,22 @@ $(document).ready(function() {
 		displayYearController: true,
 	});
 
+	var obtenerReservas = function($fecha){
+		$.ajax({
+			type: 'POST',
+			dataType: 'JSON',
+			data: {fecha: $fecha},
+			url: $('body').data('url')+'index.php/reservas/ObtenerReservas',
+			success: function(respuesta){
+				console.log(respuesta);
+			}
+		});
+	};
+
 	document.addEventListener('bicCalendarSelect', function(e) {
 		moment.lang('es');
 		$('#calendar-wrap').data('fecha',new moment(e.detail.date).format('DD/MM/YYYY'));
+		obtenerReservas($('#calendar-wrap').data('fecha'));
 	});
 
 	var actualizarTabla = function($tabla) {

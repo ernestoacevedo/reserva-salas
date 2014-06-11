@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery-ui-1.10.4.custom.css"/>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bic_calendar.css" />
 </head>
-<body>
+<body data-url="<?php echo base_url();?>">
 	<section id="container">
 		<header class="topbar blue-bg">
 			<a href="#" class="logo">SIBIB UCM</a>

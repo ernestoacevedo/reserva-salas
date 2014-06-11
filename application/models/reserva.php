@@ -24,4 +24,12 @@ class reserva extends CI_Model {
         //$this->db->where('reserva.id_reserva',$id_reserva );
         //$this->db->delete('reserva');
     }
+
+    public function obtener_reservas($fecha)
+    {
+      $this->db->select('modulo,sala,eliminada,confirmada,estado,id_a');
+      $this->db->from('reservas');
+      $this->db>where('fecha',$fecha);
+      return $query = $this->db->get();
+    }
 }

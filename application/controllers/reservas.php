@@ -85,7 +85,7 @@ class Reservas extends CI_Controller {
             'observacion' => 'Reservada'
           );
     $this->mod_reserva->addReserva($data);
-   
+
     $respuesta = array("error"=> false);
    }
     else{
@@ -158,7 +158,7 @@ class Reservas extends CI_Controller {
     todas estas banderas no serán ingresadas por usuario, seran activadas por acciones/ eventos Botones
     el unico ingreso de usuario será el rut del alumno, lo demás será seleccionar y apretar botones.
     */
-  
+
 /*
     $max = $this->mod_reserva->getMaxReserva($fecha, $modulo, $sala);
     if ($max < 1){
@@ -205,8 +205,8 @@ class Reservas extends CI_Controller {
 
 
  public function BloquearReserva(){
-  
-/* 
+
+/*
   El valor en el estado "estado = 1 (dato default)"  nos dice que la sala, en ese modulo y fecha está disponible, el valor
   "estado = 0", nos dice que la sala, modulo, fecha está bloqueado.
 */
@@ -225,6 +225,22 @@ class Reservas extends CI_Controller {
 
     $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
 */
+  }
+
+  public function ObtenerReservas(){
+    $query = $this->mod_reserva->obtener_reservas($this->input->post('fecha'));
+    $reservas = array();
+    $reserva = array();
+    foreach($query->result() as $row){
+      $reserva['modulo'] = $row->modulo;
+      $reserva['sala'] = $row->sala;
+      $reserva['eliminada'] = $row->eliminada;
+      $reserva['confirmada'] = $row->confirmada;
+      $reserva['estado'] = $row->estado;
+      $reserva['id_a'] = $row->id_a;
+    }
+    array_push($reservas,$reserva);
+    echo json_encode($reservas);
   }
 }
 
