@@ -2,18 +2,25 @@
 Class mod_reserva extends CI_Model
 {
  
-    public function getAlumReserva($fecha, $modulo, $sala, $id) {
-
+    public function getAlumReserva($fecha, $id) {
+/*
     	$this->db->select('id_a');
     	$this->db->where('fecha',$fecha);
-        $this->db->where('fecha',$modulo);
-        $this->db->where('fecha',$sala);
     	$this->db->where('id_a',$id);
         $data=$this->db->get('reservas',1);
-        return $data->result();
+        //return $data->result();
+*/
+  $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  id_a = '$id'");     
+  
+  foreach ($data->result() as $row)
+{
+    $data2= $row->max;
+    return $data2;
+}
 
-
-/*	if ($data =! null){
+        
+/*
+if ($data =! null){
         	return true;
         }
         else{
