@@ -58,7 +58,7 @@ class Reservas extends CI_Controller {
 
     */
 
-    
+
     // $datos['alumno'] = $this->mod_alumno->getAlumno($rut);
 
     $rut = $this->input->post('rut');
@@ -241,8 +241,8 @@ class Reservas extends CI_Controller {
       $reserva['confirmada'] = $row->confirmada;
       $reserva['estado'] = $row->estado;
       $reserva['id_a'] = $row->id_a;
+      $reservas[] = $reserva;
     }
-    array_push($reservas,$reserva);
     echo json_encode($reservas);
   }
 }
