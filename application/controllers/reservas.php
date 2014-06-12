@@ -87,9 +87,9 @@ class Reservas extends CI_Controller {
             'id_e' => '17.159.876-9',
             'observacion' => 'Reservada'
           );
-    $this->mod_reserva->addReserva($data);
+    $resultado = $this->mod_reserva->addReserva($data);
 
-    $respuesta = array("error"=> false);
+    $respuesta = array("error" => false,"insertado" => $resultado);
   /* }
     else{
       $respuesta = array("error"=> true);
