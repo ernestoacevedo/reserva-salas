@@ -2,7 +2,7 @@
 Class mod_usuario extends CI_Model
 {
  
-    public function getUsuario() {
+    public function obtener_usuario() {
 
     	$this->db->select('*');
         $data=$this->db->get('usuarios');

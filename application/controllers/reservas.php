@@ -35,7 +35,7 @@ class Reservas extends CI_Controller {
     */
   }
 
-  public function nuevaReserva(){
+  public function NuevaReserva(){
     /*
     Al momento de aparecer el modal, debemos tomar los datos, tanto el "codigo de barras"
     como el "rut", y buscar en la base de datos el "nombre", "carrera" y "foto" para mostrar
@@ -59,7 +59,7 @@ class Reservas extends CI_Controller {
     */
 
 
-    // $datos['alumno'] = $this->mod_alumno->getAlumno($rut);
+    // $datos['alumno'] = $this->mod_alumno->obtener_alumno($rut);
 
     $rut = $this->input->post('rut');
     $fecha = $this->input->post('fecha');
@@ -68,7 +68,7 @@ class Reservas extends CI_Controller {
 
   /* $alumxdia = 1;
 
-    $max=$this->mod_reserva->getAlumReserva($fecha, $rut);
+    $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
 
 //log_message('debug',print_r($prueba,TRUE));
 
@@ -87,7 +87,7 @@ class Reservas extends CI_Controller {
             'id_e' => '17.159.876-9',
             'observacion' => 'Reservada'
           );
-    $resultado = $this->mod_reserva->addReserva($data);
+    $resultado = $this->mod_reserva->agregar_reserva($data);
 
     $respuesta = array("error" => false,"insertado" => $resultado);
   /* }
@@ -101,7 +101,7 @@ class Reservas extends CI_Controller {
 
   }
 
-  public function confirmarReserva(){
+  public function ConfirmarReserva(){
 
 /*
     -El (botón confirmar) solo debe aparecer  en las reservas (realizadas: ["eliminada =0(default)" y "confirmada =0 (default)"]),
@@ -135,12 +135,12 @@ class Reservas extends CI_Controller {
       'observacion' => 'Confirmada')
       );
 
-    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 */
 
   }
 
-  public function eliminarReserva(){
+  public function EliminarReserva(){
    /* -El (botón eliminar) que sólo aparece en las reservas (realizadas) y en cualquier hora, debe permitir
     agregar "observación" con la concatenacion de texto ["Eliminada por usuario:"."  ".textoingresado], una
     vez presionado confirmar se debe leer en la BD el máximo_valor de "eliminada" con parametros
@@ -163,7 +163,7 @@ class Reservas extends CI_Controller {
     */
 
 /*
-    $max = $this->mod_reserva->getMaxReserva($fecha, $modulo, $sala);
+    $max = $this->mod_reserva->obtener_max_eliminada($fecha, $modulo, $sala);
     if ($max < 1){
       $max =1;
     }
@@ -181,7 +181,7 @@ class Reservas extends CI_Controller {
       'observacion' => 'Eliminada:   '.$this->input->post('observacion')
       );
 
-    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 */
   }
 
@@ -202,7 +202,7 @@ class Reservas extends CI_Controller {
       'observacion' => 'Eliminada por no Confirmación')
       );
 
-    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 */
   }
 
@@ -226,7 +226,7 @@ class Reservas extends CI_Controller {
       'observacion' => 'Eliminada por Bloqueo'
       );
 
-    $this->mod_reserva->updateReserva($fecha, $modulo, $sala, $data);
+    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 */
   }
 

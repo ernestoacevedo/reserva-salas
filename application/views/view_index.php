@@ -132,7 +132,7 @@
 					  	Esperando datos
 						</div>
 					</div> <!-- end .progress -->
-					<form id="form-reserva" action="<?php echo site_url('reservas/nuevaReserva');?>">
+					<form id="form-reserva" action="<?php echo site_url('reservas/NuevaReserva');?>">
 		        <input type="text" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
 						<input type="text" id="nombre" name="nombre" placeholder="Ej: Guillermo Becerra">
 						<input type="text" id="carrera" name="carrera" placeholder="Ej: Ingeniería Civil en Informática">
