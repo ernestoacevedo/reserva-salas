@@ -60,17 +60,21 @@ class Reservas extends CI_Controller {
 
 
     */
+    // $datos['alumno'] = $this->mod_alumno->getAlumno($rut);
+
     $rut = $this->input->post('rut');
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
-    $axdia = 1;
+    
+  /* $alumxdia = 1;
 
     $max=$this->mod_reserva->getAlumReserva($fecha, $rut);
 
 //log_message('debug',print_r($prueba,TRUE));
-    if ($max < $axdia){
 
+   if ($max < $alumxdia){
+*/
     $data= array(
           'fecha'=> $fecha,
           'modulo'=> $modulo,
@@ -87,11 +91,11 @@ class Reservas extends CI_Controller {
     $this->mod_reserva->addReserva($data);
 
     $respuesta = array("error"=> false);
-   }
+  /* }
     else{
       $respuesta = array("error"=> true);
     }
-
+*/
 
     echo json_encode($respuesta);
 
