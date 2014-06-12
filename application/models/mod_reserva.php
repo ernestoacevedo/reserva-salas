@@ -45,10 +45,12 @@ if ($data =! null){
 
 
     public function addReserva($data){
-
-    	//data['id_a'] = $this->input->post('id_a');
-        $this->db->insert('reservas',$data);
-
+      if($this->db->insert('reservas',$data)){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
 
     public function updateReserva($fecha, $modulo, $sala, $data){
