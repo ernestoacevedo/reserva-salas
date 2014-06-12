@@ -56,17 +56,16 @@ class Reservas extends CI_Controller {
     -fk: "id_a" se obtiene con rut o credencial, "id_e" el cual se obtiene de la session.
     -otros: "confirmada =0", "observacion: Reservada"
 
-
-
-
     */
+
+    
     // $datos['alumno'] = $this->mod_alumno->getAlumno($rut);
 
     $rut = $this->input->post('rut');
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
-    
+
   /* $alumxdia = 1;
 
     $max=$this->mod_reserva->getAlumReserva($fecha, $rut);
