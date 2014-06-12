@@ -56,7 +56,7 @@
 							</tr>
 							<tr>
 								<td data-id-modulo="2"> 09:00 - 10:00 </td>
-								<td class="horario" data-reservado="1">Guillermo Becerra</td>
+								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>

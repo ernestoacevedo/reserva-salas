@@ -26,24 +26,6 @@ $(document).ready(function() {
 		displayYearController: true,
 	});
 
-	var obtenerReservas = function($fecha){
-		$.ajax({
-			type: 'POST',
-			dataType: 'JSON',
-			data: {fecha: $fecha},
-			url: $('body').data('url')+'index.php/reservas/ObtenerReservas',
-			success: function(respuesta){
-				console.log(respuesta);
-			}
-		});
-	};
-
-	document.addEventListener('bicCalendarSelect', function(e) {
-		moment.lang('es');
-		$('#calendar-wrap').data('fecha',new moment(e.detail.date).format('DD/MM/YYYY'));
-		obtenerReservas($('#calendar-wrap').data('fecha'));
-	});
-
 	var actualizarTabla = function($tabla) {
 		$tabla.each(function(i, elemento) {
 			switch ($(this).data('reservado')) {
@@ -63,7 +45,36 @@ $(document).ready(function() {
 		});
 	};
 
-	actualizarTabla($('#tabla_horarios td'));
+	var inicializarTabla = function($tabla){
+		$tabla.each(function(i,elemento){
+			$(this).data('reservado',0);
+		});
+	};
+
+	var obtenerReservas = function($fecha){
+		inicializarTabla($('#tabla_horarios td'));
+		$.ajax({
+			type: 'POST',
+			dataType: 'JSON',
+			data: {fecha: $fecha},
+			url: $('body').data('url')+'index.php/reservas/ObtenerReservas',
+			success: function(respuesta){
+				console.log(respuesta);
+				$.each(respuesta,function(key,value){
+					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala).data('reservado',1);
+				});
+				actualizarTabla($('#tabla_horarios td'));
+			}
+		});
+	};
+
+	obtenerReservas($('#calendar-wrap').data('fecha'));
+
+	document.addEventListener('bicCalendarSelect', function(e) {
+		moment.lang('es');
+		$('#calendar-wrap').data('fecha',new moment(e.detail.date).format('DD/MM/YYYY'));
+		obtenerReservas($('#calendar-wrap').data('fecha'));
+	});
 
 	$(document).on('mouseenter', '#tabla_horarios tr td', function(e) {
 		if ($(this).hasClass('horario') && $(this).data('reservado') != 1) {
@@ -105,6 +116,7 @@ $(document).ready(function() {
 			data: $('#form-reserva').serialize(),
 			dataType: 'JSON',
 			success: function(data){
+				console.log(data);
 				if(data.error){
 					alert('Error al reservar sala');
 				}
