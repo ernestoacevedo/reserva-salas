@@ -61,7 +61,7 @@ $(document).ready(function() {
 			success: function(respuesta){
 				console.log(respuesta);
 				$.each(respuesta,function(key,value){
-					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala).data('reservado',1);
+					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala-1).data('reservado',1);
 				});
 				actualizarTabla($('#tabla_horarios td'));
 			}
