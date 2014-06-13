@@ -16,7 +16,7 @@
       <a href="#" class="logo">SIBIB UCM</a>
       <ul class="pull-right">
       <li id="usermenu" class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> Usuario </a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> Administrador</a>
         <b class="caret"></b>
         <ul class="dropdown-menu">
           <li><a href="#"><span class="fa fa-sign-out"></span> Cerrar sesión </a></li>
