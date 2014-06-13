@@ -1,3 +1,6 @@
+
+-- TABLAS DE LA BASE DE DATOS INSTITUCIONAL.
+
 create table empleados(
 	id_e varchar (30),
 	nombres_e varchar (40),
@@ -31,7 +34,7 @@ create table usuarios(
 	constraint id_u_fk foreign key (id_u) references empleados (id_e)
 );
 
-
+-- TABLAS DE LA BASE DE  DATOS DEL SISTEMA DE RESERVA.
 
 create table reservas(
 	fecha date,
@@ -48,5 +51,21 @@ create table reservas(
 	--plumon_borrador int, -- SI 1 / NO 0
 	constraint reservas_pk primary key (fecha, modulo, sala, eliminada),
 	constraint reservas_fk_1 foreign key (alumno) references alumnos (id_a),
-	constraint reservas_fk_2 foreign key (asistente) references usuarios (id_u)
+	constraint reservas_fk_2 foreign key (asistente) references usuarios (id_u),
+	constraint reservas_fk_3 foreign key (modulo) references modulos(id_mod)
 	);
+
+create table modulos(
+	id_mod int,
+	h_inicio varchar(10),
+	h_fin varchar(10),
+	dimension int,
+	constraint modulos_pk primary key (id_mod)
+);
+
+create table parametros(
+	cant_salas int,
+	plazo_para_reservar int,
+	n_reservas_diarias int,
+	constraint modulos_pk primary key (cant_salas, plazo_para_reservar, n_reservas_diarias)
+);
