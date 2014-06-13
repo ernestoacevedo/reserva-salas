@@ -48,7 +48,9 @@ $(document).ready(function() {
 	var inicializarTabla = function($tabla){
 		$tabla.each(function(i,elemento){
 			$(this).data('reservado',0);
-			$(this).html('');
+			if ($(this).hasClass('horario')) {
+				$(this).html('');
+			}
 		});
 	};
 
