@@ -3,30 +3,22 @@ Class mod_parametros extends CI_Model
 {
  
 
-    function __construct()
-    {
-        parent::__construct();
+    public function obtener_alumxdia() {
+
+        $this->db->select('n_reservas_diarias');
+        $data=$this->db->get('parametros');
+        return $data->result();
+        
     }
 
-    public function insertar()
-    {
-        $data['hora_inicio'] = $this->input->post('hora_inicio');
-        $data['hora_fin'] = $this->input->post('hora_fin');
-        $this->db->insert('modulo',$data);
-    }
+    public function obtener_plazo() {
 
-    public function actualizar()
-    {
-        //$data[''] = $this->input->post('');
-        //$this->db->where('reserva.id_reserva',$this->input->post('id_reserva'));
-        //$this->db->update('reserva',$data);
-    }
+        $this->db->select('plazo_para_reservar');
+        $data=$this->db->get('parametros');
+        return $data->result();
+        
+    }    
 
-    public function eliminar($id_reserva)
-    {
-        //$this->db->where('reserva.id_reserva',$id_reserva );
-        //$this->db->delete('reserva');
-    }
 
  
 }

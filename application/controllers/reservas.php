@@ -17,12 +17,6 @@ class Reservas extends CI_Controller {
 
     $datos = $this->mod_alumno->obtener_alumno($rut);
     
-
-
-
-
-
-
   }
 
   public function index(){
@@ -77,7 +71,7 @@ class Reservas extends CI_Controller {
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
 
-  /* $alumxdia = 1;
+  /* $alumxdia = 1;   # buscar en BD 
 
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
 
@@ -252,6 +246,8 @@ class Reservas extends CI_Controller {
       $reserva['confirmada'] = $row->confirmada;
       $reserva['estado'] = $row->estado;
       $reserva['id_a'] = $row->id_a;
+      $reserva['nombre_a'] = $row->nombre_a;
+      $reserva['carrera_a'] = $row->carrera_a;
       $reservas[] = $reserva;
     }
     echo json_encode($reservas);

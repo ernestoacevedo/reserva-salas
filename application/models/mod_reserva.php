@@ -47,7 +47,7 @@ Class mod_reserva extends CI_Model
 
     public function obtener_reservas($fecha)
     {
-      $this->db->select('modulo,sala,eliminada,confirmada,estado,id_a');
+      $this->db->select('modulo,sala,eliminada,confirmada,estado,id_a,nombre_a,carrera_a');
       $this->db->from('reservas');
       $this->db->where('fecha',$fecha);
       return $query = $this->db->get();
