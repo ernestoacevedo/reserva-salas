@@ -2,6 +2,8 @@
 class Parametros extends CI_Controller {
 
 
+
+
 // N_reservas
 	// Plazo
 

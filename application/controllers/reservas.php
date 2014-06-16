@@ -11,6 +11,19 @@ class Reservas extends CI_Controller {
       $this->load->helper('form','html');
   }
 
+  public function ValidarAlumno(){
+    
+    $rut = $this->input->post('rut');
+
+    $datos = $this->mod_alumno->obtener_alumno($rut);
+    
+
+
+
+
+
+
+  }
 
   public function index(){
     /*
@@ -58,9 +71,7 @@ class Reservas extends CI_Controller {
 
     */
 
-
-    // $datos['alumno'] = $this->mod_alumno->obtener_alumno($rut);
-
+    
     $rut = $this->input->post('rut');
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
