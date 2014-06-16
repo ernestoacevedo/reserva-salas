@@ -12,16 +12,21 @@ class Reservas extends CI_Controller {
   }
 
   public function ValidarAlumno(){
-    
+
     $rut = $this->input->post('rut');
-
     $datos = $this->mod_alumno->obtener_alumno($rut);
-    
-
-
-
-
-
+    $alumno = array();
+    foreach($datos as $row){
+      $alumno['nombre'] = $row->nombre_a;
+      $alumno['apellido'] = $row->apellidos_a;
+      $alumno['carrera'] = $row->carrera;
+    }
+    if(sizeof($alumno)>0){
+      echo json_encode(array("error"=> false, "alumno"=>$alumno));
+    }
+    else {
+      echo json_encode(array("error" => true));
+    }
 
   }
 
@@ -71,7 +76,7 @@ class Reservas extends CI_Controller {
 
     */
 
-    
+
     $rut = $this->input->post('rut');
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
@@ -252,6 +257,8 @@ class Reservas extends CI_Controller {
       $reserva['confirmada'] = $row->confirmada;
       $reserva['estado'] = $row->estado;
       $reserva['id_a'] = $row->id_a;
+      $reserva['nombre_a'] = $row->nombre_a;
+      $reserva['carrera_a'] = $row->carrera_a;
       $reservas[] = $reserva;
     }
     echo json_encode($reservas);

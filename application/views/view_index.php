@@ -47,7 +47,7 @@
 						</thhead>
 						<tbody>
 							<tr>
-								<td data-id-modulo="1"> 08:00 - 09:00 </td>
+								<td data-id-modulo="1" style="text-align: center;"> 08:00 - 09:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -55,7 +55,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td data-id-modulo="2"> 09:00 - 10:00 </td>
+								<td data-id-modulo="2" style="text-align: center;"> 09:00 - 10:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -63,7 +63,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td data-id-modulo="3"> 10:00 - 11:00 </td>
+								<td data-id-modulo="3" style="text-align: center;"> 10:00 - 11:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -71,7 +71,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td data-id-modulo="4"> 11:00 - 12:00 </td>
+								<td data-id-modulo="4" style="text-align: center;"> 11:00 - 12:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -79,7 +79,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td data-id-modulo="5"> 12:00 - 13:00 </td>
+								<td data-id-modulo="5" style="text-align: center;"> 12:00 - 13:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -87,7 +87,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td data-id-modulo="6"> 14:00 - 15:00 </td>
+								<td data-id-modulo="6" style="text-align: center;"> 14:00 - 15:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -95,7 +95,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td data-id-modulo="7"> 15:00 - 16:00 </td>
+								<td data-id-modulo="7" style="text-align: center;"> 15:00 - 16:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
@@ -103,7 +103,7 @@
 								<td class="horario" data-reservado="0"></td>
 							</tr>
 							<tr>
-								<td data-id-modulo="8"> 17:00 - 18:00 </td>
+								<td data-id-modulo="8" style="text-align: center;"> 17:00 - 18:00 </td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>
 								<td class="horario" data-reservado="0"></td>

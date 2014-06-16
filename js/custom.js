@@ -65,6 +65,7 @@ $(document).ready(function() {
 				console.log(respuesta);
 				$.each(respuesta,function(key,value){
 					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala-1).data('reservado',1);
+					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala-1).html(value.nombre_a+'<br><span class="carrera">'+value.carrera_a+'</span><a href="#" class="validar"><i class="fa fa-thumbs-up"></i></a>');
 				});
 				actualizarTabla($('#tabla_horarios td'));
 			}
@@ -134,8 +135,37 @@ $(document).ready(function() {
 		});
 	});
 
-	$(document).on('input', '#nombre,#rut,#carrera', function(e) {
+	$(document).on('input', '#rut', function(e) {
 		$('#barra-progreso').hide();
+		if ($('#rut').val() != "") {
+			$('#nombre').val('');
+			$('#carrera').val('');
+			console.log($('#rut').val());
+			$.ajax({
+				type: 'POST',
+				data: {
+					rut: $('#rut').val()
+				},
+				url: $('body').data('url') + 'index.php/reservas/ValidarAlumno',
+				dataType: 'JSON',
+				success: function(data) {
+					console.log(data);
+					if (data.error) {
+						var n = noty({
+							text: 'RUT inválido',
+							type: 'error',
+							layout: 'bottomRight',
+							timeout: '500'
+						});
+					} else {
+						var nombre_alumno = data.alumno.nombre.split(" ");
+						var apellido_alumno = data.alumno.apellido.split(" ");
+						$('#nombre').val(nombre_alumno[0] + " " + apellido_alumno[0]);
+						$('#carrera').val(data.alumno.carrera);
+					}
+				}
+			});
+		}
 	});
 
 	$('#tabla_horarios').dataTable({

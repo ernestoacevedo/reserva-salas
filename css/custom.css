@@ -78,8 +78,8 @@ a.logo {
 }
 
 #tabla_horarios td {
-  width: 75px;
-  height: 30px;
+  width: 80px;
+  height: 40px;
 }
 
 .horario {
@@ -116,4 +116,16 @@ a.logo {
 
 .form-wrapper h4{
   color: white;
+}
+
+td .carrera {
+  font-size: 10px;
+  z-index: 10;
+}
+
+td .validar{
+  color: white;
+  position: relative;
+  right: -10px;
+  z-index: 20;
 }
