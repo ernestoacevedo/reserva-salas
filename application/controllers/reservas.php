@@ -27,7 +27,6 @@ class Reservas extends CI_Controller {
     else {
       echo json_encode(array("error" => true));
     }
-
   }
 
   public function index(){
@@ -82,7 +81,7 @@ class Reservas extends CI_Controller {
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
 
-  /* $alumxdia = 1;
+  /* $alumxdia = 1;   # buscar en BD
 
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
 
