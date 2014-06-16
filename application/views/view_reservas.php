@@ -1,0 +1,1 @@
+<!-- aqui va lo que está en "view_indes.php" -->

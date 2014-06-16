@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class reserva extends CI_Model {
+Class mod_parametros extends CI_Model
+{
+ 
 
     function __construct()
     {
@@ -25,4 +27,7 @@ class reserva extends CI_Model {
         //$this->db->where('reserva.id_reserva',$id_reserva );
         //$this->db->delete('reserva');
     }
+
+ 
 }
+?>

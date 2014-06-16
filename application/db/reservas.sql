@@ -46,6 +46,8 @@ CREATE TABLE "reservas" (
 	FOREIGN KEY(id_e) REFERENCES usuarios(id_e),
 	FOREIGN KEY(id_a) REFERENCES alumnos(id_a)
 );
+
+
 INSERT INTO `empleados` VALUES('12.312.312-3','Juan Manuel
 ','Lillo Peralta',45,'dia','asistente');
 INSERT INTO `empleados` VALUES('12.435.754-2','Felipe Andres','Mena Lopez',43,'dia','asistente');
