@@ -153,6 +153,7 @@
 	<script src="<?php echo base_url(); ?>js/modernizr.custom.63321.js"></script>
 	<script src="<?php echo base_url(); ?>js/bic_calendar.js"></script>
 	<script src="<?php echo base_url(); ?>js/moment.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/jquery.noty.packaged.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/custom.js"></script>
 </body>
 </html>
