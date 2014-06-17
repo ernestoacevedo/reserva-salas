@@ -125,7 +125,7 @@ $(document).ready(function() {
 					var n = noty({text: 'Error al realizar la reserva',type: 'error',layout: 'bottomRight',timeout: '500'});
 				}
 				else{
-					var n = noty({text: '<b>insertado:</b> '+data.insertado,type: 'alert',layout: 'bottomRight',timeout: '500'});
+					var n = noty({text: '<b>insertado:</b> '+data.insertado,type: 'alert',layout: 'bottomLeft',timeout: '500'});
 					$cell.html($('#nombre').val());
 					$cell.data('reservado', 1);
 					$('#modal-reserva').modal('hide');
