@@ -134,8 +134,8 @@
 					</div> <!-- end .progress -->
 					<form id="form-reserva" action="<?php echo site_url('reservas/NuevaReserva');?>">
 		        <input type="text" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
-						<input type="text" id="nombre" name="nombre" disabled="true" placeholder="Ej: Guillermo Becerra">
-						<input type="text" id="carrera" name="carrera" disabled="true" placeholder="Ej: Ingeniería Civil en Informática">
+						<input type="text" id="nombre" name="nombre" OnFocus="this.blur()" placeholder="Ej: Guillermo Becerra">
+						<input type="text" id="carrera" name="carrera" OnFocus="this.blur()" placeholder="Ej: Ingeniería Civil en Informática">
 						<input type="hidden" id="fecha" name="fecha">
 						<input type="hidden" id="modulo" name="modulo">
 						<input type="hidden" id="sala" name="sala">

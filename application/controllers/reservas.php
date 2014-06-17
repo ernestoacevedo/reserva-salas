@@ -80,6 +80,8 @@ class Reservas extends CI_Controller {
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
+    $nombre = $this->input->post('nombre');
+    $carrera = $this->input->post('carrera');
 
   /* $alumxdia = 1;   # buscar en BD
 
@@ -96,6 +98,8 @@ class Reservas extends CI_Controller {
            'eliminada' => 0,
           //'id_a'=>$this->input->post('rut'),
            'id_a'=>$rut,
+           'nombre_a' => $nombre,
+           'carrera_a' => $carrera,
             'confirmada' => 0,
             'estado' => 1,
           //'id_e'=>$this->input->post('loggin'), // obtener del sesion
