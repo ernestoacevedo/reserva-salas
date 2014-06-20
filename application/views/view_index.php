@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/custom.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables.css" />
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery-ui-1.10.4.custom.css"/>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables_themeroller.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bic_calendar.css" />
 </head>
 <body data-url="<?php echo base_url();?>">
@@ -35,16 +36,16 @@
 			<div id="wrapper">
 				<div id="myScheduler">
 					<table id="tabla_horarios" border="1" style="table">
-						<thhead>
+						<thead>
 							<tr>
-								<th style="width: 50px;"> Módulo </th>
+								<th style="width: 100px;text-align: center;"> Módulo </th>
 								<th style="text-align: center;" data-num-sala="1"> Sala 1 </th>
 								<th style="text-align: center;" data-num-sala="2"> Sala 2 </th>
 								<th style="text-align: center;" data-num-sala="3"> Sala 3 </th>
 								<th style="text-align: center;" data-num-sala="4"> Sala 4 </th>
 								<th style="text-align: center;" data-num-sala="5"> Sala 5 </th>
 							</tr>
-						</thhead>
+						</thead>
 						<tbody>
 							<tr>
 								<td data-id-modulo="1" style="text-align: center;"> 08:00 - 09:00 </td>

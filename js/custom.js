@@ -170,6 +170,7 @@ $(document).ready(function() {
 
 	$('#tabla_horarios').dataTable({
 		"bJQueryUI": true,
-		"sDom": "<H><t><F>"
+		"sDom": '<><t><>',
+		"bSort" : false
 	});
 });
