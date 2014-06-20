@@ -65,7 +65,7 @@ $(document).ready(function() {
 				console.log(respuesta);
 				$.each(respuesta,function(key,value){
 					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala-1).data('reservado',1);
-					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala-1).html(value.nombre_a+'<br><span class="carrera">'+value.carrera_a+'</span><a href="#" class="validar"><i class="fa fa-thumbs-up"></i></a>');
+					$('td[data-id-modulo='+value.modulo+']').siblings().eq(value.sala-1).html(value.nombre_a+'<br><span class="carrera">'+value.carrera_a+'</span>');
 				});
 				actualizarTabla($('#tabla_horarios td'));
 			}
@@ -80,15 +80,28 @@ $(document).ready(function() {
 		obtenerReservas($('#calendar-wrap').data('fecha'));
 	});
 
+	var $html = '';
+
 	$(document).on('mouseenter', '#tabla_horarios tr td', function(e) {
-		if ($(this).hasClass('horario') && $(this).data('reservado') != 1) {
-			$(this).html('<button class="btn btn-primary btn-reserva">Reservar</button>');
+		if ($(this).hasClass('horario')) {
+			if($(this).data('reservado')==0){
+				$(this).html('<button class="btn btn-primary btn-reserva">Reservar</button>');
+			}
+			else{
+				$html = $(this).html();
+				$(this).html($html+'<a href="#" class="validar"><i class="fa fa-thumbs-up"></i></a> <a href="#" class="observacion"><i class="fa fa-comment"></i></a> <a href="#" class="eliminar"><i class="fa fa-trash-o"></i></a>');
+			}
 		}
 	});
 
 	$(document).on('mouseleave', '#tabla_horarios tr td', function(e) {
-		if ($(this).hasClass('horario') && $(this).html() != "" && $(this).data('reservado') != 1) { // Si el elemento no está vacío (tiene un botón), se elimina el contenido
-			$(this).html('');
+		if ($(this).hasClass('horario') && $(this).html() != "") { // Si el elemento no está vacío (tiene un botón), se elimina el contenido
+			if($(this).data('reservado')==0){
+				$(this).html('');
+			}
+			else{
+				$(this).html($html);
+			}
 		}
 	});
 
@@ -169,7 +182,7 @@ $(document).ready(function() {
 	});
 
 	$('#tabla_horarios').dataTable({
-		"bJQueryUI": true,
+		"bJQueryUI": false,
 		"sDom": '<><t><>',
 		"bSort" : false
 	});

@@ -129,3 +129,15 @@ td .validar{
   right: -10px;
   z-index: 20;
 }
+
+td .observacion{
+  color: white;
+  position: relative;
+  right: -15px;
+}
+
+td .eliminar{
+  color: white;
+  position: relative;
+  right: -20px;
+}
