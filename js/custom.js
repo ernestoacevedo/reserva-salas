@@ -77,6 +77,7 @@ $(document).ready(function() {
 	document.addEventListener('bicCalendarSelect', function(e) {
 		moment.lang('es');
 		$('#calendar-wrap').data('fecha',new moment(e.detail.date).format('DD/MM/YYYY'));
+		$('.popover').hide();
 		obtenerReservas($('#calendar-wrap').data('fecha'));
 	});
 
@@ -88,8 +89,8 @@ $(document).ready(function() {
 				$(this).html('<button class="btn btn-primary btn-reserva">Reservar</button>');
 			}
 			else{
-				$html = $(this).html();
-				$(this).html($html+'<a href="#" class="validar"><i class="fa fa-thumbs-up"></i></a> <a href="#" class="observacion"><i class="fa fa-comment"></i></a> <a href="#" class="eliminar"><i class="fa fa-trash-o"></i></a>');
+				$html = $(this).find('.carrera').html();
+				$(this).find('.carrera').html('<a href="#" class="validar"><i class="fa fa-thumbs-up"></i></a> <a href="#" class="observacion"><i class="fa fa-comment"></i></a> <a href="#" class="eliminar"><i class="fa fa-trash-o"></i></a>');
 			}
 		}
 	});
@@ -100,7 +101,7 @@ $(document).ready(function() {
 				$(this).html('');
 			}
 			else{
-				$(this).html($html);
+				$(this).find('.carrera').html($html);
 			}
 		}
 	});
@@ -121,6 +122,7 @@ $(document).ready(function() {
 		console.log('Sala: '+$($th).data('num-sala'));
 		console.log('Módulo: '+$(this).parent().parent().children(':first-child').data('id-modulo'));
 		console.log('Fecha: '+$('#calendar-wrap').data('fecha'));
+		$('.popover').hide();
 	});
 
 	$(document).on('click', '.btn-agregar', function(e) {
@@ -179,6 +181,38 @@ $(document).ready(function() {
 				}
 			});
 		}
+	});
+
+	$(document).on('click', '.observacion', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$('.popover').hide();
+		$(this).popover({
+			placement: 'bottom',
+			title: 'Añadir Observación',
+			content: '<div class="input-group"><textarea style="resize: none;" rows="3" cols="20" class="form-control pull-left"></textarea><span class="input-group-btn"><button class="btn btn-primary" type="button"><span class="fa fa-check"></span></button></span></div>',
+			html: 'true',
+			container: 'body'
+		});
+		$(this).popover('show');
+	});
+
+	$(document).on('click','#add-obs',function(e){
+		if($(this).is(':checked')){
+			$('#observacion').show();
+		}
+		else{
+			$('#observacion').hide();
+		}
+	});
+
+	$(document).on('click','.eliminar',function(e){
+		$('#observacion').val('');
+		$('#modalEliminar').modal('show');
+	});
+
+	$(document).on('click','#btn-cancelar-reserva',function(e){
+		$('#modalEliminar').modal('hide');
 	});
 
 	$('#tabla_horarios').dataTable({

@@ -119,25 +119,22 @@ a.logo {
 }
 
 td .carrera {
-  font-size: 10px;
+  font-size: 11px;
   z-index: 10;
 }
 
 td .validar{
   color: white;
   position: relative;
-  right: -10px;
   z-index: 20;
 }
 
 td .observacion{
   color: white;
   position: relative;
-  right: -15px;
 }
 
 td .eliminar{
   color: white;
   position: relative;
-  right: -20px;
 }

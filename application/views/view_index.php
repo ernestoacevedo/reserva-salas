@@ -14,7 +14,7 @@
 <body data-url="<?php echo base_url();?>">
 	<section id="container">
 		<header class="topbar blue-bg">
-			<a href="#" class="logo">SIBIB UCM</a>
+			<a href="<?php echo base_url();?>" class="logo">SIBIB UCM</a>
 			<ul class="pull-right">
 			<li id="usermenu" class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> Usuario </a>
@@ -148,6 +148,25 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+
+	<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+	<div id="modalEliminar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+				<div class="modal-body">
+					<h3>¿Desea eliminar esta reserva?</h3>
+					<input id="add-obs" type="checkbox"> Añadir una observación <br>
+					<textarea style="display: none;" name="observacion" id="observacion" cols="89" rows="10"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button id="btn-eliminar-reserva" class="btn btn-primary">Eliminar</button>
+					<button id="btn-cancelar-reserva" class="btn btn-danger">Cancelar</button>
+				</div>
+	    </div>
+	  </div>
+	</div>
+
 	<script src="<?php echo base_url(); ?>js/jquery.js"></script>
 	<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>js/jquery.dataTables.js"></script>
