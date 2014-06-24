@@ -28,10 +28,16 @@
       <div id="sidebar">
         <div class="form-wrapper">
           <h4>Agregar Módulo</h4>
-          <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post">
-            <input type="text" id="hora_inicio" name="hora_inicio" value="" placeholder="08:00">
-            <input type="text" id="hora_fin" name="hora_fin" value="" placeholder="09:00">
-            <button type="submit" name="agregar-modulo" class="btn btn-default" value="">Agregar</button>
+          <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form">
+            <div class="form-group">
+              <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" value="" placeholder="Hora inicial">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="hora_fin" name="hora_fin" value="" placeholder="Hora final">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="form-control" name="agregar-modulo" class="btn btn-default" value="">Agregar</button>
+            </div>
           </form>
         </div>
       </div>
