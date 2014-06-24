@@ -207,6 +207,7 @@ $(document).ready(function() {
 	});
 
 	$(document).on('click','.eliminar',function(e){
+		$('.popover').hide();
 		$('#observacion').val('');
 		$('#modalEliminar').modal('show');
 	});
