@@ -191,18 +191,16 @@ class Reservas extends CI_Controller {
       $max =1;
     }
 
-
-
      $data= array(
       'eliminada' =>  $max +1,
       'confirmada' => 0,
       'observacion' => 'Eliminada:   '.$this->input->post('observacion')
-      );
-
-   
+      ); 
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
+     $respuesta = array("error" => false,"borrado" => $resultado);
+     echo json_encode($respuesta);
   }
 
 
