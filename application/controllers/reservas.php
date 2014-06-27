@@ -139,8 +139,8 @@ class Reservas extends CI_Controller {
 
 */
 
-/*
 
+/*
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
@@ -199,8 +199,8 @@ class Reservas extends CI_Controller {
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
-     $respuesta = array("error" => false,"borrado" => $resultado);
-     echo json_encode($respuesta);
+    $respuesta = array("error" => true,"borrado" => $resultado);
+    echo json_encode($respuesta);
   }
 
 
@@ -261,7 +261,7 @@ class Reservas extends CI_Controller {
     $sala = $this->input->post('sala');
 
     $data= array(
-      'observacion' => 'Eliminada:   '.$this->input->post('observacion')
+      'observacion' => 'Observacion:   '.$this->input->post('observacion')
       );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
