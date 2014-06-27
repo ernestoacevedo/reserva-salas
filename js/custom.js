@@ -258,8 +258,9 @@
 				url: $('body').data('url') + 'index.php/reservas/EliminarReserva',
 				success: function(data) {
 					console.log(data);
-					$('#modalEliminar').modal('hide');
 				}
+			}).done(function(){
+				$('#modalEliminar').modal('hide');
 			});
 		});
 
