@@ -163,6 +163,7 @@
 		});
 
 		$(document).on('input', '#rut', function(e) {
+			console.log($('body').data('url') + 'index.php/reservas/ValidarAlumno');
 			$('#barra-progreso').hide();
 			if ($('#rut').val() != "") {
 				$('#nombre').val('');
@@ -230,8 +231,6 @@
 		});
 
 		$(document).on('click', '.validar', function(e) {
-			console.log($sala);
-			console.log($modulo);
 			$('.popover').hide();
 			$.ajax({
 				type: 'POST',
@@ -246,7 +245,7 @@
 					console.log(data);
 				}
 			});
-		})
+		});
 
 		$(document).on('click', '#btn-eliminar-reserva', function(e) {
 			$.ajax({
