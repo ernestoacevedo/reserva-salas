@@ -140,7 +140,7 @@ class Reservas extends CI_Controller {
 */
 
 
-/*
+
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
@@ -155,7 +155,7 @@ class Reservas extends CI_Controller {
       );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
-*/
+
 
   }
 
@@ -181,7 +181,7 @@ class Reservas extends CI_Controller {
     el unico ingreso de usuario será el rut del alumno, lo demás será seleccionar y apretar botones.
     */
 
-/*
+
     $max = $this->mod_reserva->obtener_max_eliminada($fecha, $modulo, $sala);
     if ($max < 1){
       $max =1;
@@ -201,7 +201,7 @@ class Reservas extends CI_Controller {
       );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
-*/
+
   }
 
 
@@ -248,6 +248,28 @@ class Reservas extends CI_Controller {
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 */
   }
+
+
+  public function AgregarObservacion(){
+  
+
+    $max = $this->mod_reserva->obtener_max_eliminada($fecha, $modulo, $sala);
+    if ($max < 1){
+      $max =1;
+    }
+
+    $fecha = $this->input->post('fecha');
+    $modulo = $this->input->post('modulo');
+    $sala = $this->input->post('sala');
+
+    $data= array(    
+      'observacion' => 'Eliminada:   '.$this->input->post('observacion')
+      );
+
+    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
+
+  }
+
 
   public function ObtenerReservas(){
     $query = $this->mod_reserva->obtener_reservas($this->input->post('fecha'));
