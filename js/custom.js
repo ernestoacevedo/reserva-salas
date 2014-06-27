@@ -280,7 +280,7 @@
 					fecha: $('#calendar-wrap').data('fecha'),
 					sala: $sala,
 					modulo: $modulo,
-					observacion: $('#observacion').val()
+					observacion: $('#obs_text').val()
 				},
 				url: $('body').data('url') + 'index.php/reservas/AgregarObservacion',
 				success: function(data) {
