@@ -16,13 +16,18 @@ Class mod_reserva extends CI_Model
 
     public function obtener_max_eliminada($fecha, $modulo, $sala) {
 
-    	$this->db->select_max('eliminada');
+      $this->db->select_max('eliminada');
     	$this->db->where('fecha',$fecha);
     	$this->db->where('modulo',$modulo);
-    	$this->db->where('modulo',$modulo);
-        $data=$this->db->get('reservas');
-        return $data->result();
+    	$this->db->where('sala',$sala);
+      $data=$this->db->get('reservas');
 
+    foreach ($data->result() as $row)
+    {
+    $data2= $row->eliminada;
+    return $data2;
+    }
+    
     }
 
 
@@ -41,7 +46,7 @@ Class mod_reserva extends CI_Model
     	$this->db->where('fecha', $fecha);
     	$this->db->where('modulo', $modulo);
     	$this->db->where('sala', $sala);
-    	$this->db->update('reserva', $data);
+    	$this->db->update('reservas', $data);
 
     }
 
