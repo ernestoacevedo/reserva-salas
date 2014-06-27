@@ -250,11 +250,7 @@ class Reservas extends CI_Controller {
 
 
   public function AgregarObservacion(){
-/*
-    $max = $this->mod_reserva->obtener_max_eliminada($fecha, $modulo, $sala);
-    if ($max < 1){
-      $max =1;
-    }
+
 
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
@@ -265,7 +261,7 @@ class Reservas extends CI_Controller {
       );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
-*/
+
   }
 
 
