@@ -163,6 +163,7 @@
 		});
 
 		$(document).on('input', '#rut', function(e) {
+			console.log($('body').data('url') + 'index.php/reservas/ValidarAlumno');
 			$('#barra-progreso').hide();
 			if ($('#rut').val() != "") {
 				$('#nombre').val('');
@@ -227,6 +228,23 @@
 			$('.popover').hide();
 			$('#observacion').val('');
 			$('#modalEliminar').modal('show');
+		});
+
+		$(document).on('click', '.validar', function(e) {
+			$('.popover').hide();
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				data: {
+					fecha: $('#calendar-wrap').data('fecha'),
+					sala: $sala,
+					modulo: $modulo
+				},
+				url: $('body').data('url') + 'index.php/reservas/ConfirmarReserva',
+				success: function(data) {
+					console.log(data);
+				}
+			});
 		});
 
 		$(document).on('click', '#btn-eliminar-reserva', function(e) {

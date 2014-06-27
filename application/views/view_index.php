@@ -156,8 +156,10 @@
 	    <div class="modal-content">
 				<div class="modal-body">
 					<h3>¿Desea eliminar esta reserva?</h3>
-					<input id="add-obs" type="checkbox"> Añadir una observación <br>
-					<textarea style="display: none;" name="observacion" id="observacion" cols="89" rows="10"></textarea>
+					<div class="input-group">
+						<input id="add-obs" type="checkbox"> Añadir una observación <br>
+						<textarea class="form-control" style="display: none;resize: none;" name="observacion" id="observacion" cols="89" rows="10"></textarea>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button id="btn-eliminar-reserva" class="btn btn-primary">Eliminar</button>
