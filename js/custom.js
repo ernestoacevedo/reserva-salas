@@ -201,7 +201,7 @@
 			$(this).popover({
 				placement: 'bottom',
 				title: 'Añadir Observación',
-				content: '<div class="input-group"><textarea style="resize: none;" rows="3" cols="20" class="form-control pull-left"></textarea><span class="input-group-btn"><button class="btn btn-primary" type="button"><span class="fa fa-check"></span></button></span></div>',
+				content: '<div class="input-group"><textarea id="obs_text" style="resize: none;" rows="3" cols="20" class="form-control pull-left"></textarea><span class="input-group-btn"><button class="btn btn-primary btn-add-obs" type="button"><span class="fa fa-check"></span></button></span></div>',
 				html: 'true',
 				container: 'body'
 			});
@@ -270,6 +270,24 @@
 
 		$(document).on('click', '#btn-cancelar-reserva', function(e) {
 			$('#modalEliminar').modal('hide');
+		});
+
+		$(document).on('click','.btn-add-obs',function(e){
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				data: {
+					fecha: $('#calendar-wrap').data('fecha'),
+					sala: $sala,
+					modulo: $modulo,
+					observacion: $('#observacion').val()
+				},
+				url: $('body').data('url') + 'index.php/reservas/AgregarObservacion',
+				success: function(data) {
+					console.log(data);
+					$('.popover').hide();
+				}
+			});
 		});
 
 		$('#tabla_horarios').dataTable({
