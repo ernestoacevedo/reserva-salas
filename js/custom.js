@@ -229,6 +229,25 @@
 			$('#modalEliminar').modal('show');
 		});
 
+		$(document).on('click', '.validar', function(e) {
+			console.log($sala);
+			console.log($modulo);
+			$('.popover').hide();
+			$.ajax({
+				type: 'POST',
+				dataType: 'JSON',
+				data: {
+					fecha: $('#calendar-wrap').data('fecha'),
+					sala: $sala,
+					modulo: $modulo
+				},
+				url: $('body').data('url') + 'index.php/reservas/ConfirmarReserva',
+				success: function(data) {
+					console.log(data);
+				}
+			});
+		})
+
 		$(document).on('click', '#btn-eliminar-reserva', function(e) {
 			$.ajax({
 				type: 'POST',
