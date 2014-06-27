@@ -163,12 +163,10 @@
 		});
 
 		$(document).on('input', '#rut', function(e) {
-			console.log($('body').data('url') + 'index.php/reservas/ValidarAlumno');
 			$('#barra-progreso').hide();
 			if ($('#rut').val() != "") {
 				$('#nombre').val('');
 				$('#carrera').val('');
-				console.log($('#rut').val());
 				$.ajax({
 					type: 'POST',
 					data: {
@@ -260,6 +258,7 @@
 				url: $('body').data('url') + 'index.php/reservas/EliminarReserva',
 				success: function(data) {
 					console.log(data);
+					$('#modalEliminar').modal('hide');
 				}
 			});
 		});
