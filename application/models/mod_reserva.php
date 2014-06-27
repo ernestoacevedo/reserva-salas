@@ -46,6 +46,7 @@ Class mod_reserva extends CI_Model
     	$this->db->where('fecha', $fecha);
     	$this->db->where('modulo', $modulo);
     	$this->db->where('sala', $sala);
+      $this->db->where('eliminada', "0");
     	$this->db->update('reservas', $data);
 
     }

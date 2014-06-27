@@ -187,17 +187,22 @@ class Reservas extends CI_Controller {
     $sala = $this->input->post('sala');
 
     $max = $this->mod_reserva->obtener_max_eliminada($fecha, $modulo, $sala);
-   
+    log_message('debug',print_r($max, TRUE));
     if ($max < 1){
       $max =1;
     }
 
+    log_message('debug',print_r($max,TRUE));
 
      $data= array(
       'eliminada' =>  $max +1,
       'confirmada' => 0,
       'observacion' => 'Eliminada:   '.$this->input->post('observacion')
       );
+
+    log_message('debug',print_r($data[eliminada],TRUE));
+    log_message('debug',print_r($max[confirmada],TRUE));
+    log_message('debug',print_r($max[observacion],TRUE));
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
