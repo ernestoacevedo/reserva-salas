@@ -262,6 +262,8 @@ class Reservas extends CI_Controller {
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
+    $respuesta = array("error" => true,"Observación Agregada" => $resultado);
+    echo json_encode($respuesta);
   }
 
 

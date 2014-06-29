@@ -286,7 +286,13 @@
 				success: function(data) {
 					console.log(data);
 					$('.popover').hide();
+				},
+				error: function(data){
+					console.log("error");
+					$('.popover').hide();
 				}
+			}).done(function(){
+				$('.popover').hide();
 			});
 		});
 
