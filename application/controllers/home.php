@@ -13,5 +13,6 @@ function __construct()
 		//$data['variable']=$this->mod_alumno->getAlumno();
 		//$this->load->view('view_index', $data);
 		$this->load->view('view_index');
+		//$this->load->view('view_modulos');
 	}
 }

@@ -11,7 +11,10 @@ class Reservas extends CI_Controller {
       $this->load->helper('form','html');
   }
 
+
   public function ValidarAlumno(){
+
+    /* Obtiene los alumnos para rellenar el modal de reserva y con ello realizar la reserva*/
 
     $rut = $this->input->post('rut');
     $datos = $this->mod_alumno->obtener_alumno($rut);
@@ -83,7 +86,10 @@ class Reservas extends CI_Controller {
     $nombre = $this->input->post('nombre');
     $carrera = $this->input->post('carrera');
 
-  /* $alumxdia = 1;   # buscar en BD
+  /* $alumxdia = 1;  // buscar en BD, parametros, n_reservas_diarias
+ // mod_parametros, obtener_alumxdia
+  // $limitexdia // parametros, plazo_para_reservar 
+ // mod_parametros, obtener_plazo
 
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
 
@@ -96,7 +102,6 @@ class Reservas extends CI_Controller {
           'modulo'=> $modulo,
           'sala'=>$sala,
            'eliminada' => 0,
-          //'id_a'=>$this->input->post('rut'),
            'id_a'=>$rut,
            'nombre_a' => $nombre,
            'carrera_a' => $carrera,
@@ -140,23 +145,30 @@ class Reservas extends CI_Controller {
 */
 
 
-/*
+
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
-    //$eliminada =0;
-    //$confirmar =1;
-    //$observación = 'Confirmada';
+
+/*
+    log_message('debug',print_r($fecha,TRUE));
+    log_message('debug',print_r($modulo,TRUE));
+    log_message('debug',print_r($sala,TRUE));
+*/
 
       $data= array(
-      'eliminada' =>  0,
-      'confirmar' => 1,
-      'observacion' => 'Confirmada');
+      //'eliminada' => 0, // opcional
+      'confirmada' => 1,
+      'observacion' => 'Confirmada'
+      );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
-*/
-  }
+
+    $respuesta = array("error" => true,"confirmado" => $resultado);
+    echo json_encode($respuesta);
+
+}
 
   public function EliminarReserva(){
    /* -El (botón eliminar) que sólo aparece en las reservas (realizadas) y en cualquier hora, debe permitir
@@ -193,7 +205,7 @@ class Reservas extends CI_Controller {
 
      $data= array(
       'eliminada' =>  $max +1,
-      'confirmada' => 0,
+      'confirmada' => 0, // opcional
       'observacion' => 'Eliminada:   '.$this->input->post('observacion')
       ); 
 
@@ -210,13 +222,14 @@ class Reservas extends CI_Controller {
     $fecha = $this->input->post('fecha');
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
-   // $eliminada = 1;
+
+    // $eliminada = 1;
     //$confirmar =0;
     //$observacion = 'Eliminada por no Confirmación');
 
     $data= array(
       'eliminada' => 1,
-      'confirmar' => 0,
+      'confirmada' => 0,
       'observacion' => 'Eliminada por no Confirmación')
       );
 
@@ -240,8 +253,8 @@ class Reservas extends CI_Controller {
     //$observacion = 'Eliminada por Bloqueo';
 
       $data= array(
-      'estado' => $this->input->post('estado'),
-      'observacion' => 'Eliminada por Bloqueo'
+      'estado' => $this->input->post('estado'), // =>0,
+      'observacion' => 'Bloqueada'
       );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
