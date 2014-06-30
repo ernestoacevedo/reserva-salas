@@ -153,10 +153,8 @@
 							layout: 'bottomLeft',
 							timeout: '500'
 						});
-						$cell.html($('#nombre').val());
-						$cell.data('reservado', 1);
 						$('#modal-reserva').modal('hide');
-						actualizarTabla($('#tabla_horarios td'));
+						obtenerReservas($('#calendar-wrap').data('fecha'));
 					}
 				}
 			});
