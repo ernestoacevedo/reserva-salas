@@ -256,16 +256,16 @@
 				url: $('body').data('url') + 'index.php/reservas/EliminarReserva',
 				success: function(data) {
 					console.log(data);
-					actualizarTabla($('#tabla_horarios td'));
+					obtenerReservas($('#calendar-wrap').data('fecha'));
 				},
 				error: function(data){
 					console.log("error");
 					$('#modalEliminar').modal('hide');
-					actualizarTabla($('#tabla_horarios td'));
+					obtenerReservas($('#calendar-wrap').data('fecha'));
 				}
 			}).done(function(){
 				$('#modalEliminar').modal('hide');
-				actualizarTabla($('#tabla_horarios td'));
+				obtenerReservas($('#calendar-wrap').data('fecha'));
 			});
 		});
 
