@@ -3,21 +3,30 @@ class Modulos extends CI_Controller {
 
   function __construct(){
        parent::__construct();
+
+      $this->load->model('mod_modulos');
+
   }
 
   public function index(){
     $this->load->view('view_modulos');
   }
 
-  public function nuevo(){
+  public function CrearModulo(){
+
+
 
   }
 
-  public function editar(){
+  public function EditarModulo(){
+
+
 
   }
 
-  public function eliminar(){
+  public function EliminarModulo(){
+
+
 
   }
 }

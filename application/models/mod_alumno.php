@@ -6,8 +6,8 @@ Class mod_alumno extends CI_Model
 
     	$this->db->select('nombre_a,apellidos_a,carrera');
     	$this->db->where('id_a',$id);
-      $data=$this->db->get('alumnos');
-      return $data->result();
+      	$data=$this->db->get('alumnos');
+      	return $data->result();
 
     }
 
