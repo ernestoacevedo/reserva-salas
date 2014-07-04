@@ -9,51 +9,55 @@ class Reportes extends CI_Controller {
 
   }
 
+  public function index(){
+    $this->load->view('view_reportes');
+  }
+
 
  public function ReporteDiario(){
-    
+
 
   }
 
 public function ReporteSemanal(){
-    
+
 
   }
 
 public function ReporteMensual(){
-    
+
 
   }
 
 
 public function ReporteUsuario(){
-    
+
 
   }
 
 public function ReporteCarrera(){
-    
+
 
   }
 
 public function ReporteInasistencias(){
-    
+
 
   }
 
 
 public function ReporteHorariosPunta(){
-    
+
 
   }
 
 public function ReporteOcupacion(){
-    
+
 
   }
 
 public function ReporteInasistenciasSinJustificar(){
-    
+
 
   }
 
