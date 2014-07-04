@@ -1,7 +1,7 @@
 (function() {
 	$(document).ready(function() {
 		var hoy = new moment(new Date()).format('D/M/YYYY'); // Variable utilizada para setear la fecha actual en el plugin de calendari
-		$('#calendar-wrap').data('fecha', new moment(new Date()).format('DD/MM/YYYY')); // Se añade la fecha actual al wrapper del calendario
+		$('#calendar-wrap').data('fecha', new moment(new Date()).format('YYYY-MM-DD')); // Se añade la fecha actual al wrapper del calendario
 		var monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 		var dayNames = ["L", "M", "M", "J", "V", "S", "D"];
 		var events = [{
@@ -86,7 +86,7 @@
 
 		document.addEventListener('bicCalendarSelect', function(e) {
 			moment.lang('es');
-			$('#calendar-wrap').data('fecha', new moment(e.detail.date).format('DD/MM/YYYY'));
+			$('#calendar-wrap').data('fecha', new moment(e.detail.date).format('YYYY-MM-DD'));
 			$('.popover').hide();
 			obtenerReservas($('#calendar-wrap').data('fecha'));
 		});
