@@ -1,3 +1,25 @@
+--create database if no exists reservas;
+
+-- TABLAS DE LA BASE DE DATOS INSTITUCIONAL.
+
+/*
+drop table if exists parametros;
+drop table if exists modulo;
+drop table if exists reservas;
+drop table if exists usuarios;
+drop table if exists alumnos;
+drop table if exists empleados;
+*/
+
+create table empleados(
+	id_e varchar (30) not null,
+	nombres_e varchar (40) not null,
+	apellidos_e varchar(40) not null,
+	edad_e int not null,
+	turno date,
+	cargo varchar(40),
+	constraint id_e_pk primary key (id_e)
+);
 
 create table alumnos(
 	id_a varchar (30) not null,
@@ -5,9 +27,9 @@ create table alumnos(
 	apellidos_a varchar (40) not null,
 	edad_a int not null,
 	carrera varchar (30) not null,
-	ingreso datetime not null,
+	ingreso date not null,
 	telefono number,
-	email varchar (40),
+	email varchar (40)
 	constraint id_a_pk primary key (id_a)
 );
 
