@@ -7,6 +7,7 @@ Class mod_reportes extends CI_Model
     public function total_reservas_dia($fecha)  // reservas sin eliminar //
     {
 	 	 $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  eliminada = '0'");
+	 	 
 		  foreach ($data->result() as $row)
 		{
 		    $data2= $row->max;
@@ -77,6 +78,6 @@ public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar 
       */
     }
 
-
+}
 
 ?>

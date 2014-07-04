@@ -7,6 +7,7 @@ class Reservas extends CI_Controller {
       $this->load->model('mod_alumno');
       $this->load->model('mod_usuario');
       $this->load->model('mod_reserva');
+      $this->load->model('mod_parametros');
 
       $this->load->helper('form','html');
   }
@@ -86,17 +87,21 @@ class Reservas extends CI_Controller {
     $nombre = $this->input->post('nombre');
     $carrera = $this->input->post('carrera');
 
-  /* $alumxdia = 1;  // buscar en BD, parametros, n_reservas_diarias
+ 
  // mod_parametros, obtener_alumxdia
   // $limitexdia // parametros, plazo_para_reservar
  // mod_parametros, obtener_plazo
-
+    $alumxdia = $this->mod_parametros->obtener_alumxdia();  // buscar en BD, parametros, n_reservas_diarias
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
 
-//log_message('debug',print_r($prueba,TRUE));
+    //$fec = $this->mod_reportes->total_reservas_dia($fecha); 
+    //log_message('debug',print_r($fec,TRUE));
 
-   if ($max < $alumxdia){
-*/
+    //log_message('debug',print_r($alumxdia,TRUE));
+    //log_message('debug',print_r($max,TRUE));
+
+  if ($max < $alumxdia){
+
     $data= array(
           'fecha'=> $fecha,
           'modulo'=> $modulo,
@@ -114,11 +119,11 @@ class Reservas extends CI_Controller {
     $resultado = $this->mod_reserva->agregar_reserva($data);
 
     $respuesta = array("error" => false,"insertado" => $resultado);
-  /* }
+   }
     else{
       $respuesta = array("error"=> true);
     }
-*/
+
 
     echo json_encode($respuesta);
 
