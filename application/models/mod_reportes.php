@@ -1,13 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class mod_reportes extends CI_Model
 {
- 
 // Reporte Diario
 
     public function total_reservas_dia($fecha)  // reservas sin eliminar //
     {
-	 	 $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  eliminada = '0'");
-	 	 
+
+     $q_string = "select count(id_a) as max from reservas where fecha ='".$fecha."' and  eliminada = '0'";
+	 	 $data = $this->db->query($q_string);
 		  foreach ($data->result() as $row)
 		{
 		    $data2= $row->max;
@@ -17,14 +17,16 @@ Class mod_reportes extends CI_Model
 
 public function total_reservas_sala_dia($fecha)  // reservas sin eliminar //
     {
-	 	 $data = $this->db->query("select sala, count(sala) as cant from reservas where fecha ='$fecha' and eliminada ='0' group by sala");
+     $q_string = "select sala, count(sala) as cant from reservas where fecha ='".$fecha."' and eliminada ='0' group by sala";
+	 	 $data = $this->db->query();
 		 return $data;
 	}
 
 
 public function total_reservas_usuario_dia($fecha)  // reservas sin eliminar //
     {
-	 	 $data = $this->db->query("select id_e, count(id_e) as cant from reservas where fecha ='$fecha' and eliminada ="0" group by id_e");
+     $q_string = "select id_e, count(id_e) as cant from reservas where fecha ='".$fecha."' and eliminada ='0' group by id_e";
+	 	 $data = $this->db->query($q_string);
 		 return $data;
 	}
 
@@ -43,7 +45,8 @@ public function total_reservas_usuario_dia($fecha)  // reservas sin eliminar //
 
     public function total_reservas_semana($fecha)  // reservas sin eliminar //
     {
-	 	 $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  eliminada = '0'");
+     $q_string = "select count(id_a) as max from reservas where fecha ='".$fecha."' and  eliminada = '0'";
+	 	 $data = $this->db->query($q_string);
 	 	 // select count(id_a) as max from reservas where fecha between '24/06/2014' and '30/06/2014'  and  eliminada = '0'
 		  foreach ($data->result() as $row)
 		{
@@ -54,7 +57,8 @@ public function total_reservas_usuario_dia($fecha)  // reservas sin eliminar //
 
 public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
     {
-	 	 $data = $this->db->query("select sala, count(sala) as cant from reservas where fecha ='$fecha' and eliminada ='0' group by sala");
+     $q_string = "select sala, count(sala) as cant from reservas where fecha ='".$fecha."' and eliminada ='0' group by sala";
+	 	 $data = $this->db->query($q_string);
 	 	 //select sala, count(sala) as cant from reservas where fecha between '24/06/2014' and '30/06/2014' and eliminada ='0' group by sala
 		 return $data;
 	}
@@ -62,7 +66,8 @@ public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
 
 public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar //
     {
-	 	 $data = $this->db->query("select id_e, count(id_e) as cant from reservas where fecha ='$fecha' and eliminada ="0" group by id_e");
+     $q_string = "select id_e, count(id_e) as cant from reservas where fecha ='".$fecha."' and eliminada ='0' group by id_e";
+	 	 $data = $this->db->query($q_string);
 	 	 //select id_e, count(id_e) as cant from reservas where fecha between '24/06/2014' and '30/06/2014' and eliminada ='0' group by id_e
 		 return $data;
 	}
@@ -77,7 +82,12 @@ public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar 
       return $query = $this->db->get();
       */
     }
+<<<<<<< HEAD
 
 }
 
 ?>
+=======
+}
+?>
+>>>>>>> 017e9135c9d0a31e26dd36d09bef5979b82b8714

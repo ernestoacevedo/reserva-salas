@@ -170,3 +170,11 @@ td .eliminar{
 #tabla_modulos_wrapper{
   margin-top: 0px;
 }
+
+#menu_reportes {
+  margin-top: 20px;
+}
+
+#menu_reportes > li > a {
+  color: white;
+}
