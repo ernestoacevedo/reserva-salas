@@ -8,6 +8,7 @@ class Reservas extends CI_Controller {
       $this->load->model('mod_usuario');
       $this->load->model('mod_reserva');
       $this->load->model('mod_parametros');
+      $this->load->model('mod_reportes');
 
       $this->load->helper('form','html');
   }
@@ -94,11 +95,11 @@ class Reservas extends CI_Controller {
     $alumxdia = $this->mod_parametros->obtener_alumxdia();  // buscar en BD, parametros, n_reservas_diarias
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
 
-    //$fec = $this->mod_reportes->total_reservas_dia($fecha); 
-    //log_message('debug',print_r($fec,TRUE));
+  //  $fec = $this->mod_reportes->total_reservas_dia($fecha); 
+   // log_message('debug',print_r($fec,TRUE));
 
-    //log_message('debug',print_r($alumxdia,TRUE));
-    //log_message('debug',print_r($max,TRUE));
+    log_message('debug',print_r($alumxdia,TRUE));
+    log_message('debug',print_r($max,TRUE));
 
   if ($max < $alumxdia){
 

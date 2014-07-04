@@ -3,23 +3,16 @@ Class mod_reserva extends CI_Model
 {
 
     public function obtener_alum_fecha($fecha, $id) {
+      
       $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  id_a = '$id'");
 
-<<<<<<< HEAD
-        $data = $this->db->query("select count(id_a) as max from reservas where fecha ='$fecha' and  id_a = '$id'");
 
-        foreach ($data->result() as $row)
-=======
       foreach ($data->result() as $row)
->>>>>>> 017e9135c9d0a31e26dd36d09bef5979b82b8714
       {
           $data2= $row->max;
           return $data2;
       }
-<<<<<<< HEAD
 
-=======
->>>>>>> 017e9135c9d0a31e26dd36d09bef5979b82b8714
     }
 
     public function obtener_max_eliminada($fecha, $modulo, $sala) {
