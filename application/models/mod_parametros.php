@@ -19,6 +19,23 @@ Class mod_parametros extends CI_Model
         
     }    
 
+    public function actualizar_plazo($data) {
+
+      /*  $this->db->where('fecha', $fecha);
+        $this->db->where('modulo', $modulo);
+        $this->db->where('sala', $sala);
+      */ // obtener pk para actualizar
+        $this->db->update('parametros', $data);
+    } 
+
+    public function actualizar_alumxdia($data) {
+
+     /*  $this->db->where('fecha', $fecha);
+        $this->db->where('modulo', $modulo);
+        $this->db->where('sala', $sala);
+      */ // obtener pk para actualizar
+        $this->db->update('parametros', $data);
+    } 
 
  
 }
