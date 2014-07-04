@@ -27,7 +27,7 @@ Class mod_reserva extends CI_Model
     $data2= $row->eliminada;
     return $data2;
     }
-    
+
     }
 
 

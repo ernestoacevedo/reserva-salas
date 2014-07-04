@@ -88,7 +88,7 @@ class Reservas extends CI_Controller {
 
   /* $alumxdia = 1;  // buscar en BD, parametros, n_reservas_diarias
  // mod_parametros, obtener_alumxdia
-  // $limitexdia // parametros, plazo_para_reservar 
+  // $limitexdia // parametros, plazo_para_reservar
  // mod_parametros, obtener_plazo
 
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
@@ -108,7 +108,7 @@ class Reservas extends CI_Controller {
             'confirmada' => 0,
             'estado' => 1,
           //'id_e'=>$this->input->post('loggin'), // obtener del sesion
-            'id_e' => '17.159.876-9',
+            'id_e' => '12.312.312-3',
             'observacion' => 'Reservada'
           );
     $resultado = $this->mod_reserva->agregar_reserva($data);
@@ -207,7 +207,7 @@ class Reservas extends CI_Controller {
       'eliminada' =>  $max +1,
       'confirmada' => 0, // opcional
       'observacion' => 'Eliminada:   '.$this->input->post('observacion')
-      ); 
+      );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 

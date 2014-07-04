@@ -1,23 +1,22 @@
 
 body {
-    color: #797979;
-    background: #f1f2f7;
-    padding: 0px !important;
-    margin: 0px !important;
-    font-size:13px;
+  color: #797979;
+  background: #f1f2f7;
+  padding: 0px !important;
+  margin: 0px !important;
+  font-size: 13px;
 }
-
 ul li {
-    list-style: none;
+  list-style: none;
 }
 
 a.logo {
-    font-size: 21px;
-    color: #fff;
-    float: left;
-    margin-top: 15px;
-	margin-left: 10px;
-    text-transform: uppercase;
+  font-size: 21px;
+  color: #fff;
+  float: left;
+  margin-top: 15px;
+  margin-left: 10px;
+  text-transform: uppercase;
 }
 
 #container {
@@ -31,6 +30,10 @@ a.logo {
 	right: 0;
 	z-index: 1000;
 	min-height: 60px;
+}
+
+.navbar {
+  margin-bottom: 0px;
 }
 
 .blue-bg {
@@ -51,10 +54,10 @@ a.logo {
 }
 
 #wrapper {
-	padding: 65px 20px 0px;
+	padding: 10px 20px 0px;
 }
 
-#usermenu {
+/* #usermenu {
   top: 20px;
   right: 10px;
 }
@@ -71,7 +74,7 @@ a.logo {
 
 #usermenu ul {
   left: -77px;
-}
+} */
 
 #tabla_horarios {
   table-layout: fixed;
@@ -80,6 +83,10 @@ a.logo {
 #tabla_horarios td {
   width: 80px;
   height: 40px;
+}
+
+#calendar-wrap {
+  margin-top: -55px;
 }
 
 .horario {
@@ -108,7 +115,7 @@ a.logo {
 }
 
 .form-wrapper {
-  top: 70px;
+  top: 0px;
   left: 10px;
   width: 280px;
   position: relative;
@@ -137,4 +144,29 @@ td .observacion{
 td .eliminar{
   color: white;
   position: relative;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-default{
+  background-color: #2980B9;
+  border: none;
+}
+
+.navbar-default .navbar-nav>li>a{
+  color: white;
+}
+
+.navbar-default .navbar-brand{
+  color: white;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+  background-color: #2980B9;
+}
+
+#tabla_modulos_wrapper{
+  margin-top: 0px;
 }
