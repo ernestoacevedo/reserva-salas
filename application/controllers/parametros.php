@@ -14,12 +14,43 @@ class Parametros extends CI_Controller {
 
 public function ModificarAlumxdia()  // reservas sin eliminar //
     {
+
+     $datos = $this->mod_parametros->obtener_parametros();
+     $alumxdia = $this->input->post('alumxdia');
+     $dataPK= array(
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          );
+
+     $dataNEW= array(
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $alumxdia,
+          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          );
+
+     $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW)
 	 	 
 	}
 
 public function ModificarPlazo()  // reservas sin eliminar //
     {
 	 	 
+    $datos = $this->mod_parametros->obtener_parametros();
+     $plazo = $this->input->post('plazo');
+     $dataPK= array(
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          );
+
+     $dataNEW= array(
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $plazo,
+          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          );
+
+     $this->mod_parametros->actualizar_plazo($dataPK, $dataNEW)
 	}
 
 

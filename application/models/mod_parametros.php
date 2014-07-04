@@ -2,6 +2,13 @@
 Class mod_parametros extends CI_Model
 {
  
+    public function obtener_parametros() {
+
+        $this->db->select('*');
+        $data=$this->db->get('parametros');
+        return $data->result();
+        
+    } 
 
     public function obtener_alumxdia() {
 
@@ -19,22 +26,24 @@ Class mod_parametros extends CI_Model
         
     }    
 
-    public function actualizar_plazo($data) {
+    public function actualizar_plazo($dataPK, $dataNEW) {
 
       /*  $this->db->where('fecha', $fecha);
         $this->db->where('modulo', $modulo);
         $this->db->where('sala', $sala);
       */ // obtener pk para actualizar
-        $this->db->update('parametros', $data);
+        $this->db->where('parametros', $dataPK);
+        $this->db->update('parametros', $dataNEW);
     } 
 
-    public function actualizar_alumxdia($data) {
+    public function actualizar_alumxdia($dataPK, $dataNEW) {
 
      /*  $this->db->where('fecha', $fecha);
         $this->db->where('modulo', $modulo);
         $this->db->where('sala', $sala);
       */ // obtener pk para actualizar
-        $this->db->update('parametros', $data);
+         $this->db->where('parametros', $dataPK);
+        $this->db->update('parametros', $dataNEW);
     } 
 
  
