@@ -65,19 +65,18 @@
     </aside>
     <section id="main-content">
       <div id="grafico"></div>
+      <button id="to_pdf" style="display: none;" class="btn btn-danger"><span class="fa fa-file-pdf-o"> Exportar a PDF</span></button>
     </section>
     <footer>
 
     </footer>
   </section>
 
-  <button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
-
   <script src="<?php echo base_url(); ?>js/jquery.js"></script>
   <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
   <script src="<?php echo base_url(); ?>js/moment.min.js"></script>
   <script src="<?php echo base_url(); ?>js/highcharts.js"></script>
-
+  <script src="<?php echo base_url(); ?>js/exporting.js"></script>
   <script>
     $('#rep_fecha').val(new moment(new Date()).format('YYYY-MM-DD'));
     $(document).on('click','#menu_reportes>li>a',function(e){
@@ -91,9 +90,10 @@
         dataType: 'JSON',
         data: {fecha: $('#rep_fecha').val()},
         success: function(data){
-          $('#grafico').highcharts({
+          window.chart = new Highcharts.Chart({
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                    renderTo: 'grafico'
                 },
                 title: {
                     text: $a.html()
@@ -126,9 +126,21 @@
                         borderWidth: 0
                     }
                 },
-                series: data.series
+                series: data.series,
+                exporting:{
+                  enabled: true
+                }
             });
+            $('#to_pdf').show();
         }
+      });
+    });
+    $(document).on('click','#to_pdf',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      chart.exportChart({
+            type: 'application/pdf',
+            filename: 'reporte'
       });
     });
   </script>
