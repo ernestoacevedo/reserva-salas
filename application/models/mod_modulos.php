@@ -46,6 +46,6 @@ Class mod_modulos extends CI_Model{
           $data2= $row->max;
           return $data2;
       }
-
+    }
 }
 ?>
