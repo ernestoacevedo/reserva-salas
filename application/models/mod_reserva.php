@@ -1,12 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class mod_reserva extends CI_Model
 {
-
     public function obtener_alum_fecha($fecha, $id) {
-      
-    $q_string = "select count(id_a) as max from reservas where fecha ='".$fecha."' and  id_a = '".$id."'";
+     $q_string = "select count(id_a) as max from reservas where fecha ='".$fecha."' and  id_a = '".$id."'";
      $data = $this->db->query($q_string);
-
       foreach ($data->result() as $row)
       {
           $data2= $row->max;

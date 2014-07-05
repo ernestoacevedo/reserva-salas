@@ -28,12 +28,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="#">Reportes</a></li>
+            <li><a href="<?php echo site_url('reportes');?>">Reportes</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<?php echo site_url('modulos');?>">Módulos</a></li>
-                <li><a href="#">Salas</a></li>
+                <li><a href="<?php echo site_url('parametros');?>">Parámetros</a></li>
               </ul>
             </li>
           </ul>
@@ -62,7 +62,7 @@
           <li><a href="#" data-action="index.php/reportes/ReporteOcupacion" data-interval="2">Ocupación</a></li>
           <li><a href="#" data-action="index.php/reportes/" data-interval="2">Usuarios</a></li>
         </ul>
-        <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form">
+        <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form" style="margin-top: 10px">
           <div id="date1" class="form-group">
             <div class='input-group date' id='fecha_inicio' data-date-format="YYYY-MM-DD">
                   <input  type='text' class="form-control" placeholder="Fecha inicial" />
@@ -78,7 +78,7 @@
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" class="form-control" id="btn-buscar" class="btn btn-default" value="">Buscar</button>
+            <button type="submit" class="form-control" id="btn-buscar" class="btn btn-default" value="">Generar Reporte</button>
           </div>
         </form>
       </div>

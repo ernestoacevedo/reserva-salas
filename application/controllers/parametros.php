@@ -10,6 +10,9 @@ class Parametros extends CI_Controller {
 
 // N_reservas
 	// Plazo
+public function index(){
+  $this->load->view('view_parametros');
+}
 
 
 public function ModificarAlumxdia()  // reservas sin eliminar //
@@ -29,13 +32,13 @@ public function ModificarAlumxdia()  // reservas sin eliminar //
           'n_reservas_diarias'=>$datos['n_reservas_diarias']
           );
 
-     $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW)
-	 	 
+     $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW);
+
 	}
 
 public function ModificarPlazo()  // reservas sin eliminar //
     {
-	 	 
+
     $datos = $this->mod_parametros->obtener_parametros();
      $plazo = $this->input->post('plazo');
      $dataPK= array(
@@ -50,8 +53,7 @@ public function ModificarPlazo()  // reservas sin eliminar //
           'n_reservas_diarias'=>$datos['n_reservas_diarias']
           );
 
-     $this->mod_parametros->actualizar_plazo($dataPK, $dataNEW)
+     $this->mod_parametros->actualizar_plazo($dataPK, $dataNEW);
 	}
-
-
+  
 }
