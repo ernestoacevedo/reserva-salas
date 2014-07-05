@@ -178,3 +178,8 @@ td .eliminar{
 #menu_reportes > li > a {
   color: white;
 }
+
+#to_pdf{
+  margin-top: 5px;
+  margin-left: 5px;
+}
