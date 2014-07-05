@@ -88,20 +88,20 @@ class Reservas extends CI_Controller {
     $nombre = $this->input->post('nombre');
     $carrera = $this->input->post('carrera');
 
- 
+
  // mod_parametros, obtener_alumxdia
   // $limitexdia // parametros, plazo_para_reservar
  // mod_parametros, obtener_plazo
     $alumxdia = $this->mod_parametros->obtener_alumxdia();  // buscar en BD, parametros, n_reservas_diarias
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
 
-  //  $fec = $this->mod_reportes->total_reservas_dia($fecha); 
+  //  $fec = $this->mod_reportes->total_reservas_dia($fecha);
    // log_message('debug',print_r($fec,TRUE));
 
     log_message('debug',print_r($alumxdia,TRUE));
     log_message('debug',print_r($max,TRUE));
 
-  if ($max < $alumxdia){
+  if (true){
 
     $data= array(
           'fecha'=> $fecha,

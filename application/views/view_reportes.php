@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery-ui-1.10.4.custom.css"/>
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables_themeroller.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/bic_calendar.css" />
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-datetimepicker.css"/>
 </head>
 <body data-url="<?php echo base_url();?>">
   <section id="container">
@@ -49,18 +50,37 @@
     </nav>
     <aside>
       <div id="sidebar">
-        <ul id="menu_reportes">
+        <ul id="menu_reportes" class="nav nav-pills nav-stacked">
           <input type="hidden" id="rep_fecha" name="rep_fecha">
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Diario</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Semanal</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Mensual</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Por Carrera</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Inasistencias</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Inasistencias sin Justificar</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Horarios Punta</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Ocupación</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Usuarios</a></li>
+          <li class="active"><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1">Diario</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1">Semanal</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1">Mensual</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Por Carrera</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Inasistencias</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Inasistencias sin Justificar</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Horarios Punta</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Ocupación</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Usuarios</a></li>
         </ul>
+        <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form">
+          <div id="date1" class="form-group">
+            <div class='input-group date' id='date_fecha_inicio' data-date-format="YYYY-MM-DD">
+                  <input id='fecha_fin' type='text' class="form-control" placeholder="Fecha inicial" />
+                  <span class="input-group-addon"><span class="fa fa-calendar"></span>
+                  </span>
+            </div>
+          </div>
+          <div id="date2" style="display: none;" class="form-group">
+            <div class='input-group date' id='date_fecha_fin' data-date-format="YYYY-MM-DD">
+                  <input id='fecha_fin' type='text' class="form-control" placeholder="Fecha final" />
+                  <span class="input-group-addon"><span class="fa fa-calendar"></span>
+                  </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="form-control" id="btn-buscar" class="btn btn-default" value="">Buscar</button>
+          </div>
+        </form>
       </div>
     </aside>
     <section id="main-content">
@@ -77,63 +97,84 @@
   <script src="<?php echo base_url(); ?>js/moment.min.js"></script>
   <script src="<?php echo base_url(); ?>js/highcharts.js"></script>
   <script src="<?php echo base_url(); ?>js/exporting.js"></script>
+  <script src="<?php echo base_url(); ?>js/bootstrap-datetimepicker.min.js"></script>
   <script>
+    $('#date_fecha_inicio').datetimepicker({language: 'es'});
+    $('#date_fecha_fin').datetimepicker({language: 'es'});
     $('#rep_fecha').val(new moment(new Date()).format('YYYY-MM-DD'));
-    $(document).on('click','#menu_reportes>li>a',function(e){
+    var url_reporte = $('#menu_reportes li:first a').data('action');
+    $(document).on('click','#menu_reportes a',function(e){
+      $(this).parent().addClass('active');
+      $(this).parent().siblings().attr('class','');
+      url_reporte = $(this).data('action');
+      if($(this).data('interval')=='2'){
+        $('#date2').show();
+      }
+      else{
+        $('#date2').hide();
+      }
+    });
+
+    $(document).on('click','#btn-buscar',function(e){
       e.preventDefault();
       e.stopPropagation();
-      console.log($('body').data('url') + $(this).data('action'));
+      console.log(url_reporte);
       var $a = $(this);
-      $.ajax({
-        type: 'POST',
-        url: $('body').data('url') + $(this).data('action'),
-        dataType: 'JSON',
-        data: {fecha: $('#rep_fecha').val()},
-        success: function(data){
-          window.chart = new Highcharts.Chart({
-                chart: {
-                    type: 'column',
-                    renderTo: 'grafico'
-                },
-                title: {
-                    text: $a.html()
-                },
-                subtitle: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        ''
-                    ]
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: data.title
-                    }
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
-                    }
-                },
-                series: data.series,
-                exporting:{
-                  enabled: true
-                }
-            });
-            $('#to_pdf').show();
-        }
-      });
+      if($('#fecha_inicio').val()==""){
+        alert('Debe seleccionar una fecha');
+      }
+      else{
+        $.ajax({
+          type: 'POST',
+          url: $('body').data('url') + url_reporte,
+          dataType: 'JSON',
+          data: {fecha: $('#fecha_inicio').val(),fecha_fin: $('#fecha_fin').val()},
+          success: function(data){
+            window.chart = new Highcharts.Chart({
+                  chart: {
+                      type: 'column',
+                      renderTo: 'grafico'
+                  },
+                  title: {
+                      text: $a.html()
+                  },
+                  subtitle: {
+                      text: ''
+                  },
+                  xAxis: {
+                      categories: [
+                          ''
+                      ]
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: data.title
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                      footerFormat: '</table>',
+                      shared: true,
+                      useHTML: true
+                  },
+                  plotOptions: {
+                      column: {
+                          pointPadding: 0.2,
+                          borderWidth: 0
+                      }
+                  },
+                  series: data.series,
+                  exporting:{
+                    enabled: true
+                  }
+              });
+              $('#to_pdf').show();
+          }
+        });
+      }
     });
     $(document).on('click','#to_pdf',function(e){
       e.preventDefault();
