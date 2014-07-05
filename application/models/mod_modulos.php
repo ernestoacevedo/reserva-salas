@@ -39,6 +39,13 @@ Class mod_modulos extends CI_Model{
       return $this->db->get();
     }
 
+    public function obtener_max_modulos(){
+      $data = $this->db->query("select count(id_mod) as max from modulos");
+      foreach ($data->result() as $row)
+      {
+          $data2= $row->max;
+          return $data2;
+      }
 
 }
 ?>

@@ -7,7 +7,11 @@ Class mod_salas extends CI_Model
 
         $this->db->select('cant_salas');
         $data=$this->db->get('parametros');
-        return $data->result();
+        foreach ($data->result() as $row)
+      	{
+          $data2= $row->cant_salas;
+          return $data2;
+      	}
         
     }
 

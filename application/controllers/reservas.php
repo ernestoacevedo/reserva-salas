@@ -275,8 +275,10 @@ class Reservas extends CI_Controller {
     $modulo = $this->input->post('modulo');
     $sala = $this->input->post('sala');
 
+    $text = $this->mod_reserva->obtener_observacion($fecha, $modulo, $sala);
+     log_message('debug',print_r($text,TRUE));
     $data= array(
-      'observacion' => 'Observacion:   '.$this->input->post('observacion')
+      'observacion' => $text.', |Observación: '.$this->input->post('observacion').'|'
       );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
@@ -305,8 +307,4 @@ class Reservas extends CI_Controller {
   }
 }
 
-/*
-Casos:
 
-
-*/

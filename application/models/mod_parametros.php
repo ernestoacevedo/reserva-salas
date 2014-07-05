@@ -27,7 +27,13 @@ Class mod_parametros extends CI_Model
 
         $this->db->select('plazo_para_reservar');
         $data=$this->db->get('parametros');
-        return $data->result();
+
+        foreach ($data->result() as $row)
+        {
+            $data2= $row->n_reservas_diarias;
+            return $data2;
+        }
+ 
 
     }    
 
