@@ -214,7 +214,7 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 	
 	//Horarios Punta.
 
-    public function max_salas_carrera_xdia($finicio, $ffin)  // reservas sin eliminar //
+    public function horarios_punta($finicio, $ffin)  // reservas sin eliminar //
     {
     	$q_string = "select modulo, count(modulo) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by modulo order by modulo";
 		//select modulo, count(modulo) as con
