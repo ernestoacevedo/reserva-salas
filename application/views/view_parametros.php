@@ -117,12 +117,7 @@
               <form id="form_id" action="" method="post">
                 <h4>Número de reservas diarias</h4>
                 <p>Cantidad máxima de reservas que podrá realizar un alumno</p>
-                <input type="number" id="reservas" name="reservas" value=<?php $this->db->select('n_reservas_diarias');
-                      $this->db->from('parametros');
-                      $query = $this->db->get();
-                      foreach($query->result() as $row){
-                        echo $row->n_reservas_diarias;
-                      }?> class="form-control" min="0"><br>
+                <input type="number" id="reservas" name="reservas" value=<?php echo $this->mod_parametros->obtener_alumxdia();?> class="form-control" min="1"><br>
                 <button class="btn btn-success">Guardar</button>
               </form>
             </div>
@@ -132,12 +127,7 @@
               <form id="form_id" action="" method="post">
                 <h4>Número de salas</h4>
                 <p>Cantidad de salas disponibles para reserva</p>
-                <input type="number" id="salas" name="salas" value=<?php $this->db->select('cant_salas');
-                      $this->db->from('parametros');
-                      $query = $this->db->get();
-                      foreach($query->result() as $row){
-                        echo $row->cant_salas;
-                      }?> class="form-control" min="0"><br>
+                <input type="number" id="salas" name="salas" value=<?php echo $this->mod_parametros->obtener_alumxdia();?> class="form-control" min="1"><br>
                 <button class="btn btn-success">Guardar</button>
               </form>
             </div>

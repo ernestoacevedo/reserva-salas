@@ -11,6 +11,7 @@ class Parametros extends CI_Controller {
 // N_reservas
 	// Plazo
 public function index(){
+  $this->load->model('mod_parametros');
   $this->load->view('view_parametros');
 }
 
@@ -55,5 +56,5 @@ public function ModificarPlazo()  // reservas sin eliminar //
 
      $this->mod_parametros->actualizar_plazo($dataPK, $dataNEW);
 	}
-  
+
 }
