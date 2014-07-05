@@ -18,7 +18,7 @@ Class mod_modulos extends CI_Model{
     public function actualizar_modulos($data) // en controlador
     {
 
-        //$data[''] = $this->input->post('');     
+        //$data[''] = $this->input->post('');
         //$this->db->where('reserva.id_reserva',$this->input->post('id_reserva'));
 
         //$this->db->where('');
@@ -31,6 +31,12 @@ Class mod_modulos extends CI_Model{
 
         //$this->db->where('');
         $this->db->delete('modulos');
+    }
+
+    public function obtener_modulos(){
+      $this->db->select('id_mod');
+      $this->db->from('modulos');
+      return $this->db->get();
     }
 
 

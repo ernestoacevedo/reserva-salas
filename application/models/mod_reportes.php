@@ -17,7 +17,7 @@ Class mod_reportes extends CI_Model
 public function total_reservas_sala_dia($fecha)  // reservas sin eliminar //
     {
      $q_string = "select sala, count(sala) as cant from reservas where fecha ='".$fecha."' and eliminada ='0' group by sala";
-	 	 $data = $this->db->query();
+	 	 $data = $this->db->query($q_string);
 		 return $data;
 	}
 
