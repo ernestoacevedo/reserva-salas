@@ -231,9 +231,9 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 	// REPORTE POR INASISTENCIA
 
 	//Total inaistentcias
-    public function inasistencia($finicio, $ffin)  // reservas sin eliminar //
+    public function inasistencia($finicio, $ffin)
     {
-    	$q_string = "select modulo, count(modulo) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by modulo order by modulo";
+    	$q_string = "select id_a, nombre_a, carrera_a, count(id_a) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '1' and confirmada = '0' group by id_a, nombre_a";
 		//select id_a, nombre_a, carrera_a, count(id_a) as con
 		//from reservas
 		//where fecha between '2014/06/05' and '2014/06/30' and eliminada = '1' and confirmada = '0'
@@ -244,11 +244,12 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 
 	}
 
-	// total asistencias
-    public function reservas_totales($id_a, $finicio, $ffin)  // reservas sin eliminar //
+
+	// total reservas
+    public function reservas_totales($id_a, $finicio, $ffin)
     {
-    	$q_string = "count(id_a) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and id_a = '".$id_a."' group by id_a";
-			//select id_a, nombre_a, carrera_a, count(id_a) as con   // SE PUEDE OBTENER SOLO CON
+    	$q_string = "select id_a, nombre_a, carrera_a, count(id_a) as tot from reservas where fecha between '".$finicio."' and '".$ffin."' and id_a = '".$id_a."' group by id_a";
+			//select id_a, nombre_a, carrera_a, count(id_a) as tot   // SE PUEDE OBTENER SOLO CON
 			//from reservas
 			//where fecha between '2014/06/05' and '2014/06/30' and id_a = '1'
 			//group by id_a
@@ -256,6 +257,41 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 	 	 return $data;
 
 	}
+
+
+	// REPORTE POR ELIMINACIÓN
+
+	//Total eliminaciones
+    public function eliminaciones($finicio, $ffin)
+    {
+    	$q_string = "select modulo, count(modulo) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada > '0' group by modulo order by modulo";
+		//select id_a, nombre_a, carrera_a, count(id_a) as con
+		//from reservas
+		//where fecha between '2014/06/05' and '2014/06/30' and eliminada > '1' and confirmada = '0'
+		//group by id_a, nombre_a
+
+    	$data = $this->db->query($q_string);
+	 	 return $data;
+
+	}
+
+
+		//Total reservas  // misma que arriba
+	    public function reservas_totales($id_a, $finicio, $ffin)
+    {
+    	$q_string = "select id_a, nombre_a, carrera_a, count(id_a) as tot from reservas where fecha between '".$finicio."' and '".$ffin."' and id_a = '".$id_a."' group by id_a";
+			//select id_a, nombre_a, carrera_a, count(id_a) as tot   // SE PUEDE OBTENER SOLO CON
+			//from reservas
+			//where fecha between '2014/06/05' and '2014/06/30' and id_a = '1'
+			//group by id_a
+    	$data = $this->db->query($q_string);
+	 	 return $data;
+
+	}
+
+
+	// Observaciones
+
 
 
 
