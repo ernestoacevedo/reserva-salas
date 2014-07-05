@@ -244,14 +244,10 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 
 	}
 
-<<<<<<< HEAD
-	// total reservas // misma para eliminaciones
-    public function reservas_totales($id_a, $finicio, $ffin)  
-=======
 
-	// total reservas
+	// total reservas // misma para eliminaciones
     public function reservas_totales($id_a, $finicio, $ffin)
->>>>>>> 7d840533c67e3ad83c25577b6ba5be2de8f88d9b
+
     {
     	$q_string = "select id_a, nombre_a, carrera_a, count(id_a) as tot from reservas where fecha between '".$finicio."' and '".$ffin."' and id_a = '".$id_a."' group by id_a";
 			//select id_a, nombre_a, carrera_a, count(id_a) as tot   // SE PUEDE OBTENER SOLO CON
@@ -281,14 +277,9 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 	}
 
 
-<<<<<<< HEAD
 	// Observaciones
 
 	    public function observaciones($finicio, $ffin)  
-=======
-		//Total reservas  // misma que arriba
-	    public function reservas_totales($id_a, $finicio, $ffin)
->>>>>>> 7d840533c67e3ad83c25577b6ba5be2de8f88d9b
     {
     	$q_string = "select fecha, sala, modulo, id_a, nombre_a, carrera_a, observacion from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada > '1' and confirmada = '0' order by fecha";
 		//select fecha, sala, modulo, id_a, nombre_a, carrera_a, observacion
@@ -303,7 +294,18 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 
 
 	//OCUPACION
+	   public function ocupacion($finicio, $ffin)  
+    {
+    	$q_string = "select sala, count(sala) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0'group by sala order by sala";
+		//select sala, count(sala) as con
+		//from reservas
+		//where fecha between '2014/06/05' and '2014/06/30' and eliminada = '0'
+		//group by sala
+		//order by sala
+    	  $data = $this->db->query($q_string);
+	 	 return $data;
 
+	}
 
 
 	//USUARIOS
