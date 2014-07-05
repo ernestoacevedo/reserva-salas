@@ -64,15 +64,15 @@
         </ul>
         <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form">
           <div id="date1" class="form-group">
-            <div class='input-group date' id='date_fecha_inicio' data-date-format="YYYY-MM-DD">
-                  <input id='fecha_fin' type='text' class="form-control" placeholder="Fecha inicial" />
+            <div class='input-group date' id='fecha_inicio' data-date-format="YYYY-MM-DD">
+                  <input  type='text' class="form-control" placeholder="Fecha inicial" />
                   <span class="input-group-addon"><span class="fa fa-calendar"></span>
                   </span>
             </div>
           </div>
           <div id="date2" style="display: none;" class="form-group">
-            <div class='input-group date' id='date_fecha_fin' data-date-format="YYYY-MM-DD">
-                  <input id='fecha_fin' type='text' class="form-control" placeholder="Fecha final" />
+            <div class='input-group date' id='fecha_fin' data-date-format="YYYY-MM-DD">
+                  <input type='text' class="form-control" placeholder="Fecha final" />
                   <span class="input-group-addon"><span class="fa fa-calendar"></span>
                   </span>
             </div>
@@ -99,8 +99,8 @@
   <script src="<?php echo base_url(); ?>js/exporting.js"></script>
   <script src="<?php echo base_url(); ?>js/bootstrap-datetimepicker.min.js"></script>
   <script>
-    $('#date_fecha_inicio').datetimepicker({language: 'es'});
-    $('#date_fecha_fin').datetimepicker({language: 'es'});
+    $('#fecha_inicio').datetimepicker({language: 'es'});
+    $('#fecha_fin').datetimepicker({language: 'es'});
     $('#rep_fecha').val(new moment(new Date()).format('YYYY-MM-DD'));
     var url_reporte = $('#menu_reportes li:first a').data('action');
     $(document).on('click','#menu_reportes a',function(e){
@@ -119,8 +119,9 @@
       e.preventDefault();
       e.stopPropagation();
       console.log(url_reporte);
+      console.log($('#fecha_inicio').data("DateTimePicker").getDate());
       var $a = $(this);
-      if($('#fecha_inicio').val()==""){
+      if($('#fecha_inicio').data("DateTimePicker").getDate()==""){
         alert('Debe seleccionar una fecha');
       }
       else{
@@ -128,7 +129,7 @@
           type: 'POST',
           url: $('body').data('url') + url_reporte,
           dataType: 'JSON',
-          data: {fecha: $('#fecha_inicio').val(),fecha_fin: $('#fecha_fin').val()},
+          data: {fecha: $('#fecha_inicio').data("DateTimePicker").getDate(),fecha_fin: $('#fecha_fin').data("DateTimePicker").getDate()},
           success: function(data){
             window.chart = new Highcharts.Chart({
                   chart: {
