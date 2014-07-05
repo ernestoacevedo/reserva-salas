@@ -103,10 +103,12 @@
     $('#fecha_fin').datetimepicker({language: 'es'});
     $('#rep_fecha').val(new moment(new Date()).format('YYYY-MM-DD'));
     var url_reporte = $('#menu_reportes li:first a').data('action');
+    var $a = $('#menu_reportes li:first a');
     $(document).on('click','#menu_reportes a',function(e){
       $(this).parent().addClass('active');
       $(this).parent().siblings().attr('class','');
       url_reporte = $(this).data('action');
+      $a = $(this);
       if($(this).data('interval')=='2'){
         $('#date2').show();
       }
@@ -119,9 +121,8 @@
       e.preventDefault();
       e.stopPropagation();
       console.log(url_reporte);
-      console.log($('#fecha_inicio').data("DateTimePicker").getDate());
-      var $a = $(this);
-      if($('#fecha_inicio').data("DateTimePicker").getDate()==""){
+      console.log($('#fecha_inicio').find("input").val());
+      if($('#fecha_inicio').find("input").val()==""){
         alert('Debe seleccionar una fecha');
       }
       else{
@@ -129,7 +130,7 @@
           type: 'POST',
           url: $('body').data('url') + url_reporte,
           dataType: 'JSON',
-          data: {fecha: $('#fecha_inicio').data("DateTimePicker").getDate(),fecha_fin: $('#fecha_fin').data("DateTimePicker").getDate()},
+          data: {fecha: $('#fecha_inicio').find("input").val(),fecha_fin: $('#fecha_fin').find("input").val()},
           success: function(data){
             window.chart = new Highcharts.Chart({
                   chart: {
@@ -137,7 +138,7 @@
                       renderTo: 'grafico'
                   },
                   title: {
-                      text: $a.html()
+                      text: 'Reporte '+$a.html()
                   },
                   subtitle: {
                       text: ''
