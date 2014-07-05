@@ -127,9 +127,9 @@ public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar 
 
 //Cantidad de reservas realizadas por cada sala.
 
-public function total_reservas_sala_mes($mes)  // reservas sin eliminar //
+public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
     {
-     $q_string = "select sala, count(sala) as cant from reservas where month(fecha) ='".$mes."' and eliminada ='0' group by sala";
+     $q_string = "select sala, count(sala) as cant from reservas where month(fecha) =month('".$fecha."') and eliminada ='0' group by sala";
      //select sala, count(sala) as cant
      //from reservas where month(fecha) ='6' and eliminada ='0'
      //group by sala
@@ -172,7 +172,7 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
     public function total_reservas_carrera($finicio, $ffin)  // reservas sin eliminar //
     {
 
-     $q_string = "select count(id_a) as max, carrera_a  from reservas fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by carrera_a";
+     $q_string = "select count(id_a) as max, carrera_a  from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by carrera_a";
      //select count(id_a) as max, carrera_a
      //from reservas where fecha between '2014/06/30' and '2014/06/30' and eliminada = '0'
      //group by carrera_a
@@ -186,7 +186,7 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
     public function max_salas_carrera($finicio, $ffin)  // reservas sin eliminar //
     {
 
-     $q_string = "select sala, carrera_a, count(sala) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by carrera_a, sala";
+     $q_string = "select sala, carrera_a, count(sala) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by sala";
      //select sala, carrera_a, count(sala) as coun
      //from reservas where fecha between '2014/06/05' and '2014/06/30' and eliminada = '0'
      //group by carrera_a, sala
