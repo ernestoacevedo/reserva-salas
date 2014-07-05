@@ -28,12 +28,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="#">Reportes</a></li>
+            <li><a href="<?php echo site_url('reportes');?>">Reportes</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<?php echo site_url('modulos');?>">Módulos</a></li>
-                <li><a href="#">Salas</a></li>
+                <li><a href="<?php echo site_url('parametros');?>">Parámetros</a></li>
               </ul>
             </li>
           </ul>

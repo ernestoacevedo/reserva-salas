@@ -32,7 +32,7 @@
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
 		            <li><a href="<?php echo site_url('modulos');?>">Módulos</a></li>
-		            <li><a href="#">Salas</a></li>
+		            <li><a href="<?php echo site_url('parametros');?>">Parámetros</a></li>
 		          </ul>
 		        </li>
 		      </ul>
@@ -69,70 +69,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td data-id-modulo="1" style="text-align: center;"> 08:00 - 09:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
-							<tr>
-								<td data-id-modulo="2" style="text-align: center;"> 09:00 - 10:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
-							<tr>
-								<td data-id-modulo="3" style="text-align: center;"> 10:00 - 11:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
-							<tr>
-								<td data-id-modulo="4" style="text-align: center;"> 11:00 - 12:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
-							<tr>
-								<td data-id-modulo="5" style="text-align: center;"> 12:00 - 13:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
-							<tr>
-								<td data-id-modulo="6" style="text-align: center;"> 14:00 - 15:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
-							<tr>
-								<td data-id-modulo="7" style="text-align: center;"> 15:00 - 16:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
-							<tr>
-								<td data-id-modulo="8" style="text-align: center;"> 17:00 - 18:00 </td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-								<td class="horario" data-reservado="0"></td>
-							</tr>
+							<?php
+									$this->db->select('id_mod,h_inicio,h_fin');
+									$this->db->from('modulos');
+									$query = $this->db->get();
+									foreach($query->result() as $row){
+										echo '<tr>';
+										echo '<td data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->h_inicio.' - '.$row->h_fin.' </td>';
+										echo '
+											<td class="horario" data-reservado="0"></td>
+											<td class="horario" data-reservado="0"></td>
+											<td class="horario" data-reservado="0"></td>
+											<td class="horario" data-reservado="0"></td>
+											<td class="horario" data-reservado="0"></td>
+										';
+										echo '</tr>';
+									}
+							?>
 						</tbody>
 					</table>
 				</div>
@@ -170,8 +123,6 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
-	<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
 
 	<div id="modalEliminar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
