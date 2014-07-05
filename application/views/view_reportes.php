@@ -91,15 +91,6 @@
         dataType: 'JSON',
         data: {fecha: $('#rep_fecha').val()},
         success: function(data){
-          console.log(data);
-          var series = [];
-          $.each(data.series,function(key,val){
-            var item = {}
-            item.name = (val['name']);
-            item.data = (val['data']);
-            series.push(item);
-          });
-          console.log(series);
           $('#grafico').highcharts({
                 chart: {
                     type: 'column'
