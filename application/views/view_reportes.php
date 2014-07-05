@@ -141,7 +141,7 @@
                       text: 'Reporte '+$a.html()
                   },
                   subtitle: {
-                      text: ''
+                      text: 'Total de Reservas '+data.total
                   },
                   xAxis: {
                       categories: [

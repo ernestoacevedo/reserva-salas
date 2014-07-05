@@ -5,7 +5,7 @@ Class mod_disponibilidad extends CI_Model
 
 
 
-	public function bloquear_dia($data)  // reservas sin eliminar //
+	public function bloquear_modulo($data)  // reservas sin eliminar //
     {
     
 

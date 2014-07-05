@@ -17,19 +17,30 @@ class Reportes extends CI_Controller {
  public function ReporteDiario(){
    $query = $this->mod_reportes->total_reservas_sala_dia($this->input->post('fecha'));
    $series = array();
+   $total = 0;
    foreach($query->result() as $row){
      $name = 'Sala '.$row->sala;
      $point = ['name'=> $name,'data'=>[(int)$row->cant]];
+     $total+=$row->cant;
      array_push($series,$point);
    }
    $data['title'] = 'Nº de Reservas';
    $data['series'] = $series;
+   $data['total'] = $total;
    echo json_encode($data);
   }
 
 public function ReporteSemanal(){
-
-
+    $query = $this->mod_reportes->total_reservas_sala_semana($this->input->post('fecha'));
+    $series = array();
+    foreach($query->result() as $row){
+      $name = 'Sala '.$row->sala;
+      $point = ['name'=>$name,'data'=>[(int)$row->con]];
+      array_push($series,$point);
+    }
+    $data['title'] = 'Nº de Reservas';
+    $data['series'] = $series;
+    echo json_encode($data);
   }
 
 public function ReporteMensual(){
