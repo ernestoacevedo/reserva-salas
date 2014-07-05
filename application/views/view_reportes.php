@@ -52,14 +52,14 @@
         <ul id="menu_reportes">
           <input type="hidden" id="rep_fecha" name="rep_fecha">
           <li><a href="#" data-action="index.php/reportes/ReporteDiario">Diario</a></li>
-          <li><a href="#">Semanal</a></li>
-          <li><a href="#">Mensual</a></li>
-          <li><a href="#">Por Carrera</a></li>
-          <li><a href="#">Inasistencias</a></li>
-          <li><a href="#">Inasistencias sin Justificar</a></li>
-          <li><a href="#">Horarios Punta</a></li>
-          <li><a href="#">Ocupación</a></li>
-          <li><a href="#">Usuarios</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Semanal</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Mensual</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Por Carrera</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Inasistencias</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Inasistencias sin Justificar</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Horarios Punta</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Ocupación</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Usuarios</a></li>
         </ul>
       </div>
     </aside>
