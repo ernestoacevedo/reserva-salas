@@ -6,18 +6,30 @@ class Salas extends CI_Controller {
        parent::__construct();
 
       $this->load->model('mod_salas');
+      $this->load->model('mod_parametros');
 
   }
 
 
-public function AgregarSalas(){
+public function ModificarSalas(){
     
+	 $datos = $this->mod_parametros->obtener_parametros();
+     $salas = $this->input->post('salas');
+     $dataPK= array(
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          );
 
-  }
+     $dataNEW= array(
+          'cant_salas'=> $salas,
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          );
 
+     $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW);
 
-public function EliminarSalas(){
-    
+	}
 
   }
 

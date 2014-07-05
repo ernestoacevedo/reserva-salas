@@ -28,8 +28,8 @@ public function ModificarAlumxdia()  // reservas sin eliminar //
 
      $dataNEW= array(
           'cant_salas'=> $datos['cant_salas'],
-          'plazo_para_reservar'=> $alumxdia,
-          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=>$alumxdia,
           );
 
      $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW);
