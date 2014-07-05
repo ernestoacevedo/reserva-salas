@@ -53,14 +53,14 @@
         <ul id="menu_reportes" class="nav nav-pills nav-stacked">
           <input type="hidden" id="rep_fecha" name="rep_fecha">
           <li class="active"><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1">Diario</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1">Semanal</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1">Mensual</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Por Carrera</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Inasistencias</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Inasistencias sin Justificar</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Horarios Punta</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Ocupación</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="2">Usuarios</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteSemanal" data-interval="1">Semanal</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteMensual" data-interval="1">Mensual</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteCarrera" data-interval="2">Por Carrera</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteInasistencias" data-interval="2">Inasistencias</a></li>
+          <li><a href="#" data-action="index.php/reportes/Eliminaciones" data-interval="2">Inasistencias sin Justificar</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteHorariosPunta" data-interval="2">Horarios Punta</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteOcupacion" data-interval="2">Ocupación</a></li>
+          <li><a href="#" data-action="index.php/reportes/" data-interval="2">Usuarios</a></li>
         </ul>
         <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form">
           <div id="date1" class="form-group">
@@ -141,7 +141,7 @@
                       text: 'Reporte '+$a.html()
                   },
                   subtitle: {
-                      text: ''
+                      text: 'Total de Reservas '+data.total
                   },
                   xAxis: {
                       categories: [
@@ -181,6 +181,7 @@
     $(document).on('click','#to_pdf',function(e){
       e.preventDefault();
       e.stopPropagation();
+      //$title = 'Reporte '+$a.html+' '+$('#fecha_inicio').find("input").val();
       chart.exportChart({
             type: 'application/pdf',
             filename: 'reporte'

@@ -45,12 +45,13 @@ public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
 
  public function obtener_reservas_semanales($fecha)
     {
+
     	 $q_string = "select fecha, modulo, id_a, nombre_a, carrera_a from reservas where week(fecha) = week('".$fecha."') and eliminada ='0' and estado ='1'";
 	 	 $data = $this->db->query($q_string);
 		//select fecha, modulo, id_a, nombre_a, carrera_a 
 	 	 //from reservas where week(fecha) = week('2014-07-05') and eliminada ='0' and estado ='1'
 		 return $data;
-    	
+
     }
 
 
@@ -62,6 +63,7 @@ public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
 
 public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
     {
+
      $q_string = "select sala, count(sala) as cant from reservas where month(fecha) = month('".$fecha."') and eliminada ='0' and estado ='1' group by sala";
      //select sala, count(sala) as cant
      //from reservas where month(fecha) ='6' and eliminada ='0' and estado ='1'
@@ -75,6 +77,7 @@ public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
 
  public function obtener_reservas_mensuales($fecha)
     {
+
      $q_string = "select fecha, sala, modulo, id_a, nombre_a, carrera_a from reservas where month(fecha) = month('".$fecha."') and eliminada ='0' and estado ='1' group by fecha";
 		//select fecha, sala, modulo, id_a, nombre_a, carrera_a 
 		//from reservas 
@@ -108,7 +111,7 @@ public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
 
      $q_string = "select sala, carrera_a, count(sala) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' and estado ='1' group by carrera_a, sala";
      //select sala, carrera_a, count(sala) as coun
-     //from reservas where fecha between '2014/06/05' and '2014/06/30' and eliminada = '0'
+     //from reservas where fecha between '2014/06/05' and '2014/06/30' and eliminada = '0' and estado ='1'
      //group by carrera_a, sala
 	 	 $data = $this->db->query($q_string);
 	 	 return $data;
@@ -228,7 +231,7 @@ public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
 
 	//USUARIOS
 
-	   public function reservas_usuarios($finicio, $ffin)  
+	   public function reservas_usuarios($finicio, $ffin)
     {
     	$q_string = "select fecha, id_e, count(id_a) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' and estado ='1' group by fecha order by fecha";
 		//select fecha, id_e, count(id_a) as con
