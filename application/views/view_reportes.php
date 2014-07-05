@@ -50,14 +50,16 @@
     <aside>
       <div id="sidebar">
         <ul id="menu_reportes">
-          <li><a href="#">a</a></li>
-          <li><a href="#">b</a></li>
-          <li><a href="#">c</a></li>
-          <li><a href="#">d</a></li>
-          <li><a href="#">e</a></li>
-          <li><a href="#">f</a></li>
-          <li><a href="#">g</a></li>
-          <li><a href="#">h</a></li>
+          <input type="hidden" id="rep_fecha" name="rep_fecha">
+          <li><a href="#" data-action="index.php/reportes/ReporteDiario">Diario</a></li>
+          <li><a href="#">Semanal</a></li>
+          <li><a href="#">Mensual</a></li>
+          <li><a href="#">Por Carrera</a></li>
+          <li><a href="#">Inasistencias</a></li>
+          <li><a href="#">Inasistencias sin Justificar</a></li>
+          <li><a href="#">Horarios Punta</a></li>
+          <li><a href="#">Ocupación</a></li>
+          <li><a href="#">Usuarios</a></li>
         </ul>
       </div>
     </aside>
@@ -73,76 +75,61 @@
 
   <script src="<?php echo base_url(); ?>js/jquery.js"></script>
   <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url(); ?>js/moment.min.js"></script>
   <script src="<?php echo base_url(); ?>js/highcharts.js"></script>
 
   <script>
+    $('#rep_fecha').val(new moment(new Date()).format('YYYY-MM-DD'));
     $(document).on('click','#menu_reportes>li>a',function(e){
       e.preventDefault();
       e.stopPropagation();
-      $('#grafico').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Monthly Average Rainfall'
-            },
-            subtitle: {
-                text: 'Source: WorldClimate.com'
-            },
-            xAxis: {
-                categories: [
-                    'Jan',
-                    'Feb',
-                    'Mar',
-                    'Apr',
-                    'May',
-                    'Jun',
-                    'Jul',
-                    'Aug',
-                    'Sep',
-                    'Oct',
-                    'Nov',
-                    'Dec'
-                ]
-            },
-            yAxis: {
-                min: 0,
+      console.log($('body').data('url') + $(this).data('action'));
+      var $a = $(this);
+      $.ajax({
+        type: 'POST',
+        url: $('body').data('url') + $(this).data('action'),
+        dataType: 'JSON',
+        data: {fecha: $('#rep_fecha').val()},
+        success: function(data){
+          $('#grafico').highcharts({
+                chart: {
+                    type: 'column'
+                },
                 title: {
-                    text: 'Rainfall (mm)'
-                }
-            },
-            tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{
-                name: 'Tokyo',
-                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-            }, {
-                name: 'New York',
-                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-            }, {
-                name: 'London',
-                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-
-            }, {
-                name: 'Berlin',
-                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-            }]
-        });
+                    text: $a.html()
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [
+                        ''
+                    ]
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: data.title
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: data.series
+            });
+        }
+      });
     });
   </script>
 </body>
