@@ -3,6 +3,8 @@ Class mod_reportes extends CI_Model
 {
 // Reporte Diario
 
+//Cantidad de reservas realizadas por cada sala.
+
     public function total_reservas_dia($fecha)  // reservas sin eliminar //
     {
 
@@ -15,6 +17,8 @@ Class mod_reportes extends CI_Model
 		}
 	}
 
+// La suma total de reservas.
+
 public function total_reservas_sala_dia($fecha)  // reservas sin eliminar //
     {
      $q_string = "select sala, count(sala) as cant from reservas where fecha ='".$fecha."' and eliminada ='0' group by sala";
@@ -22,6 +26,7 @@ public function total_reservas_sala_dia($fecha)  // reservas sin eliminar //
 		 return $data;
 	}
 
+//La suma de reservas realizadas por un usuario (Asistente administrativo).
 
 public function total_reservas_usuario_dia($fecha)  // reservas sin eliminar //
     {
@@ -30,7 +35,9 @@ public function total_reservas_usuario_dia($fecha)  // reservas sin eliminar //
 		 return $data;
 	}
 
- public function obtener_reservas_diarias_dia($fecha)
+//Todas las reervas del dia	
+
+ public function obtener_reservas_diarias($fecha)
     {
       $this->db->select('modulo,sala,id_a,nombre_a,carrera_a, id_e');
       $this->db->from('reservas');
@@ -45,6 +52,8 @@ public function total_reservas_usuario_dia($fecha)  // reservas sin eliminar //
 
 // INCOMPLETO
 
+//Cantidad de reservas realizadas por cada sala.
+
     public function total_reservas_semana($fecha)  // reservas sin eliminar //
     {
      $q_string = "select count(id_a) as max from reservas where fecha ='".$fecha."' and  eliminada = '0'";
@@ -57,6 +66,8 @@ public function total_reservas_usuario_dia($fecha)  // reservas sin eliminar //
 		}
 	}
 
+//La suma total de reservas.
+
 public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
     {
      $q_string = "select sala, count(sala) as cant from reservas where fecha ='".$fecha."' and eliminada ='0' group by sala";
@@ -65,6 +76,7 @@ public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
 		 return $data;
 	}
 
+// La suma de reservas realizadas por un usuario (Asistente administrativo).
 
 public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar //
     {
@@ -74,7 +86,9 @@ public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar 
 		 return $data;
 	}
 
- public function obtener_reservas_diarias_semana($fecha)
+// todas las reservas en la semana
+
+ public function obtener_reservas_semanales($fecha)
     {
     	/*
       $this->db->select('modulo,sala,id_a,nombre_a,carrera_a, id_e');
@@ -90,6 +104,7 @@ public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar 
 
 	// REPORTE MENSUAL
 
+//La suma total de reservas.
 
     public function total_reservas_mes($mes)  // reservas sin eliminar //
     {
@@ -104,6 +119,8 @@ public function total_reservas_usuario_semana($fecha)  // reservas sin eliminar 
 		}
 	}
 
+//Cantidad de reservas realizadas por cada sala.
+
 public function total_reservas_sala_mes($mes)  // reservas sin eliminar //
     {
      $q_string = "select sala, count(sala) as cant from reservas where month(fecha) ='".$mes."' and eliminada ='0' group by sala";
@@ -112,6 +129,7 @@ public function total_reservas_sala_mes($mes)  // reservas sin eliminar //
 		 return $data;
 	}
 
+//La suma de reservas realizadas por un usuario (Asistente administrativo).
 
 public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
     {
@@ -121,7 +139,10 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
 		 return $data;
 	}
 
- public function obtener_reservas_diarias_mes($fecha)
+
+//Todas las reservas mensuales
+
+ public function obtener_reservas_mensuales($fecha)
     {
     	// ARREGLAR
     	//select modulo,sala,id_a,nombre_a,carrera_a, id_e from reservas where month(fecha) ='6' and eliminada ='0'
@@ -133,8 +154,9 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
     }
 
 
-// REPORTE POR CARRERA
-
+// REPORTE POR CARRERA en un intervalo de fecha
+ 
+    //Mayor ocupación de salas por la carrera
 
     public function total_reservas_carrera($finicio, $ffin)  // reservas sin eliminar //
     {
@@ -142,12 +164,45 @@ public function total_reservas_usuario_mes($mes)  // reservas sin eliminar //
      $q_string = "select count(id_a) as max, carrera_a  from reservas fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by carrera_a";
      //select count(id_a) as max, carrera_a from reservas where fecha between '2014/06/30' and '2014/06/30' and eliminada = '0' group by carrera_a
 	 	 $data = $this->db->query($q_string);
-		  foreach ($data->result() as $row)
-		{
-		    $data2= $row->max;
-		    return $data2;
-		}
+	 	 return $data;
 	}
+
+	//Las Salas que más  se ocuparon por la carrera.
+	//Las Salas que menos se ocuparon por la carrera.
+
+    public function max_salas_carrera($finicio, $ffin)  // reservas sin eliminar //
+    {
+
+     $q_string = "select sala, carrera_a, count(sala) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by carrera_a, sala";
+     //select sala, carrera_a, count(sala) as coun from reservas where fecha between '2014/06/05' and '2014/06/30' and eliminada = '0' group by carrera_a, sala
+	 	 $data = $this->db->query($q_string);
+	 	 return $data;
+	}
+
+	//Los Días que más  se ocuparon  las salas por la carrera.
+
+
+
+    public function max_salas_carrera_xdia($finicio, $ffin)  // reservas sin eliminar //
+    {
+     $q_string = "select fecha, sala, carrera_a, count(fecha) as con from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' group by fecha, sala, carrera_a order by fecha, sala, con";
+     
+    //select fecha, sala, carrera_a, count(fecha) as con
+	//from reservas
+	//where fecha between '2014/06/05' and '2014/06/30' and eliminada = '0'
+	//group by fecha, sala, carrera_a
+	//order by fecha, sala, con
+
+	 	 $data = $this->db->query($q_string);
+	 	 return $data;
+
+	}
+	//Los Dias que menos se ocuparon las salas por la carrera.
+
+
+	//Horarios Punta.
+
+
 /*
 public function total_reservas_sala_mes($mes)  // reservas sin eliminar //
     {
