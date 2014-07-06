@@ -107,8 +107,10 @@
 				if ($(this).data('reservado') == 0) {
 					$(this).html('<button class="btn btn-primary btn-reserva">Reservar</button>');
 				} else {
-					$html = $(this).find('.carrera').html();
-					$(this).find('.carrera').html('<a href="#" class="validar"><i class="fa fa-thumbs-up"></i></a> <a href="#" class="observacion"><i class="fa fa-comment"></i></a> <a href="#" class="eliminar"><i class="fa fa-trash-o"></i></a>');
+					if($(this).data('reservado') == 1){
+							$html = $(this).find('.carrera').html();
+							$(this).find('.carrera').html('<a href="#" class="validar"><i class="fa fa-thumbs-up"></i></a> <a href="#" class="observacion"><i class="fa fa-comment"></i></a> <a href="#" class="eliminar"><i class="fa fa-trash-o"></i></a>');
+					}
 				}
 			}
 		});
