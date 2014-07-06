@@ -10,6 +10,29 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery-ui-1.10.4.custom.css"/>
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.dataTables_themeroller.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/bic_calendar.css" />
+  <style>
+  #bic_calendar{
+    margin-top: 8px;
+    margin-left: -3px;
+  }
+
+  #tabla_horarios{
+    margin-top: 8px;
+    background-color: white;
+  }
+
+  #controls{
+    margin-top: 4px;
+  }
+
+  #controls input{
+    margin-bottom: 15px;
+  }
+
+  #controls select{
+    margin-bottom: 15px;
+  }
+  </style>
 </head>
 <body data-url="<?php echo base_url();?>">
   <section id="container">
@@ -68,19 +91,55 @@
         </div>
         <div class="tab-pane" id="content_disponibilidad">
           <div class="col-md-12">
-            <div class="col-md-4" style="background-color: red;">
+            <div class="col-md-4">
               <div id="calendar-disp"></div>
+              <div id="controls">
+                <input id="dia_completo" type="checkbox"> Todo el día <br>
+                <label for="sala_bloq">Sala</label>
+                <select name="sala_bloq" id="sala_bloq">
+                <?php
+                  $num_salas = $this->mod_salas->obtener_salas();
+                  for($i=1;$i<($num_salas+1);$i++){
+                    echo '<option value="'.$i.'">Sala '.$i.'</option>';
+                  }
+                ?>
+                </select><br>
+                <label for="modulo_inicio">Desde módulo</label>
+                <select name="modulo_inicio" id="modulo_inicio">
+                <?php
+                  $this->db->select('id_mod,h_inicio,h_fin');
+                  $this->db->from('modulos');
+                  $query = $this->db->get();
+                  foreach($query->result() as $row){
+                    echo '<option value="'.$row->id_mod.'">'.$row->h_inicio.'-'.$row->h_fin.'</option>';
+                  }
+                ?>
+                </select>
+                <label for="modulo_inicio"> hasta </label>
+                <select name="modulo_inicio" id="modulo_inicio">
+                <?php
+                  $this->db->select('id_mod,h_inicio,h_fin');
+                  $this->db->from('modulos');
+                  $query = $this->db->get();
+                  foreach($query->result() as $row){
+                    echo '<option value="'.$row->id_mod.'">'.$row->h_inicio.'-'.$row->h_fin.'</option>';
+                  }
+                ?>
+              </select><br>
+              <button id="btn_bloquear" class="btn btn-danger">Bloquear</button> <button id="btn_desbloquear" class="btn btn-success">Desbloquear</button>
+              </div>
             </div>
-            <div class="col-md-8" style="background-color: yellow;">
+            <div class="col-md-8">
               <table id="tabla_horarios" border="1" style="table">
                 <thead>
                   <tr>
                     <th style="width: 100px;text-align: center;"> Módulo </th>
-                    <th style="text-align: center;" data-num-sala="1"> Sala 1 </th>
-                    <th style="text-align: center;" data-num-sala="2"> Sala 2 </th>
-                    <th style="text-align: center;" data-num-sala="3"> Sala 3 </th>
-                    <th style="text-align: center;" data-num-sala="4"> Sala 4 </th>
-                    <th style="text-align: center;" data-num-sala="5"> Sala 5 </th>
+                    <?php
+
+                    for($i=1;$i<($num_salas+1);$i++){
+                      echo '<th style="text-align: center;" data-num-sala="'.$i.'"> Sala '.$i.' </th>';
+                    }
+                    ?>
                   </tr>
                 </thead>
                 <tbody>
@@ -91,13 +150,9 @@
                       foreach($query->result() as $row){
                         echo '<tr>';
                         echo '<td data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->h_inicio.' - '.$row->h_fin.' </td>';
-                        echo '
-                          <td class="horario" data-reservado="0"></td>
-                          <td class="horario" data-reservado="0"></td>
-                          <td class="horario" data-reservado="0"></td>
-                          <td class="horario" data-reservado="0"></td>
-                          <td class="horario" data-reservado="0"></td>
-                        ';
+                        for($i=1;$i<($num_salas+1);$i++){
+                          echo '<td class="horario" data-reservado="0"></td>';
+                        }
                         echo '</tr>';
                       }
                   ?>
@@ -167,12 +222,6 @@
       displayMonthController: true,
       //show year controller
       displayYearController: true,
-    });
-
-    $('#tabla_horarios').dataTable({
-      "bJQueryUI": false,
-      "sDom": '<><t><>',
-      "bSort": false
     });
   </script>
 </body>

@@ -37,9 +37,19 @@
 		var actualizarTabla = function($tabla) {
 			$tabla.each(function(i, elemento) {
 				switch ($(this).data('reservado')) {
+					case -1:
+						$(this).css({
+							'background': '#95a5a6'
+						});
+						break;
 					case 1:
 						$(this).css({
 							'background': '#c0392b'
+						});
+						break;
+					case 2:
+						$(this).css({
+							'background': '#f1c40f'
 						});
 						break;
 					default:
@@ -74,7 +84,7 @@
 				success: function(respuesta) {
 					console.log(respuesta);
 					$.each(respuesta, function(key, value) {
-						$('td[data-id-modulo=' + value.modulo + ']').siblings().eq(value.sala - 1).data('reservado', 1);
+						$('td[data-id-modulo=' + value.modulo + ']').siblings().eq(value.sala - 1).data('reservado', value.reservado);
 						$('td[data-id-modulo=' + value.modulo + ']').siblings().eq(value.sala - 1).html(value.nombre_a + '<br><span class="carrera">' + value.carrera_a + '</span>');
 					});
 					actualizarTabla($('#tabla_horarios td'));
