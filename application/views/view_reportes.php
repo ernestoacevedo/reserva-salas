@@ -57,7 +57,7 @@
           <li><a href="#" data-action="index.php/reportes/ReporteMensual" data-interval="1">Mensual</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteCarrera" data-interval="2">Por Carrera</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteInasistencias" data-interval="2">Inasistencias</a></li>
-          <li><a href="#" data-action="index.php/reportes/Eliminaciones" data-interval="2">Inasistencias sin Justificar</a></li>
+          <li><a href="#" data-action="index.php/reportes/Eliminaciones" data-interval="2">Por Eliminación</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteHorariosPunta" data-interval="2">Horarios Punta</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteOcupacion" data-interval="2">Ocupación</a></li>
           <li><a href="#" data-action="index.php/reportes/" data-interval="2">Usuarios</a></li>
