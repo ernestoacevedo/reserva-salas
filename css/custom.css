@@ -57,25 +57,6 @@ a.logo {
 	padding: 10px 20px 0px;
 }
 
-/* #usermenu {
-  top: 20px;
-  right: 10px;
-}
-
-#usermenu > a {
-  color: white;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-#usermenu b {
-  color: white;
-}
-
-#usermenu ul {
-  left: -77px;
-} */
-
 #tabla_horarios {
   table-layout: fixed;
 }
@@ -92,6 +73,7 @@ a.logo {
 .horario {
   color: white;
   text-align: center;
+  font-size: 10px;
 }
 
 .btn-reserva {
@@ -126,7 +108,7 @@ a.logo {
 }
 
 td .carrera {
-  font-size: 11px;
+  font-size: 10px;
   z-index: 10;
 }
 

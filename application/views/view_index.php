@@ -60,7 +60,7 @@
 					<table id="tabla_horarios" border="1" style="table">
 						<thead>
 							<tr>
-								<th style="width: 100px;text-align: center;"> Módulo </th>
+								<th style="width: 80px;text-align: center;"> Módulo </th>
 								<?php
 								$num_salas = $this->mod_salas->obtener_salas();
 								for($i=1;$i<($num_salas+1);$i++){
