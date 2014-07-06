@@ -14,22 +14,44 @@ class Modulos extends CI_Controller {
 
   public function CrearModulo(){
 
+    $todos_mod = $this->mod_modulos->obtener_modulos();
+
+
     $canmodulo = $this->mod_modulos->obtener_can_modulos();
     $id_modulo =  $this->input->post('id_mod'); 
+    $h_inicio = $this->input->post('h_inicio'); 
+    $h_fin = $this->input->post('h_fin'); 
 
-    $si = '0';
-    foreach($canmodulo->result() as $row){
-       $id = $row->id_mod;
-       if($id == $id_modulo){
-          $si = '1';
-       }
-    }
+
+    $si = '1';
+    if($h_fin > $h_inicio){ // el fin es menos que el inicio
+        $si = '0';
+        foreach($todos_mod->result() as $row){
+           $id = $row->id_mod;
+           $h_i = $row->inicio;
+           $h_f = $row->fin;
+           if($id == $id_modulo){ // ya existe
+              $si = '1';
+           } else{
+             if($id < $id_modulo) { // mod anterior
+                if($h_f > $h_inicio){ // el fin del anterior mayor que el inicio del nuevo
+                  $si = '1';
+                }
+             }else if ($id > $id_modulo){ // mod siguiente
+               if($h_fin > $h_i){ // el inicio del siguiente menor que el fin del nuevo
+                  $si = '1';
+                }
+             }
+           }
+        }
+      }
+
 
     if ($si == '0'){
       $data = array(
       'id_mod' => $id_modulo,
-      'h_inicio' => $this->input->post('h_inicio'), 
-       'h_fin' => $this->input->post('h_fin') 
+      'h_inicio' => $h_inicio, 
+       'h_fin' => $h_fin 
       );
       $this->mod_modulos->insertar_modulos($data);
 
