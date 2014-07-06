@@ -58,14 +58,14 @@
             </div>
             <div class="form-group">
               <div class='input-group date' id='hora_inicio' data-date-format="HH:mm">
-                    <input type='text' class="form-control" placeholder="Hora inicial" />
+                    <input type='text' id="h_inicio" name="h_inicio" class="form-control" placeholder="Hora inicial" />
                     <span class="input-group-addon"><span class="fa fa-clock-o"></span>
                     </span>
               </div>
             </div>
             <div class="form-group">
               <div class='input-group date' id='hora_fin'data-date-format="HH:mm">
-                    <input type='text' class="form-control" placeholder="Hora final" />
+                    <input type='text' id="h_fin" name="h_fin" class="form-control" placeholder="Hora final" />
                     <span class="input-group-addon"><span class="fa fa-clock-o"></span>
                     </span>
               </div>
