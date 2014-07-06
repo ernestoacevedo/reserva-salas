@@ -86,9 +86,6 @@
                   Hora Fin
                 </th>
                 <th style="text-align: center;">
-                  Editar
-                </th>
-                <th style="text-align: center;">
                   Eliminar
                 </th>
               </tr>
@@ -99,7 +96,6 @@
                   foreach($query->result() as $row){
                     echo '<tr>';
                     echo '<td style="text-align: center;">'.$row->inicio.'</td><td style="text-align: center;">'.$row->fin.'</td>';
-                    echo '<td style="text-align: center;"><a class="btn btn-warning btnEditar" href="'.site_url('modulos/EditarModulo').'/'.$row->id_mod.'"><span class="fa fa-pencil"></span></a></td>';
                     echo '<td style="text-align: center;"><a class="btn btn-danger btnEliminar" href="'.site_url('modulos/EliminarModulo').'/'.$row->id_mod.'"><span class="fa fa-trash-o"></span></a></td>';
                     echo '</tr>';
                   }
