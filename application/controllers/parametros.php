@@ -12,6 +12,7 @@ class Parametros extends CI_Controller {
 	// Plazo
 public function index(){
   $this->load->model('mod_parametros');
+  $this->load->model('mod_salas');
   $this->load->view('view_parametros');
 }
 
