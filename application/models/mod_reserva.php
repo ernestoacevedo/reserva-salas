@@ -2,7 +2,7 @@
 Class mod_reserva extends CI_Model
 {
     public function obtener_alum_fecha($fecha, $id) {
-     $q_string = "select count(id_a) as max from reservas where fecha ='".$fecha."' and  id_a = '".$id."'";
+     $q_string = "select count(id_a) as max from reservas where fecha ='".$fecha."' and  id_a = '".$id."' and eliminada = '0' and confirmada = '0'";
      $data = $this->db->query($q_string);
       foreach ($data->result() as $row)
       {

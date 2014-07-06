@@ -92,40 +92,53 @@ class Reservas extends CI_Controller {
  // mod_parametros, obtener_alumxdia
   // $limitexdia // parametros, plazo_para_reservar
  // mod_parametros, obtener_plazo
+
     $alumxdia = $this->mod_parametros->obtener_alumxdia();  // buscar en BD, parametros, n_reservas_diarias
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
+    $plazo = $this->mod_parametros->obtener_plazo();
 
-  //  $fec = $this->mod_reportes->total_reservas_dia($fecha);
-   // log_message('debug',print_r($fec,TRUE));
+    $fecha_hoy =date("Y-m-d");
+    // log_message('debug',print_r($fecha_hoy,TRUE));
+     //log_message('debug',print_r($fecha,TRUE));      
 
-    log_message('debug',print_r($alumxdia,TRUE));
-    log_message('debug',print_r($max,TRUE));
+      $total_fecha=strtotime($fecha) - strtotime($fecha_hoy);
+      $diferencia_dias=intval($total_fecha/60/60/24);
 
-  if (true){
+    //log_message('debug',print_r($plazo,TRUE));         
 
-    $data= array(
-          'fecha'=> $fecha,
-          'modulo'=> $modulo,
-          'sala'=>$sala,
-           'eliminada' => 0,
-           'id_a'=>$rut,
-           'nombre_a' => $nombre,
-           'carrera_a' => $carrera,
-            'confirmada' => 0,
-            'estado' => 1,
-          //'id_e'=>$this->input->post('loggin'), // obtener del sesion
-            'id_e' => '12.312.312-3',
-            'observacion' => 'Reservada'
-          );
-    $resultado = $this->mod_reserva->agregar_reserva($data);
+    // $total_fecha = $fecha - $fecha_hoy;
+    //log_message('debug',print_r($diferencia_dias,TRUE));       
 
-    $respuesta = array("error" => false,"insertado" => $resultado);
-   }
-    else{
-      $respuesta = array("error"=> true);
-    }
+  if ($diferencia_dias <= $plazo){
+          if ($max < $alumxdia){
 
+            $data= array(
+                  'fecha'=> $fecha,
+                  'modulo'=> $modulo,
+                  'sala'=>$sala,
+                   'eliminada' => 0,
+                   'id_a'=>$rut,
+                   'nombre_a' => $nombre,
+                   'carrera_a' => $carrera,
+                    'confirmada' => 0,
+                    'estado' => 1,
+                  //'id_e'=>$this->input->post('loggin'), // obtener del sesion
+                    'id_e' => '12.312.312-3',
+                    'observacion' => 'Reservada'
+                  );
+            $resultado = $this->mod_reserva->agregar_reserva($data);
 
+            $respuesta = array("error" => false,"insertado" => $resultado);
+           }
+            else{
+              $respuesta = array("error"=> true); //MAS DE UNA RESERVA EN EL DIA
+            }
+            
+        }
+        else{
+          $respuesta = array("error"=> true); //PASADO DE PLAZO
+        }
+    
     echo json_encode($respuesta);
 
 

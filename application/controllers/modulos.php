@@ -15,37 +15,35 @@ class Modulos extends CI_Controller {
   public function CrearModulo(){
 
     $canmodulo = $this->mod_modulos->obtener_can_modulos();
-    $id_mod =  $this->input->post('id_mod'); // aqui
-
-   log_message('debug',print_r($id_mod,TRUE));
-   log_message('debug',print_r($h_inicio,TRUE));
-   log_message('debug',print_r($h_fin,TRUE));
-
-
+    $id_modulo =  $this->input->post('id_mod'); 
 
     $si = '0';
     foreach($canmodulo->result() as $row){
        $id = $row->id_mod;
-       if($id = $id_mod){
+       if($id == $id_modulo){
           $si = '1';
        }
     }
 
-    if ($si = '0'){
-
+    if ($si == '0'){
       $data = array(
-      'id_mod' => (int)$id_mod,
-      'h_inicio' => $this->input->post('h_inicio'), // aqui
-       'h_fin' => $this->input->post('h_fin') // aqui
+      'id_mod' => $id_modulo,
+      'h_inicio' => $this->input->post('h_inicio'), 
+       'h_fin' => $this->input->post('h_fin') 
       );
       $this->mod_modulos->insertar_modulos($data);
+
+      // COLOCAR AVISO DE INGRESADO
+
       //$resultado = $this->mod_modulos->insertar_modulos($data);
       //$respuesta = array("error" => false,"Módulo Registrado" => $resultado);
     }
-    /*else{
-      $respuesta = array("error" => false,"Módulo No Registrado" => $resultado);
-    }*/
+    else{
 
+      // COLOCAR AVISO DE NO INGRESADO
+      //$respuesta = array("error" => true,"Módulo No Registrado" => $resultado);
+    }
+    redirect('modulos');
   }
 
 
