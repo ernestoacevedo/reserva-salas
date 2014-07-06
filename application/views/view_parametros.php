@@ -107,9 +107,7 @@
                 <label for="modulo_inicio">Desde módulo</label>
                 <select name="modulo_inicio" id="modulo_inicio">
                 <?php
-                  $this->db->select('id_mod,h_inicio,h_fin');
-                  $this->db->from('modulos');
-                  $query = $this->db->get();
+                  $query = $this->mod_modulos->obtener_modulos();
                   foreach($query->result() as $row){
                     echo '<option value="'.$row->id_mod.'">'.$row->h_inicio.'-'.$row->h_fin.'</option>';
                   }
@@ -118,9 +116,7 @@
                 <label for="modulo_inicio"> hasta </label>
                 <select name="modulo_inicio" id="modulo_inicio">
                 <?php
-                  $this->db->select('id_mod,h_inicio,h_fin');
-                  $this->db->from('modulos');
-                  $query = $this->db->get();
+                  $query = $this->mod_modulos->obtener_modulos();
                   foreach($query->result() as $row){
                     echo '<option value="'.$row->id_mod.'">'.$row->h_inicio.'-'.$row->h_fin.'</option>';
                   }
@@ -144,9 +140,7 @@
                 </thead>
                 <tbody>
                   <?php
-                      $this->db->select('id_mod,h_inicio,h_fin');
-                      $this->db->from('modulos');
-                      $query = $this->db->get();
+                      $query = $this->mod_modulos->obtener_modulos();
                       foreach($query->result() as $row){
                         echo '<tr>';
                         echo '<td data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->h_inicio.' - '.$row->h_fin.' </td>';

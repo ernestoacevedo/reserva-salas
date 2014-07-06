@@ -34,7 +34,7 @@ Class mod_modulos extends CI_Model{
     }
 
     public function obtener_modulos(){
-      $this->db->select('id_mod');
+      $this->db->select('id_mod,h_inicio,h_fin');
       $this->db->from('modulos');
       return $this->db->get();
     }

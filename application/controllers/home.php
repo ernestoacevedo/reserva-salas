@@ -13,6 +13,7 @@ function __construct()
 		//$data['variable']=$this->mod_alumno->getAlumno();
 		//$this->load->view('view_index', $data);
 		$this->load->model('mod_salas');
+		$this->load->model('mod_modulos');
 		$this->load->view('view_index');
 		//$this->load->view('view_modulos');
 	}
