@@ -42,15 +42,13 @@ class Modulos extends CI_Controller {
 
   }
 
-  public function EditarModulo(){
+  public function EditarModulo($id){
 
 
 
   }
 
   public function EliminarModulo(){
-
-
 
   }
 }
