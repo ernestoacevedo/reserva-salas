@@ -4,9 +4,7 @@ class Reportes extends CI_Controller {
 
   function __construct(){
        parent::__construct();
-
       $this->load->model('mod_reportes');
-
   }
 
   public function index(){

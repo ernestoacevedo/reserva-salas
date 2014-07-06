@@ -120,7 +120,9 @@
 				if ($(this).data('reservado') == 0) {
 					$(this).html('');
 				} else {
-					$(this).find('.carrera').html($html);
+					if($(this).data('reservado')==1){
+						$(this).find('.carrera').html($html);
+					}
 				}
 			}
 		});
@@ -252,6 +254,11 @@
 				url: $('body').data('url') + 'index.php/reservas/ConfirmarReserva',
 				success: function(data) {
 					console.log(data);
+					obtenerReservas($('#calendar-wrap').data('fecha'));
+				},
+				error: function(data){
+					console.log(data);
+					alert('Ocurrió un error');
 				}
 			});
 		});
@@ -268,17 +275,12 @@
 				},
 				url: $('body').data('url') + 'index.php/reservas/EliminarReserva',
 				success: function(data) {
-					console.log(data);
+					$('#modalEliminar').modal('hide');
 					obtenerReservas($('#calendar-wrap').data('fecha'));
 				},
 				error: function(data){
-					console.log("error");
-					$('#modalEliminar').modal('hide');
-					obtenerReservas($('#calendar-wrap').data('fecha'));
+					alert("Ocurrió un error");
 				}
-			}).done(function(){
-				$('#modalEliminar').modal('hide');
-				obtenerReservas($('#calendar-wrap').data('fecha'));
 			});
 		});
 

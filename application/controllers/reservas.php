@@ -168,9 +168,7 @@ class Reservas extends CI_Controller {
       'observacion' => 'Confirmada'
       );
 
-    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
-
-
+    $resultado = $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
     $respuesta = array("error" => true,"confirmado" => $resultado);
     echo json_encode($respuesta);
 
@@ -215,7 +213,7 @@ class Reservas extends CI_Controller {
       'observacion' => 'Eliminada:   '.$this->input->post('observacion')
       );
 
-    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
+    $resultado = $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
     $respuesta = array("error" => true,"borrado" => $resultado);
     echo json_encode($respuesta);
@@ -281,7 +279,7 @@ class Reservas extends CI_Controller {
       'observacion' => $text.', |Observación: '.$this->input->post('observacion').'|'
       );
 
-    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
+    $resultado = $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
     $respuesta = array("error" => true,"Observación Agregada" => $resultado);
     echo json_encode($respuesta);
