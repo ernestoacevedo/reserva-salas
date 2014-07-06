@@ -17,9 +17,6 @@ class Modulos extends CI_Controller {
     $canmodulo = $this->mod_modulos->obtener_can_modulos();
     $id_mod =  $this->input->post('id_mod'); // aqui
 
-    $h_inicio = $this->imput->post('h_inicio');
-    $h_fin = $this->imput->post('h_fin');
-
    log_message('debug',print_r($id_mod,TRUE));
    log_message('debug',print_r($h_inicio,TRUE));
    log_message('debug',print_r($h_fin,TRUE));
@@ -38,8 +35,8 @@ class Modulos extends CI_Controller {
 
       $data = array(
       'id_mod' => (int)$id_mod,
-      'h_inicio' => $this->imput->post('h_inicio'), // aqui
-       'h_fin' => $this->imput->post('h_fin') // aqui
+      'h_inicio' => $this->input->post('h_inicio'), // aqui
+       'h_fin' => $this->input->post('h_fin') // aqui
       );
       $this->mod_modulos->insertar_modulos($data);
       //$resultado = $this->mod_modulos->insertar_modulos($data);

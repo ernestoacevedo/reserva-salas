@@ -54,7 +54,7 @@
           <h4>Agregar Módulo</h4>
           <form id="form_modulo" action="<?php echo site_url('modulos/CrearModulo');?>" method="post" role="form">
             <div class="form-group">
-                    <input id="id_mod" type='number' class="form-control" placeholder="ID Módulo" min="1"/>
+                    <input id="id_mod" name="id_mod" type='number' class="form-control" placeholder="ID Módulo" min="1"/>
             </div>
             <div class="form-group">
               <div class='input-group date' id='hora_inicio' data-date-format="HH:mm">
