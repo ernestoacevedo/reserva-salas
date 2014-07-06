@@ -39,7 +39,6 @@ class Modulos extends CI_Controller {
       $respuesta = array("error" => false,"Módulo No Registrado" => $resultado);
     }
 
-
   }
 
 /*
