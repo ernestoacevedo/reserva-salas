@@ -27,15 +27,15 @@ public function ModificarAlumxdia()  // reservas sin eliminar //
       //log_message('debug',print_r($salas,TRUE));
 
      $dataPK= array(
-          'cant_salas'=> (int)$datos['cant_salas'],
-          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
-          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> $datos['n_reservas_diarias']
           );
 
      $dataNEW= array(
-          'cant_salas'=> (int)$datos['cant_salas'],
-          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
-          'n_reservas_diarias'=> (int)$alumxdia
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> $alumxdia
           );
 
      $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW);
@@ -55,15 +55,15 @@ public function ModificarPlazo()  // reservas sin eliminar //
       //log_message('debug',print_r($salas,TRUE));
 
      $dataPK= array(
-          'cant_salas'=> (int)$datos['cant_salas'],
-          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
-          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> $datos['n_reservas_diarias']
           );
 
      $dataNEW= array(
-          'cant_salas'=> (int)$datos['cant_salas'],
-          'plazo_para_reservar'=> (int)$plazo,
-           'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $plazo,
+           'n_reservas_diarias'=> $datos['n_reservas_diarias']
           );
 
      $this->mod_parametros->actualizar_plazo($dataPK, $dataNEW);

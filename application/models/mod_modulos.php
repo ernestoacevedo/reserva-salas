@@ -18,13 +18,6 @@ Class mod_modulos extends CI_Model{
       }
     }
 
-/*
-    public function actualizar_modulos($data) // en controlador
-    {
-        //$this->db->where('');
-        $this->db->update('modulos',$data);
-    }
-*/
 
     public function eliminar_modulos($id_mod)
     {

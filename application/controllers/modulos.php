@@ -15,7 +15,12 @@ class Modulos extends CI_Controller {
   public function CrearModulo(){
 
     $canmodulo = $this->mod_modulos->obtener_can_modulos();
-    $id_mod =  $this->imput-post('id_mod');
+    $id_mod =  $this->input->post('id_mod'); // aqui
+
+ 
+   log_message('debug',print_r($id_mod,TRUE));
+
+
 
     $si = '0';
     foreach($canmodulo->result() as $row){
@@ -26,26 +31,22 @@ class Modulos extends CI_Controller {
     }
 
     if ($si = '0'){
+
       $data = array(
-      'id_mod' => $id_mod,
-      'h_inicio' => $this->imput->post('h_inicio'),
-       'h_fin' => $this->imput->post('h_fin')
+      'id_mod' => (int)$id_mod,
+      'h_inicio' => $this->imput->post('hora_inicio'), // aqui
+       'h_fin' => $this->imput->post('hora_fin') // aqui
       );
-
-      $resultado = $this->mod_modulos->insertar_modulos($data);
-      $respuesta = array("error" => false,"Módulo Registrado" => $resultado);
+      $this->mod_modulos->insertar_modulos($data);
+      //$resultado = $this->mod_modulos->insertar_modulos($data);
+      //$respuesta = array("error" => false,"Módulo Registrado" => $resultado);
     }
-    else{
+    /*else{
       $respuesta = array("error" => false,"Módulo No Registrado" => $resultado);
-    }
+    }*/
 
   }
 
-/*
-  public function EditarModulo($id){
-
-  }
-  */
 
   public function EliminarModulo(){
 

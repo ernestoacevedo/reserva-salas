@@ -11,6 +11,7 @@ class Salas extends CI_Controller {
   }
 
   public function index(){
+    $this->load->model('mod_salas');
     $this->load->view('view_parametros');
   }
 
@@ -23,15 +24,15 @@ public function ModificarSalas(){
       //log_message('debug',print_r($salas,TRUE));
 
      $dataPK= array(
-          'cant_salas'=> (int)$datos['cant_salas'],
-          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
-          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
+          'cant_salas'=> $datos['cant_salas'],
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> $datos['n_reservas_diarias']
           );
 
      $dataNEW= array(
-          'cant_salas'=> (int)$salas,
-          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
-          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
+          'cant_salas'=> $salas,
+          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> $datos['n_reservas_diarias']
           );
 
      $this->mod_salas->actualizar_salas($dataPK, $dataNEW);
