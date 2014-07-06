@@ -301,16 +301,16 @@ class Reservas extends CI_Controller {
       $reserva['id_a'] = $row->id_a;
       $reserva['nombre_a'] = $row->nombre_a;
       $reserva['carrera_a'] = $row->carrera_a;
-      if($row->confirmada=0){
-        if($row->estado=0){
-          $reserva['reservado'] = -1;  // Gris
+      if($row->confirmada==0){
+        if($row->estado==0){
+          $reserva['reservado'] = 3;  // Gris
         }
         else{
           $reserva['reservado'] = 1;  // Rojo
         }
       }
       else{
-        if($row->estado=1){
+        if($row->estado==1){
           $reserva['reservado'] = 2;  // Amarillo
         }
       }

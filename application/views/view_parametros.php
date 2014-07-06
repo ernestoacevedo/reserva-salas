@@ -109,7 +109,7 @@
                 <?php
                   $query = $this->mod_modulos->obtener_modulos();
                   foreach($query->result() as $row){
-                    echo '<option value="'.$row->id_mod.'">'.$row->h_inicio.'-'.$row->h_fin.'</option>';
+                    echo '<option value="'.$row->id_mod.'">'.$row->inicio.'-'.$row->fin.'</option>';
                   }
                 ?>
                 </select>
@@ -118,7 +118,7 @@
                 <?php
                   $query = $this->mod_modulos->obtener_modulos();
                   foreach($query->result() as $row){
-                    echo '<option value="'.$row->id_mod.'">'.$row->h_inicio.'-'.$row->h_fin.'</option>';
+                    echo '<option value="'.$row->id_mod.'">'.$row->inicio.'-'.$row->fin.'</option>';
                   }
                 ?>
               </select><br>
@@ -143,7 +143,7 @@
                       $query = $this->mod_modulos->obtener_modulos();
                       foreach($query->result() as $row){
                         echo '<tr>';
-                        echo '<td data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->h_inicio.' - '.$row->h_fin.' </td>';
+                        echo '<td data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->inicio.' - '.$row->fin.' </td>';
                         for($i=1;$i<($num_salas+1);$i++){
                           echo '<td class="horario" data-reservado="0"></td>';
                         }

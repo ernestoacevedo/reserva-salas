@@ -37,11 +37,7 @@
 		var actualizarTabla = function($tabla) {
 			$tabla.each(function(i, elemento) {
 				switch ($(this).data('reservado')) {
-					case -1:
-						$(this).css({
-							'background': '#95a5a6'
-						});
-						break;
+
 					case 1:
 						$(this).css({
 							'background': '#c0392b'
@@ -50,6 +46,11 @@
 					case 2:
 						$(this).css({
 							'background': '#f1c40f'
+						});
+						break;
+					case 3:
+						$(this).css({
+							'background': '#95a5a6'
 						});
 						break;
 					default:

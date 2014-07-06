@@ -35,10 +35,10 @@ Class mod_modulos extends CI_Model{
 
 
     public function obtener_modulos(){
-      $q_string = "select id_mod, time_format(h_inicio, '%H:%m'), time_format(h_fin, '%H:%m') from modulos";
+      $q_string = "select id_mod, time_format(h_inicio, '%H:%m') as inicio, time_format(h_fin, '%H:%m') as fin from modulos";
       //select  time_format(h_inicio, '%H : %m') from modulos
-        $data = $this->db->query($q_string);
-         return $query;
+      $data = $this->db->query($q_string);
+      return $data;
     }
 
     public function obtener_can_modulos(){
