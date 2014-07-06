@@ -39,20 +39,14 @@ Class mod_parametros extends CI_Model
 
     public function actualizar_plazo($dataPK, $dataNEW) {
 
-      /*  $this->db->where('fecha', $fecha);
-        $this->db->where('modulo', $modulo);
-        $this->db->where('sala', $sala);
-      */ // obtener pk para actualizar
+ 
         $this->db->where('parametros', $dataPK);
         $this->db->update('parametros', $dataNEW);
     }
 
     public function actualizar_alumxdia($dataPK, $dataNEW) {
 
-     /*  $this->db->where('fecha', $fecha);
-        $this->db->where('modulo', $modulo);
-        $this->db->where('sala', $sala);
-      */ // obtener pk para actualizar
+ 
          $this->db->where('parametros', $dataPK);
         $this->db->update('parametros', $dataNEW);
     }
