@@ -89,43 +89,47 @@ class Reservas extends CI_Controller {
     $carrera = $this->input->post('carrera');
 
 
- // mod_parametros, obtener_alumxdia
-  // $limitexdia // parametros, plazo_para_reservar
- // mod_parametros, obtener_plazo
     $alumxdia = $this->mod_parametros->obtener_alumxdia();  // buscar en BD, parametros, n_reservas_diarias
     $max=$this->mod_reserva->obtener_alum_fecha($fecha, $rut);
+    $plazo = $this->mod_parametros->obtener_plazo();
 
-  //  $fec = $this->mod_reportes->total_reservas_dia($fecha);
-   // log_message('debug',print_r($fec,TRUE));
+    $fecha_hoy =date("Y-m-d");
 
-    log_message('debug',print_r($alumxdia,TRUE));
-    log_message('debug',print_r($max,TRUE));
+    $total_fecha=strtotime($fecha) - strtotime($fecha_hoy);
+    $diferencia_dias=intval($total_fecha/60/60/24);
 
-  if (true){
+    //log_message('debug',print_r($diferencia_dias,TRUE));       
 
-    $data= array(
-          'fecha'=> $fecha,
-          'modulo'=> $modulo,
-          'sala'=>$sala,
-           'eliminada' => 0,
-           'id_a'=>$rut,
-           'nombre_a' => $nombre,
-           'carrera_a' => $carrera,
-            'confirmada' => 0,
-            'estado' => 1,
-          //'id_e'=>$this->input->post('loggin'), // obtener del sesion
-            'id_e' => '12.312.312-3',
-            'observacion' => 'Reservada'
-          );
-    $resultado = $this->mod_reserva->agregar_reserva($data);
+  if ($diferencia_dias <= $plazo){
+          if ($max < $alumxdia){
 
-    $respuesta = array("error" => false,"insertado" => $resultado);
-   }
-    else{
-      $respuesta = array("error"=> true);
-    }
+            $data= array(
+                  'fecha'=> $fecha,
+                  'modulo'=> $modulo,
+                  'sala'=>$sala,
+                   'eliminada' => 0,
+                   'id_a'=>$rut,
+                   'nombre_a' => $nombre,
+                   'carrera_a' => $carrera,
+                    'confirmada' => 0,
+                    'estado' => 1,
+                  //'id_e'=>$this->input->post('loggin'), // obtener del sesion
+                    'id_e' => '12.312.312-3',
+                    'observacion' => 'Reservada'
+                  );
+            $resultado = $this->mod_reserva->agregar_reserva($data);
 
-
+            $respuesta = array("error" => false,"insertado" => $resultado);
+           }
+            else{
+              $respuesta = array("error"=> true); //MAS DE UNA RESERVA EN EL DIA
+            }
+            
+        }
+        else{
+          $respuesta = array("error"=> true); //PASADO DE PLAZO
+        }
+    
     echo json_encode($respuesta);
 
 
@@ -220,7 +224,7 @@ class Reservas extends CI_Controller {
   }
 
 
- public function ReservaNoConfirmada(){
+ public function ReservaNoConfirmada(){ // automatizara 15 min
 
 /*
     $fecha = $this->input->post('fecha');
@@ -235,30 +239,6 @@ class Reservas extends CI_Controller {
       'eliminada' => 1,
       'confirmada' => 0,
       'observacion' => 'Eliminada por no Confirmación')
-      );
-
-    $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
-*/
-  }
-
-
- public function BloquearReserva(){
-
-/*
-  El valor en el estado "estado = 1 (dato default)"  nos dice que la sala, en ese modulo y fecha está disponible, el valor
-  "estado = 0", nos dice que la sala, modulo, fecha está bloqueado.
-*/
-
-/*
-    $fecha = $this->input->post('fecha');
-    $modulo = $this->input->post('modulo');
-    $sala = $this->input->post('sala');
-    //$estado = 0;
-    //$observacion = 'Eliminada por Bloqueo';
-
-      $data= array(
-      'estado' => $this->input->post('estado'), // =>0,
-      'observacion' => 'Bloqueada'
       );
 
     $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
