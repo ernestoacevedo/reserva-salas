@@ -83,6 +83,11 @@
 							?>
 						</tbody>
 					</table>
+					<div id="leyenda">
+					<span class="fa fa-circle" style="color: #95a5a6;"></span> Bloqueado<br>
+					<span class="fa fa-circle" style="color: #c0392b;"></span> Reservado<br>
+					<span class="fa fa-circle" style="color: #f1c40f;"></span> Confirmado<br>
+					</div>
 				</div>
 			</div>
 		</section>

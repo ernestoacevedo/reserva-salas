@@ -54,6 +54,9 @@
           <h4>Agregar Módulo</h4>
           <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form">
             <div class="form-group">
+                    <input id="id_mod" type='number' class="form-control" placeholder="ID Módulo" min="1"/>
+            </div>
+            <div class="form-group">
               <div class='input-group date' id='hora_inicio' data-date-format="HH:mm">
                     <input type='text' class="form-control" placeholder="Hora inicial" />
                     <span class="input-group-addon"><span class="fa fa-clock-o"></span>
@@ -80,6 +83,9 @@
             <thead>
               <tr>
                 <th style="text-align: center;">
+                  ID
+                </th>
+                <th style="text-align: center;">
                   Hora Inicio
                 </th>
                 <th style="text-align: center;">
@@ -95,6 +101,7 @@
                   $query = $this->mod_modulos->obtener_modulos();
                   foreach($query->result() as $row){
                     echo '<tr>';
+                    echo '<td style="text-align: center;">'.$row->id_mod.'</td>';
                     echo '<td style="text-align: center;">'.$row->inicio.'</td><td style="text-align: center;">'.$row->fin.'</td>';
                     echo '<td style="text-align: center;"><a class="btn btn-danger btnEliminar" href="'.site_url('modulos/EliminarModulo').'/'.$row->id_mod.'"><span class="fa fa-trash-o"></span></a></td>';
                     echo '</tr>';
