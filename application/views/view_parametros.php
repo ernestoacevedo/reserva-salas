@@ -92,7 +92,7 @@
         <div class="tab-pane" id="content_disponibilidad">
           <div class="col-md-12">
             <div class="col-md-4">
-              <div id="calendar-disp"></div>
+              <div id="calendar-disp" data-fecha=""></div>
               <div id="controls">
                 <input id="dia_completo" type="checkbox"> Todo el día <br>
                 <label for="sala_bloq">Sala</label>
@@ -113,8 +113,8 @@
                   }
                 ?>
                 </select>
-                <label for="modulo_inicio"> hasta </label>
-                <select name="modulo_inicio" id="modulo_inicio">
+                <label for="modulo_fin"> hasta </label>
+                <select name="modulo_fin" id="modulo_fin">
                 <?php
                   $query = $this->mod_modulos->obtener_modulos();
                   foreach($query->result() as $row){
@@ -143,7 +143,7 @@
                       $query = $this->mod_modulos->obtener_modulos();
                       foreach($query->result() as $row){
                         echo '<tr>';
-                        echo '<td data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->inicio.' - '.$row->fin.' </td>';
+                        echo '<td class="h_modulo" data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->inicio.' - '.$row->fin.' </td>';
                         for($i=1;$i<($num_salas+1);$i++){
                           echo '<td class="horario" data-reservado="0"></td>';
                         }
@@ -216,6 +216,115 @@
       displayMonthController: true,
       //show year controller
       displayYearController: true,
+    });
+
+    var actualizarTabla = function($tabla) {
+      $tabla.each(function(i, elemento) {
+        switch ($(this).data('reservado')) {
+
+          case 1:
+            $(this).css({
+              'background': '#c0392b'
+            });
+            break;
+          case 2:
+            $(this).css({
+              'background': '#f1c40f'
+            });
+            break;
+          case 3:
+            $(this).css({
+              'background': '#95a5a6'
+            });
+            break;
+          default:
+            if ($(this).hasClass('horario')) {
+              $(this).css({
+                'background': '#2ecc71'
+              });
+            }
+            break;
+        }
+      });
+    };
+
+    document.addEventListener('bicCalendarSelect', function(e) {
+      moment.lang('es');
+      $('#calendar-disp').data('fecha', new moment(e.detail.date).format('YYYY-MM-DD'));
+    });
+
+    actualizarTabla($('#tabla_horarios td'));
+
+    var bloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){
+      if($mod_ini>$mod_fin){
+        alert("Seleccione un intervalo válido");
+      }
+      else{
+        if($('#dia_completo').is(':checked')){
+          $('.h_modulo').each(function(i,e){
+            $(e).siblings().eq($sala-1).data('reservado',3);
+          });
+        }
+        else{
+          $tabla.each(function(i,elemento){
+            if($(this).data('id-modulo')>=$mod_ini && $(this).data('id-modulo')<=$mod_fin){
+              $(this).siblings().eq($sala-1).data('reservado',3);
+            }
+          });
+        }
+        actualizarTabla($('#tabla_horarios td'));
+      }
+      // Hacer llamada AJAX al controlador de bloqueo, la fecha está en $('#calendar-disp').data('fecha')
+      /*$.ajax({
+        method: 'POST',
+        url: '',
+        data: {fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini,modulo_fin: $mod_fin},
+        success: function(data){
+            console.log(data);
+        }
+      });*/
+    };
+
+    var desbloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){
+      if($mod_ini>$mod_fin){
+        alert("Seleccione un intervalo válido");
+      }
+      else{
+        if($('#dia_completo').is(':checked')){
+          $('.h_modulo').each(function(i,e){
+            $(e).siblings().eq($sala-1).data('reservado',0);
+          });
+        }
+        else{
+          $tabla.each(function(i,elemento){
+            if($(this).data('id-modulo')>=$mod_ini && $(this).data('id-modulo')<=$mod_fin){
+              $(this).siblings().eq($sala-1).data('reservado',0);
+            }
+          });
+        }
+        actualizarTabla($('#tabla_horarios td'));
+      }
+      // Hacer llamada AJAX al controlador de desbloqueo, la fecha está en $('#calendar-disp').data('fecha')
+      /*$.ajax({
+        method: 'POST',
+        url: '',
+        data: {fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini,modulo_fin: $mod_fin},
+        success: function(data){
+            console.log(data);
+        }
+      });*/
+    };
+
+    $(document).on('click','#btn_bloquear',function(e){
+      e.preventDefault();
+      e.stopPropagation()
+      bloquearModulos($('#sala_bloq').val(),$('#modulo_inicio').val(),$('#modulo_fin').val(),$('#tabla_horarios td'));
+    });
+
+    $(document).on('click','#btn_desbloquear',function(e){
+      e.preventDefault();
+      e.stopPropagation()
+      desbloquearModulos($('#sala_bloq').val(),$('#modulo_inicio').val(),$('#modulo_fin').val(),$('#tabla_horarios td'));
     });
   </script>
 </body>
