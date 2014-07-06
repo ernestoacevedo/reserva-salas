@@ -42,13 +42,21 @@ class Modulos extends CI_Controller {
 
   }
 
+/*
   public function EditarModulo($id){
 
-
-
   }
+  */
 
   public function EliminarModulo(){
+
+    $id_mod = $this->uri->segment(3);
+
+    $resultado = $this->mod_modulos->eliminar_modulos($id_mod);
+
+    $respuesta = array("error" => false,"Módulo eliminado" => $resultado);
+
+    redirect('modulos');
 
   }
 }
