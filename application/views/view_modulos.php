@@ -79,35 +79,31 @@
           <table id="tabla_modulos" border="1" style="table">
             <thead>
               <tr>
-                <th>
+                <th style="text-align: center;">
                   Hora Inicio
                 </th>
-                <th>
+                <th style="text-align: center;">
                   Hora Fin
                 </th>
-                <th>
+                <th style="text-align: center;">
                   Editar
                 </th>
-                <th>
+                <th style="text-align: center;">
                   Eliminar
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  08:00
-                </td>
-                <td>
-                  09:00
-                </td>
-                <td>
-                  <button name="button" class="btn btn-warning"><span class="fa fa-pencil"></span></button>
-                </td>
-                <td>
-                  <button name="button" class="btn btn-danger"><span class="fa fa-trash-o"></span></button>
-                </td>
-              </tr>
+              <?php
+                  $query = $this->mod_modulos->obtener_modulos();
+                  foreach($query->result() as $row){
+                    echo '<tr>';
+                    echo '<td style="text-align: center;">'.$row->inicio.'</td><td style="text-align: center;">'.$row->fin.'</td>';
+                    echo '<td style="text-align: center;"><a class="btn btn-warning btnEditar" href="'.site_url('modulos/EditarModulo').'/'.$row->id_mod.'"><span class="fa fa-pencil"></span></a></td>';
+                    echo '<td style="text-align: center;"><a class="btn btn-danger btnEliminar" href="'.site_url('modulos/EliminarModulo').'/'.$row->id_mod.'"><span class="fa fa-trash-o"></span></a></td>';
+                    echo '</tr>';
+                  }
+              ?>
             </tbody>
           </table>
       </div>
