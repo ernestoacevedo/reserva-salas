@@ -30,7 +30,7 @@ Class mod_parametros extends CI_Model
 
         foreach ($data->result() as $row)
         {
-            $data2= $row->n_reservas_diarias;
+            $data2= $row->plazo_para_reservar;
             return $data2;
         }
 

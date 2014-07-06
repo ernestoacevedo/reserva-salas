@@ -54,14 +54,14 @@
           <h4>Agregar Módulo</h4>
           <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form">
             <div class="form-group">
-              <div class='input-group date' id='hora_inicio'>
+              <div class='input-group date' id='hora_inicio' data-date-format="HH:mm">
                     <input type='text' class="form-control" placeholder="Hora inicial" />
                     <span class="input-group-addon"><span class="fa fa-clock-o"></span>
                     </span>
               </div>
             </div>
             <div class="form-group">
-              <div class='input-group date' id='hora_fin'>
+              <div class='input-group date' id='hora_fin'data-date-format="HH:mm">
                     <input type='text' class="form-control" placeholder="Hora final" />
                     <span class="input-group-addon"><span class="fa fa-clock-o"></span>
                     </span>

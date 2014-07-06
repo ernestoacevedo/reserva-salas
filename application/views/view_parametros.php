@@ -61,13 +61,7 @@
               <form id="form_id" action="" method="post">
                 <h4>Plazo máximo</h4>
                 <p>Cantidad máxima (en días) en los que se permitirá reservar anticipadamente una sala</p>
-                <input type="number" id="plazo" name="plazo" value=
-                <?php $this->db->select('plazo_para_reservar');
-                      $this->db->from('parametros');
-                      $query = $this->db->get();
-                      foreach($query->result() as $row){
-                        echo $row->plazo_para_reservar;
-                      }?> class="form-control" min="0"><br>
+                <input type="number" id="plazo" name="plazo" value=<?php echo $this->mod_parametros->obtener_plazo();?> class="form-control" min="0"><br>
                 <button class="btn btn-success">Guardar</button>
               </form>
             </div>
@@ -127,7 +121,7 @@
               <form id="form_id" action="" method="post">
                 <h4>Número de salas</h4>
                 <p>Cantidad de salas disponibles para reserva</p>
-                <input type="number" id="salas" name="salas" value=<?php echo $this->mod_parametros->obtener_alumxdia();?> class="form-control" min="1"><br>
+                <input type="number" id="salas" name="salas" value=<?php echo $this->mod_salas->obtener_salas();?> class="form-control" min="1"><br>
                 <button class="btn btn-success">Guardar</button>
               </form>
             </div>

@@ -61,11 +61,12 @@
 						<thead>
 							<tr>
 								<th style="width: 100px;text-align: center;"> Módulo </th>
-								<th style="text-align: center;" data-num-sala="1"> Sala 1 </th>
-								<th style="text-align: center;" data-num-sala="2"> Sala 2 </th>
-								<th style="text-align: center;" data-num-sala="3"> Sala 3 </th>
-								<th style="text-align: center;" data-num-sala="4"> Sala 4 </th>
-								<th style="text-align: center;" data-num-sala="5"> Sala 5 </th>
+								<?php
+								$num_salas = $this->mod_salas->obtener_salas();
+								for($i=1;$i<($num_salas+1);$i++){
+									echo '<th style="text-align: center;" data-num-sala="'.$i.'"> Sala '.$i.' </th>';
+								}
+								?>
 							</tr>
 						</thead>
 						<tbody>
@@ -76,13 +77,9 @@
 									foreach($query->result() as $row){
 										echo '<tr>';
 										echo '<td data-id-modulo="'.$row->id_mod.'" style="text-align: center;"> '.$row->h_inicio.' - '.$row->h_fin.' </td>';
-										echo '
-											<td class="horario" data-reservado="0"></td>
-											<td class="horario" data-reservado="0"></td>
-											<td class="horario" data-reservado="0"></td>
-											<td class="horario" data-reservado="0"></td>
-											<td class="horario" data-reservado="0"></td>
-										';
+										for($i=1;$i<($num_salas+1);$i++){
+											echo '<td class="horario" data-reservado="0"></td>';
+										}
 										echo '</tr>';
 									}
 							?>
