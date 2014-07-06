@@ -1,3 +1,4 @@
+﻿
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Reportes extends CI_Controller {
 
@@ -7,20 +8,21 @@ class Reportes extends CI_Controller {
       $this->load->model('mod_reportes');
   }
 
+  
+
   public function index(){
     $this->load->view('view_reportes');
   }
-
 
  public function ReporteDiario(){
    $query = $this->mod_reportes->total_reservas_sala_dia($this->input->post('fecha'));
    $series = array();
    $total = 0;
    foreach($query->result() as $row){
-     $name = 'Sala '.$row->sala;
-     $point = ['name'=> $name,'data'=>[(int)$row->cant]];
-     $total+=$row->cant;
-     array_push($series,$point);
+       $name = 'Sala '.$row->sala;
+       $point = ['name'=> $name,'data'=>[(int)$row->cant]];
+       $total+=$row->cant;
+       array_push($series,$point);
    }
    $data['title'] = 'Nº de Reservas';
    $data['series'] = $series;
