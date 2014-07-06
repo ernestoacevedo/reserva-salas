@@ -18,8 +18,12 @@ Class mod_salas extends CI_Model
 
     public function actualizar_salas($dataPK, $dataNEW) {
 
-         $this->db->where('parametros', $dataPK);
-        $this->db->update('parametros', $dataNEW);
+        $this->db->where('cant_salas', $dataPK['cant_salas']);
+        $this->db->where('plazo_para_reservar', $dataPK['plazo_para_reservar']);
+        $this->db->where('n_reservas_diarias', $dataPK['n_reservas_diarias']);    
+        
+        $this->db->update('parametros', $dataNEW);  
+      
     } 
 
 

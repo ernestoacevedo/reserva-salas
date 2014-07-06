@@ -21,42 +21,55 @@ public function index(){
 public function ModificarAlumxdia()  // reservas sin eliminar //
     {
 
-     $datos = $this->mod_parametros->obtener_parametros();
-     $alumxdia = $this->input->post('alumxdia');
+     $datos = $this->mod_parametros->obtener_parametros(); 
+     
+     $alumxdia = $this->input->post('reservas');
+      //log_message('debug',print_r($salas,TRUE));
+
      $dataPK= array(
-          'cant_salas'=> $datos['cant_salas'],
-          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
-          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          'cant_salas'=> (int)$datos['cant_salas'],
+          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
           );
 
      $dataNEW= array(
-          'cant_salas'=> $datos['cant_salas'],
-          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
-          'n_reservas_diarias'=>$alumxdia,
+          'cant_salas'=> (int)$datos['cant_salas'],
+          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> (int)$alumxdia
           );
 
      $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW);
+
+         redirect('parametros');
+
 
 	}
 
 public function ModificarPlazo()  // reservas sin eliminar //
     {
 
-    $datos = $this->mod_parametros->obtener_parametros();
+
+     $datos = $this->mod_parametros->obtener_parametros(); 
+     
      $plazo = $this->input->post('plazo');
+      //log_message('debug',print_r($salas,TRUE));
+
      $dataPK= array(
-          'cant_salas'=> $datos['cant_salas'],
-          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
-          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          'cant_salas'=> (int)$datos['cant_salas'],
+          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
           );
 
      $dataNEW= array(
-          'cant_salas'=> $datos['cant_salas'],
-          'plazo_para_reservar'=> $plazo,
-          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          'cant_salas'=> (int)$datos['cant_salas'],
+          'plazo_para_reservar'=> (int)$plazo,
+           'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
           );
 
      $this->mod_parametros->actualizar_plazo($dataPK, $dataNEW);
+
+         redirect('parametros');
+
 	}
 
 }

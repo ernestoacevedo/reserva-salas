@@ -81,7 +81,7 @@
       <div class="tab-content">
         <div class="tab-pane active" id="content_plazo">
             <div class="col-md-3">
-              <form id="form_id" action="" method="post">
+              <form id="form_id" action="parametros/ModificarPlazo" method="post">
                 <h4>Plazo máximo</h4>
                 <p>Cantidad máxima (en días) en los que se permitirá reservar anticipadamente una sala</p>
                 <input type="number" id="plazo" name="plazo" value=<?php echo $this->mod_parametros->obtener_plazo();?> class="form-control" min="0"><br>
@@ -157,7 +157,7 @@
         </div>
         <div class="tab-pane" id="content_reservas">
             <div class="col-md-3">
-              <form id="form_id" action="" method="post">
+              <form id="form_id" action="parametros/ModificarAlumxdia" method="post">
                 <h4>Número de reservas diarias</h4>
                 <p>Cantidad máxima de reservas que podrá realizar un alumno</p>
                 <input type="number" id="reservas" name="reservas" value=<?php echo $this->mod_parametros->obtener_alumxdia();?> class="form-control" min="1"><br>
@@ -167,7 +167,7 @@
         </div>
         <div class="tab-pane" id="content_salas">
             <div class="col-md-3">
-              <form id="form_id" action="" method="post">
+              <form id="form_id" action="salas/ModificarSalas" method="post">
                 <h4>Número de salas</h4>
                 <p>Cantidad de salas disponibles para reserva</p>
                 <input type="number" id="salas" name="salas" value=<?php echo $this->mod_salas->obtener_salas();?> class="form-control" min="1"><br>

@@ -10,27 +10,36 @@ class Salas extends CI_Controller {
 
   }
 
+  public function index(){
+    $this->load->view('view_parametros');
+  }
+
 
 public function ModificarSalas(){
     
-	 $datos = $this->mod_parametros->obtener_parametros();
+	   $datos = $this->mod_parametros->obtener_parametros(); 
+     
      $salas = $this->input->post('salas');
+      //log_message('debug',print_r($salas,TRUE));
+
      $dataPK= array(
-          'cant_salas'=> $datos['cant_salas'],
-          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
-          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          'cant_salas'=> (int)$datos['cant_salas'],
+          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
           );
 
      $dataNEW= array(
-          'cant_salas'=> $salas,
-          'plazo_para_reservar'=> $datos['plazo_para_reservar'],
-          'n_reservas_diarias'=>$datos['n_reservas_diarias']
+          'cant_salas'=> (int)$salas,
+          'plazo_para_reservar'=> (int)$datos['plazo_para_reservar'],
+          'n_reservas_diarias'=> (int)$datos['n_reservas_diarias']
           );
 
-     $this->mod_parametros->actualizar_alumxdia($dataPK, $dataNEW);
+     $this->mod_salas->actualizar_salas($dataPK, $dataNEW);
+
+         redirect('parametros');
 
 	}
 
-  }
+  
 
 }
