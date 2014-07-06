@@ -7,7 +7,7 @@ Class mod_modulos extends CI_Model{
     }
 
 
-    public function insertar_modulos( $data)
+    public function insertar_modulos($data)
     {
        // $data['hora_inicio'] = $this->input->post('hora_inicio'); // en controlador
         //$data['hora_fin'] = $this->input->post('hora_fin'); // en controlador
@@ -33,7 +33,15 @@ Class mod_modulos extends CI_Model{
         $this->db->delete('modulos');
     }
 
+
     public function obtener_modulos(){
+      $q_string = "select id_mod, time_format(h_inicio, '%H:%m'), time_format(h_fin, '%H:%m') from modulos";
+      //select  time_format(h_inicio, '%H : %m') from modulos
+        $data = $this->db->query($q_string);
+         return $query;
+    }
+
+    public function obtener_can_modulos(){
       $this->db->select('id_mod');
       $this->db->from('modulos');
       return $this->db->get();

@@ -13,7 +13,14 @@ class Modulos extends CI_Controller {
   }
 
   public function CrearModulo(){
+    $modulos => $this->mod_modulos->obtener_can_modulos();
 
+    $id_mod => $this->imput-post('id_mod');
+    $data = array(
+      'h_inicio' => $this->imput->post('h_inicio'),
+       'h_fin' => $this->imput->post('h_fin'),
+       'dimension' => $this->imput->post('dimension')
+      );
 
 
   }
