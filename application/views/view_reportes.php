@@ -28,12 +28,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url('reportes');?>">Reportes</a></li>
+            <li><a href="<?php echo site_url('reportes');?>"><span class="fa fa-archive"></span> Reportes</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span> Administrar <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="<?php echo site_url('modulos');?>">Módulos</a></li>
-                <li><a href="<?php echo site_url('parametros');?>">Parámetros</a></li>
+                <li><a href="<?php echo site_url('modulos');?>"><span class="fa fa-cubes"></span> Módulos</a></li>
+                <li><a href="<?php echo site_url('parametros');?>"><span class="fa fa-cogs"></span> Parámetros</a></li>
               </ul>
             </li>
           </ul>
@@ -52,14 +52,14 @@
       <div id="sidebar">
         <ul id="menu_reportes" class="nav nav-pills nav-stacked">
           <input type="hidden" id="rep_fecha" name="rep_fecha">
-          <li class="active"><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1">Diario</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteSemanal" data-interval="1">Semanal</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteMensual" data-interval="1">Mensual</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteCarrera" data-interval="2">Por Carrera</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteInasistencias" data-interval="2">Inasistencias</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteEliminaciones" data-interval="2">Por Eliminación</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteHorariosPunta" data-interval="2">Horarios Punta</a></li>
-          <li><a href="#" data-action="index.php/reportes/ReporteOcupacion" data-interval="2">Ocupación</a></li>
+          <li class="active"><a href="#" data-action="index.php/reportes/ReporteDiario" data-interval="1"><span class="fa fa-clock-o"></span> Diario</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteSemanal" data-interval="1"><span class="fa fa-calendar-o"></span> Semanal</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteMensual" data-interval="1"><span class="fa fa-calendar"></span> Mensual</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteCarrera" data-interval="2"><span class="fa fa-mortar-board"></span> Por Carrera</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteInasistencias" data-interval="2"><span class="fa fa-history"></span> Inasistencias</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteEliminaciones" data-interval="2"><span class="fa fa-times"></span> Por Eliminación</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteHorariosPunta" data-interval="2"> <span class="fa fa-bar-chart-o"></span> Horarios Punta</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteOcupacion" data-interval="2"><span class="fa fa-users"></span> Ocupación</a></li>
           <!-- <li><a href="#" data-action="index.php/reportes/" data-interval="2">Usuarios</a></li> -->
         </ul>
         <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form" style="margin-top: 10px">
