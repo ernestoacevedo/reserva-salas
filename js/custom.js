@@ -159,14 +159,14 @@
 							text: data.mensaje,
 							type: 'error',
 							layout: 'bottomRight',
-							timeout: '500'
+							timeout: '800'
 						});
 					} else {
 						var n = noty({
-							text: '<b>insertado:</b> ' + data.insertado,
+							text: '<b>Insertado:</b> ' + data.insertado,
 							type: 'alert',
 							layout: 'bottomLeft',
-							timeout: '500'
+							timeout: '800'
 						});
 						$('#modal-reserva').modal('hide');
 						obtenerReservas($('#calendar-wrap').data('fecha'));
@@ -194,7 +194,7 @@
 								text: 'RUT inválido',
 								type: 'error',
 								layout: 'bottomRight',
-								timeout: '500'
+								timeout: '800'
 							});
 						} else {
 							var nombre_alumno = data.alumno.nombre.split(" ");
@@ -254,6 +254,25 @@
 				url: $('body').data('url') + 'index.php/reservas/ConfirmarReserva',
 				success: function(data) {
 					console.log(data);
+					/////////////////////////////
+
+					if (data.error) {
+						var n = noty({
+							text: data.mensaje,
+							type: 'error',
+							layout: 'bottomRight',
+							timeout: '800'
+						});
+					} else {
+						var n = noty({
+							text: '<b>Confirmado</b>',
+							type: 'alert',
+							layout: 'bottomLeft',
+							timeout: '800'
+						});
+					}
+
+
 					obtenerReservas($('#calendar-wrap').data('fecha'));
 				},
 				error: function(data){
@@ -276,6 +295,24 @@
 				url: $('body').data('url') + 'index.php/reservas/EliminarReserva',
 				success: function(data) {
 					$('#modalEliminar').modal('hide');
+
+					//////////////////
+					if (data.error) {
+						var n = noty({
+							text: data.mensaje,
+							type: 'error',
+							layout: 'bottomRight',
+							timeout: '800'
+						});
+					} else {
+						var n = noty({
+							text: '<b>Eliminado</b>',
+							type: 'alert',
+							layout: 'bottomLeft',
+							timeout: '800'
+						});
+					}
+
 					obtenerReservas($('#calendar-wrap').data('fecha'));
 				},
 				error: function(data){
@@ -301,6 +338,24 @@
 				url: $('body').data('url') + 'index.php/reservas/AgregarObservacion',
 				success: function(data) {
 					console.log(data);
+
+					//////////////////
+					if (data.error) {
+						var n = noty({
+							text: data.mensaje,
+							type: 'error',
+							layout: 'bottomRight',
+							timeout: '800'
+						});
+					} else {
+						var n = noty({
+							text: '<b>Observación Ingresada</b>',
+							type: 'alert',
+							layout: 'bottomLeft',
+							timeout: '800'
+						});
+					}
+
 					$('.popover').hide();
 				},
 				error: function(data){

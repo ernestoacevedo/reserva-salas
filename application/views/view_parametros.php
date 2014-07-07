@@ -319,6 +319,22 @@
         url: 'disponibilidad/Bloqueo',
         data: {bandera: $bandera , sala_bloq: $sala ,fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini, modulo_fin: $mod_fin},
         success: function(data){
+            if (data.error) {
+            var n = noty({
+              text: data.mensaje,
+              type: 'error',
+              layout: 'bottomRight',
+              timeout: '800'
+            });
+          } else {
+            var n = noty({
+              text: '<b>Módulos Bloqueados</b>',
+              type: 'alert',
+              layout: 'bottomLeft',
+              timeout: '800'
+            });
+          }
+
             console.log(data);
         }
       });
@@ -349,6 +365,22 @@
         data: {bandera: $bandera , sala_bloq: $sala ,fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini, modulo_fin: $mod_fin},
         success: function(data){
             console.log(data);
+                        if (data.error) {
+            var n = noty({
+              text: data.mensaje,
+              type: 'error',
+              layout: 'bottomRight',
+              timeout: '800'
+            });
+          } else {
+            var n = noty({
+              text: '<b>Módulos Desbloqueados</b>',
+              type: 'alert',
+              layout: 'bottomLeft',
+              timeout: '800'
+            });
+          }
+
         }
       });
     };

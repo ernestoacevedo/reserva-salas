@@ -32,7 +32,7 @@ Class mod_reserva extends CI_Model
     public function agregar_reserva($data){
 
       if($this->db->insert('reservas',$data)){ // hacer lo mismo con update
-        return true;
+        return "Reservado";
       }
       else{
         return false;
