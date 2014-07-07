@@ -90,6 +90,8 @@
             </div>
         </div>
         <div class="tab-pane" id="content_disponibilidad">
+        <p> </p>
+        <b> Seleccione Fecha: </b>
           <div class="col-md-12">
             <div class="col-md-4">
               <div id="calendar-disp" data-fecha=""></div>
@@ -126,6 +128,7 @@
               <p> </p>
               <b>Importante:  </b>
               <p align="justify">Para poder bloquear un módulo, este debe estar sin reserva. Asegurate de eliminar las reservas en los módulos que vas a Bloquear. </p>
+              <p align="justify">Asegurate también de seleccionar una fecha antes de bloquear. </p>
               </div>
             </div>
             <div class="col-md-8">
