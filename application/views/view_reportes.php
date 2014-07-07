@@ -85,7 +85,8 @@
     </aside>
     <section id="main-content">
       <div id="grafico"></div>
-      <button id="to_pdf" style="display: none;" class="btn btn-danger"><span class="fa fa-file-pdf-o"> Exportar a PDF</span></button>
+      <a id="to_pdf" style="display: none;" class="btn btn-danger" href="#"><span class="fa fa-file-pdf-o"> Exportar a PDF</span></a>
+      <a id="to_xls" style="display: none;" class="btn btn-success" href="#"><span class="fa fa-file-excel-o"> Exportar a Excel</span></a>
     </section>
     <footer>
 
@@ -105,6 +106,8 @@
     var url_reporte = $('#menu_reportes li:first a').data('action');
     var $a = $('#menu_reportes li:first a');
     $(document).on('click','#menu_reportes a',function(e){
+      $('#to_pdf').hide();
+      $('#to_xls').hide();
       $(this).parent().addClass('active');
       $(this).parent().siblings().attr('class','');
       url_reporte = $(this).data('action');
@@ -178,6 +181,8 @@
                       }
                   });
                   $('#to_pdf').show();
+                  $('#to_xls').show();
+                  $('#to_xls').attr('href',data.xls_path);
             }
           }
         });
