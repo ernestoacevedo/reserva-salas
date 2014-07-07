@@ -173,7 +173,8 @@ class Reservas extends CI_Controller {
       );
 
     $resultado = $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
-    $respuesta = array("error" => true,"confirmado" => $resultado);
+
+    $respuesta = array("error" => false,"confimado" => $resultado);
     echo json_encode($respuesta);
 
 }
