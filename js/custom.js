@@ -156,7 +156,7 @@
 					console.log(data);
 					if (data.error) {
 						var n = noty({
-							text: 'Error al realizar la reserva',
+							text: data.mensaje,
 							type: 'error',
 							layout: 'bottomRight',
 							timeout: '500'
