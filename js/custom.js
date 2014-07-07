@@ -265,7 +265,7 @@
 						});
 					} else {
 						var n = noty({
-							text: '<b>Confirmado:</b> ',
+							text: '<b>Confirmado</b>',
 							type: 'alert',
 							layout: 'bottomLeft',
 							timeout: '800'
@@ -306,7 +306,7 @@
 						});
 					} else {
 						var n = noty({
-							text: '<b>Borrado:</b> ',
+							text: '<b>Eliminado</b>',
 							type: 'alert',
 							layout: 'bottomLeft',
 							timeout: '800'
@@ -338,6 +338,24 @@
 				url: $('body').data('url') + 'index.php/reservas/AgregarObservacion',
 				success: function(data) {
 					console.log(data);
+
+					//////////////////
+					if (data.error) {
+						var n = noty({
+							text: data.mensaje,
+							type: 'error',
+							layout: 'bottomRight',
+							timeout: '800'
+						});
+					} else {
+						var n = noty({
+							text: '<b>Observación Ingresada</b>',
+							type: 'alert',
+							layout: 'bottomLeft',
+							timeout: '800'
+						});
+					}
+
 					$('.popover').hide();
 				},
 				error: function(data){

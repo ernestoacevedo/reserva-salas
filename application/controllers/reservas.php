@@ -220,7 +220,7 @@ class Reservas extends CI_Controller {
 
     $resultado = $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
-    $respuesta = array("error" => true,"borrado" => $resultado);
+    $respuesta = array("error" => false,"borrado" => $resultado);
     echo json_encode($respuesta);
   }
 
@@ -262,7 +262,7 @@ class Reservas extends CI_Controller {
 
     $resultado = $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
-    $respuesta = array("error" => true,"Observación Agregada" => $resultado);
+    $respuesta = array("error" => false,"Observación Agregada" => $resultado);
     echo json_encode($respuesta);
   }
 
