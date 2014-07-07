@@ -45,7 +45,7 @@ class Disponibilidad extends CI_Controller {
                                 'observacion' => 'Bloqueada'
                           );
                     
-                       //$this->mod_disponibilidad->bloquear($data);
+                       
                        $resultado = $this->mod_disponibilidad->bloquear($data);
                     }
 

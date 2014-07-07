@@ -125,7 +125,7 @@
               <button id="btn_bloquear" action = "disponibilidad/bloquear" class="btn btn-danger">Bloquear</button> <button id="btn_desbloquear" action ="disponibilidad/desbloquear "class="btn btn-success">Desbloquear</button>
               <p> </p>
               <b>Importante:  </b>
-              <p align="justify">Para poder bloquear un modulo, este debe estar sin reserva. Asegurate de eliminar las reservas en los modulos que vas a Bloquear. </p>
+              <p align="justify">Para poder bloquear un módulo, este debe estar sin reserva. Asegurate de eliminar las reservas en los módulos que vas a Bloquear. </p>
               </div>
             </div>
             <div class="col-md-8">
@@ -332,7 +332,7 @@
         data: {bandera: $bandera , sala_bloq: $sala ,fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini, modulo_fin: $mod_fin},
         success: function(data){
             console.log(data);
-                        if (data.error) {
+            if (data.error) {
             var n = noty({
               text: data.mensaje,
               type: 'error',
