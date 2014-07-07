@@ -64,17 +64,14 @@ public function ReporteSemanal(){
 
 public function ReporteSemanal_toExcel(){
     $query = $this->mod_reportes->total_reservas_sala_semana($this->input->post('fecha'));
-    $series = array();
-    $total = 0;
-    $data = array();
     $data['header'] = ['Sala','Reservas'];
-    $datos = array();
-    $i = 0;
+    $content = '';
     foreach($query->result() as $row){
-      $datos[$i] = [$row->sala,$row->con];
-      $i++;
+      $sala = $row->sala;
+      $con = $row->con;
+      $content .= "<tr><td>$sala</td><td>$con</td></tr>";
     }
-    $data['datos'] = $datos;
+    $data['contenido'] = $content;
     $data['titulo'] = 'reporte_semanal';
     $this->load->view('view_excel',$data);
   }
@@ -126,10 +123,24 @@ public function ReporteInasistencias(){
       $total+=$row->con;
       array_push($series,$point);
     }
-    $data['title'] = 'Nº de Reservas';
+    $data['title'] = 'Inasistencias';
     $data['series'] = $series;
     $data['total'] = $total;
     echo json_encode($data);
+  }
+
+public function ReporteInasistencias_toExcel(){
+    $query = $this->mod_reportes->inasistencia($this->input->post('fecha'),$this->input->post('fecha_fin'));
+    $data['header'] = ['Carrera','Inasistencias'];
+    $content = '';
+    foreach($query->result() as $row){
+      $carrera = $row->carrera_a;
+      $con = $row->con;
+      $content .= "<tr><td>$carrera</td><td>$con</td></tr>";
+    }
+    $data['contenido'] = $content;
+    $data['titulo'] = 'reporte_inasistencias';
+    $this->load->view('view_excel',$data);
   }
 
 
