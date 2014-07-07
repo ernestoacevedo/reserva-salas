@@ -122,7 +122,10 @@
                   }
                 ?>
               </select><br>
-              <button id="btn_bloquear" class="btn btn-danger">Bloquear</button> <button id="btn_desbloquear" class="btn btn-success">Desbloquear</button>
+              <button id="btn_bloquear" action = "disponibilidad/bloquear" class="btn btn-danger">Bloquear</button> <button id="btn_desbloquear" action ="disponibilidad/desbloquear "class="btn btn-success">Desbloquear</button>
+              <p> </p>
+              <b>Importante:  </b>
+              <p align="justify">Para poder bloquear un modulo, este debe estar sin reserva. Asegurate de eliminar las reservas en los modulos que vas a Bloquear. </p>
               </div>
             </div>
             <div class="col-md-8">
@@ -261,11 +264,13 @@
       }
       else{
         if($('#dia_completo').is(':checked')){
+          $bandera = 2;
           $('.h_modulo').each(function(i,e){
             $(e).siblings().eq($sala-1).data('reservado',3);
           });
         }
         else{
+          $bandera = 1;
           $tabla.each(function(i,elemento){
             if($(this).data('id-modulo')>=$mod_ini && $(this).data('id-modulo')<=$mod_fin){
               $(this).siblings().eq($sala-1).data('reservado',3);
@@ -274,15 +279,14 @@
         }
         actualizarTabla($('#tabla_horarios td'));
       }
-      // Hacer llamada AJAX al controlador de bloqueo, la fecha está en $('#calendar-disp').data('fecha')
-      /*$.ajax({
+      $.ajax({
         method: 'POST',
-        url: '',
-        data: {fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini,modulo_fin: $mod_fin},
+        url: 'disponibilidad/Bloqueo',
+        data: {bandera: $bandera , sala_bloq: $sala ,fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini, modulo_fin: $mod_fin},
         success: function(data){
             console.log(data);
         }
-      });*/
+      });
     };
 
     var desbloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){
@@ -291,11 +295,13 @@
       }
       else{
         if($('#dia_completo').is(':checked')){
+          $bandera = 2;
           $('.h_modulo').each(function(i,e){
             $(e).siblings().eq($sala-1).data('reservado',0);
           });
         }
         else{
+          $bandera = 1;
           $tabla.each(function(i,elemento){
             if($(this).data('id-modulo')>=$mod_ini && $(this).data('id-modulo')<=$mod_fin){
               $(this).siblings().eq($sala-1).data('reservado',0);
@@ -304,15 +310,14 @@
         }
         actualizarTabla($('#tabla_horarios td'));
       }
-      // Hacer llamada AJAX al controlador de desbloqueo, la fecha está en $('#calendar-disp').data('fecha')
-      /*$.ajax({
+      $.ajax({
         method: 'POST',
-        url: '',
-        data: {fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini,modulo_fin: $mod_fin},
+        url: 'disponibilidad/Desbloqueo',
+        data: {bandera: $bandera , sala_bloq: $sala ,fecha: $('#calendar-disp').data('fecha'),modulo_inicio: $mod_ini, modulo_fin: $mod_fin},
         success: function(data){
             console.log(data);
         }
-      });*/
+      });
     };
 
     $(document).on('click','#btn_bloquear',function(e){
