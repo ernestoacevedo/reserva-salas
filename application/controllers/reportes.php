@@ -1,5 +1,4 @@
-﻿
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Reportes extends CI_Controller {
 
 
@@ -27,8 +26,24 @@ class Reportes extends CI_Controller {
    $data['title'] = 'Nº de Reservas';
    $data['series'] = $series;
    $data['total'] = $total;
+   $data['xls_path'] = site_url('reportes/ReporteDiario_toExcel');
    echo json_encode($data);
-  }
+ }
+
+ public function ReporteDiario_toExcel(){
+   $query = $this->mod_reportes->total_reservas_sala_dia($this->input->post('fecha'));
+   $data = array();
+   $data['header'] = ['Sala','Reservas'];
+   $content = '';
+   foreach($query->result() as $row){
+       $sala = $row->sala;
+       $cant = $row->cant;
+       $content .= "<tr><td>$sala</td><td>$cant</td></tr>";
+   }
+   $data['contenido'] = $content;
+   $data['titulo'] = 'reporte_diario';
+   $this->load->view('view_excel',$data);
+ }
 
 public function ReporteSemanal(){
     $query = $this->mod_reportes->total_reservas_sala_semana($this->input->post('fecha'));
@@ -43,7 +58,25 @@ public function ReporteSemanal(){
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
     $data['total'] = $total;
+    $data['xls_path'] = site_url('reportes/ReporteSemanal_toExcel');
     echo json_encode($data);
+  }
+
+public function ReporteSemanal_toExcel(){
+    $query = $this->mod_reportes->total_reservas_sala_semana($this->input->post('fecha'));
+    $series = array();
+    $total = 0;
+    $data = array();
+    $data['header'] = ['Sala','Reservas'];
+    $datos = array();
+    $i = 0;
+    foreach($query->result() as $row){
+      $datos[$i] = [$row->sala,$row->con];
+      $i++;
+    }
+    $data['datos'] = $datos;
+    $data['titulo'] = 'reporte_semanal';
+    $this->load->view('view_excel',$data);
   }
 
 public function ReporteMensual(){
@@ -148,5 +181,4 @@ public function ReporteEliminaciones(){
     $data['total'] = $total;
     echo json_encode($data);
   }
-
 }

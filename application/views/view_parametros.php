@@ -50,12 +50,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="<?php echo site_url('reportes');?>">Reportes</a></li>
+            <li><a href="<?php echo site_url('reportes');?>"><span class="fa fa-archive"></span> Reportes</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span> Administrar <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="<?php echo site_url('modulos');?>">Módulos</a></li>
-                <li><a href="<?php echo site_url('parametros');?>">Parámetros</a></li>
+                <li><a href="<?php echo site_url('modulos');?>"><span class="fa fa-cubes"></span> Módulos</a></li>
+                <li><a href="<?php echo site_url('parametros');?>"><span class="fa fa-cogs"></span> Parámetros</a></li>
               </ul>
             </li>
           </ul>
@@ -72,10 +72,10 @@
     </nav>
     <div class="col-md-12">
       <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#content_plazo" role="tab" data-toggle="tab">Plazo Máximo</a></li>
-        <li><a href="#content_disponibilidad" role="tab" data-toggle="tab">Disponibilidad</a></li>
-        <li><a href="#content_reservas" role="tab" data-toggle="tab">Nº Reservas Diarias</a></li>
-        <li><a href="#content_salas" role="tab" data-toggle="tab">Salas</a></li>
+        <li class="active"><a href="#content_plazo" role="tab" data-toggle="tab"><span class="fa fa-clock-o"></span> Plazo Máximo</a></li>
+        <li><a href="#content_disponibilidad" role="tab" data-toggle="tab"><span class="fa fa-unlock-alt"></span> Disponibilidad</a></li>
+        <li><a href="#content_reservas" role="tab" data-toggle="tab"><span class="fa fa-edit"></span> Nº Reservas Diarias</a></li>
+        <li><a href="#content_salas" role="tab" data-toggle="tab"><span class="fa fa-building"></span> Salas</a></li>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">
@@ -221,6 +221,8 @@
       displayYearController: true,
     });
 
+    $('#calendar-disp').data('fecha',hoy);
+
     var actualizarTabla = function($tabla) {
       $tabla.each(function(i, elemento) {
         switch ($(this).data('reservado')) {
@@ -254,9 +256,40 @@
     document.addEventListener('bicCalendarSelect', function(e) {
       moment.lang('es');
       $('#calendar-disp').data('fecha', new moment(e.detail.date).format('YYYY-MM-DD'));
+      obtenerReservas($('#calendar-disp').data('fecha'));
     });
 
-    actualizarTabla($('#tabla_horarios td'));
+    var inicializarTabla = function($tabla) {
+      $tabla.each(function(i, elemento) {
+        $(this).data('reservado', 0);
+        if ($(this).hasClass('horario')) {
+          $(this).html('');
+        }
+      });
+    };
+
+    var obtenerReservas = function($fecha) {
+      inicializarTabla($('#tabla_horarios td'));
+      $.ajax({
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          fecha: $fecha
+        },
+        url: $('body').data('url') + 'index.php/reservas/ObtenerReservas',
+        success: function(respuesta) {
+          console.log(respuesta);
+          $.each(respuesta, function(key, value) {
+            if(value.reservado==3){
+              $('td[data-id-modulo=' + value.modulo + ']').siblings().eq(value.sala - 1).data('reservado', value.reservado);
+            }
+          });
+          actualizarTabla($('#tabla_horarios td'));
+        }
+      });
+    };
+
+    obtenerReservas($('#calendar-disp').data('fecha'));
 
     var bloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){
       if($mod_ini>$mod_fin){
@@ -265,9 +298,11 @@
       else{
         if($('#dia_completo').is(':checked')){
           $bandera = 2;
+          $('.horario').data('reservado',3);
+          /*
           $('.h_modulo').each(function(i,e){
             $(e).siblings().eq($sala-1).data('reservado',3);
-          });
+          }); */
         }
         else{
           $bandera = 1;
@@ -312,9 +347,7 @@
       else{
         if($('#dia_completo').is(':checked')){
           $bandera = 2;
-          $('.h_modulo').each(function(i,e){
-            $(e).siblings().eq($sala-1).data('reservado',0);
-          });
+          $('.horario').data('reservado',0);
         }
         else{
           $bandera = 1;
