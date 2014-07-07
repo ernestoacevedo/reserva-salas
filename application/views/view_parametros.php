@@ -127,8 +127,8 @@
               <button id="btn_bloquear" action = "disponibilidad/bloquear" class="btn btn-danger">Bloquear</button> <button id="btn_desbloquear" action ="disponibilidad/desbloquear "class="btn btn-success">Desbloquear</button>
               <p> </p>
               <b>Importante:  </b>
-              <p align="justify">Para poder bloquear un módulo, este debe estar sin reserva. Asegurate de eliminar las reservas en los módulos que vas a Bloquear. </p>
-              <p align="justify">Asegurate también de seleccionar una fecha antes de bloquear. </p>
+              <p align="justify">Para poder bloquear un módulo, este debe estar sin reserva. Asegúrese de eliminar las reservas en los módulos que desea Bloquear. </p>
+              <p align="justify">Asegúrese también de seleccionar una fecha antes de bloquear. </p>
               </div>
             </div>
             <div class="col-md-8">
