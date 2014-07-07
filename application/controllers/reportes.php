@@ -70,26 +70,32 @@ public function ReporteUsuario(){
 public function ReporteCarrera(){
     $query = $this->mod_reportes->total_reservas_carrera($this->input->post('fecha'),$this->input->post('fecha_fin'));
     $series = array();
+    $total = 0;
     foreach($query->result() as $row){
       $name = $row->carrera_a;
       $point = ['name'=>$name,'data'=>[(int)$row->max]];
+      $total+=$row->max;
       array_push($series,$point);
     }
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
+    $data['total'] = $total;
     echo json_encode($data);
   }
 
 public function ReporteInasistencias(){
     $query = $this->mod_reportes->inasistencia($this->input->post('fecha'),$this->input->post('fecha_fin'));
     $series = array();
+    $total = 0;
     foreach($query->result() as $row){
       $name = $row->carrera_a;
       $point = ['name'=>$name,'data'=>[(int)$row->con]];
+      $total+=$row->con;
       array_push($series,$point);
     }
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
+    $data['total'] = $total;
     echo json_encode($data);
   }
 
@@ -97,40 +103,49 @@ public function ReporteInasistencias(){
 public function ReporteHorariosPunta(){
     $query = $this->mod_reportes->horarios_punta($this->input->post('fecha'),$this->input->post('fecha_fin'));
     $series = array();
+    $total = 0;
     foreach($query->result() as $row){
       $name = 'Módulo '.$row->modulo;
       $point = ['name'=>$name,'data'=>[(int)$row->con]];
+      $total+=$row->con;
       array_push($series,$point);
     }
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
+    $data['total'] = $total;
     echo json_encode($data);
 
   }
 
 public function ReporteOcupacion(){
-    $query = $this->mod_reportes->max_salas_carrera($this->input->post('fecha'),$this->input->post('fecha_fin'));
+    $query = $this->mod_reportes->ocupacion($this->input->post('fecha'),$this->input->post('fecha_fin'));
     $series = array();
+    $total = 0;
     foreach($query->result() as $row){
       $name = 'Sala '.$row->sala;
       $point = ['name'=>$name,'data'=>[(int)$row->con]];
+      $total+=$row->con;
       array_push($series,$point);
     }
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
+    $data['total'] = $total;
     echo json_encode($data);
   }
 
 public function ReporteEliminaciones(){
     $query = $this->mod_reportes->eliminaciones($this->input->post('fecha'),$this->input->post('fecha_fin'));
     $series = array();
+    $total = 0;
     foreach($query->result() as $row){
       $name = $row->carrera_a;
       $point = ['name'=>$name,'data'=>[(int)$row->con]];
+      $total+=$row->con;
       array_push($series,$point);
     }
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
+    $data['total'] = $total;
     echo json_encode($data);
   }
 

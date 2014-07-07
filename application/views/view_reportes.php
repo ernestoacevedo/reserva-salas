@@ -57,10 +57,10 @@
           <li><a href="#" data-action="index.php/reportes/ReporteMensual" data-interval="1">Mensual</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteCarrera" data-interval="2">Por Carrera</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteInasistencias" data-interval="2">Inasistencias</a></li>
-          <li><a href="#" data-action="index.php/reportes/Eliminaciones" data-interval="2">Por Eliminación</a></li>
+          <li><a href="#" data-action="index.php/reportes/ReporteEliminaciones" data-interval="2">Por Eliminación</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteHorariosPunta" data-interval="2">Horarios Punta</a></li>
           <li><a href="#" data-action="index.php/reportes/ReporteOcupacion" data-interval="2">Ocupación</a></li>
-          <li><a href="#" data-action="index.php/reportes/" data-interval="2">Usuarios</a></li>
+          <!-- <li><a href="#" data-action="index.php/reportes/" data-interval="2">Usuarios</a></li> -->
         </ul>
         <form id="form_modulo" action="<?php echo site_url('modulos/nuevo');?>" method="post" role="form" style="margin-top: 10px">
           <div id="date1" class="form-group">
@@ -132,48 +132,53 @@
           dataType: 'JSON',
           data: {fecha: $('#fecha_inicio').find("input").val(),fecha_fin: $('#fecha_fin').find("input").val()},
           success: function(data){
-            window.chart = new Highcharts.Chart({
-                  chart: {
-                      type: 'column',
-                      renderTo: 'grafico'
-                  },
-                  title: {
-                      text: 'Reporte '+$a.html()
-                  },
-                  subtitle: {
-                      text: 'Total de Reservas '+data.total
-                  },
-                  xAxis: {
-                      categories: [
-                          ''
-                      ]
-                  },
-                  yAxis: {
-                      min: 0,
+            if(data.series.length==0){
+              alert('No se encontraron datos');
+            }
+            else{
+                window.chart = new Highcharts.Chart({
+                      chart: {
+                          type: 'column',
+                          renderTo: 'grafico'
+                      },
                       title: {
-                          text: data.title
+                          text: 'Reporte '+$a.html()
+                      },
+                      subtitle: {
+                          text: 'Total de Reservas '+data.total
+                      },
+                      xAxis: {
+                          categories: [
+                              ''
+                          ]
+                      },
+                      yAxis: {
+                          min: 0,
+                          title: {
+                              text: data.title
+                          }
+                      },
+                      tooltip: {
+                          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                              '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                          footerFormat: '</table>',
+                          shared: true,
+                          useHTML: true
+                      },
+                      plotOptions: {
+                          column: {
+                              pointPadding: 0.2,
+                              borderWidth: 0
+                          }
+                      },
+                      series: data.series,
+                      exporting:{
+                        enabled: true
                       }
-                  },
-                  tooltip: {
-                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                          '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                      footerFormat: '</table>',
-                      shared: true,
-                      useHTML: true
-                  },
-                  plotOptions: {
-                      column: {
-                          pointPadding: 0.2,
-                          borderWidth: 0
-                      }
-                  },
-                  series: data.series,
-                  exporting:{
-                    enabled: true
-                  }
-              });
-              $('#to_pdf').show();
+                  });
+                  $('#to_pdf').show();
+            }
           }
         });
       }
