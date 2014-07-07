@@ -33,8 +33,8 @@ public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
     {
      $q_string = "select sala, count(sala) as con from reservas where week(fecha) =week('".$fecha."') and eliminada ='0' and estado ='1' group by sala";
 	 	 $data = $this->db->query($q_string);
-	 	 //select sala, count(sala) as con 
-	 	 //from reservas 
+	 	 //select sala, count(sala) as con
+	 	 //from reservas
 	 	 //where week(fecha) = week('2014-06-29') and  eliminada = '0' and estado ='1'
 	 	 //group by sala
 		 return $data;
@@ -48,7 +48,7 @@ public function total_reservas_sala_semana($fecha)  // reservas sin eliminar //
 
     	 $q_string = "select fecha, modulo, id_a, nombre_a, carrera_a from reservas where week(fecha) = week('".$fecha."') and eliminada ='0' and estado ='1'";
 	 	 $data = $this->db->query($q_string);
-		//select fecha, modulo, id_a, nombre_a, carrera_a 
+		//select fecha, modulo, id_a, nombre_a, carrera_a
 	 	 //from reservas where week(fecha) = week('2014-07-05') and eliminada ='0' and estado ='1'
 		 return $data;
 
@@ -79,8 +79,8 @@ public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
     {
 
      $q_string = "select fecha, sala, modulo, id_a, nombre_a, carrera_a from reservas where month(fecha) = month('".$fecha."') and eliminada ='0' and estado ='1' group by fecha";
-		//select fecha, sala, modulo, id_a, nombre_a, carrera_a 
-		//from reservas 
+		//select fecha, sala, modulo, id_a, nombre_a, carrera_a
+		//from reservas
 		//where month(fecha) = '06' and eliminada ='0' and estado ='1'
 		//group by fecha
 	 	 $data = $this->db->query($q_string);
@@ -237,7 +237,7 @@ public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
 		//select fecha, id_e, count(id_a) as con
 		//from reservas
 		//where fecha between '2014/06/05' and '2014/06/30' and eliminada = '0' and estado ='1'
-		//group by fecha 
+		//group by fecha
 		//order by fecha
     	  $data = $this->db->query($q_string);
 	 	 return $data;
