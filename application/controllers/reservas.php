@@ -98,7 +98,7 @@ class Reservas extends CI_Controller {
     $total_fecha=strtotime($fecha) - strtotime($fecha_hoy);
     $diferencia_dias=intval($total_fecha/60/60/24);
 
-    //log_message('debug',print_r($diferencia_dias,TRUE));       
+    //log_message('debug',print_r($diferencia_dias,TRUE));
 
   if ($diferencia_dias <= $plazo){
           if ($max < $alumxdia){
@@ -122,14 +122,14 @@ class Reservas extends CI_Controller {
             $respuesta = array("error" => false,"insertado" => $resultado);
            }
             else{
-              $respuesta = array("error"=> true); //MAS DE UNA RESERVA EN EL DIA
+              $respuesta = array("error"=> true,"mensaje"=>"El alumno ya ha realizado una reserva"); //MAS DE UNA RESERVA EN EL DIA
             }
-            
+
         }
         else{
-          $respuesta = array("error"=> true); //PASADO DE PLAZO
+          $respuesta = array("error"=> true,"mensaje"=>"Fuera de plazo"); //PASADO DE PLAZO
         }
-    
+
     echo json_encode($respuesta);
 
 
