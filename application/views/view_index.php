@@ -109,7 +109,7 @@
 						</div>
 					</div> <!-- end .progress -->
 					<form id="form-reserva" action="<?php echo site_url('reservas/NuevaReserva');?>">
-		        <input type="text" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
+		        		<input type="text" id="rut" name="rut" placeholder="Ingrese el RUT del alumno">
 						<input type="text" id="nombre" name="nombre" OnFocus="this.blur()" placeholder="Ej: Guillermo Becerra">
 						<input type="text" id="carrera" name="carrera" OnFocus="this.blur()" placeholder="Ej: Ingeniería Civil en Informática">
 						<input type="hidden" id="fecha" name="fecha">
@@ -119,7 +119,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-primary btn-agregar">Reservar</button>
-	      </div>
+	       </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->

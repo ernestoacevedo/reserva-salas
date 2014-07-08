@@ -31,8 +31,13 @@ class Reportes extends CI_Controller {
    $query = $this->mod_reportes->total_reservas_sala_dia($this->input->post('fecha'));
    $header = ['Sala','Reservas'];
    $datos = array();
+   $i=0;
+
+log_message('debug',print_r($i,TRUE));
+
    foreach($query->result() as $row){
-       $datos[] = [$row->sala,$row->cant];
+       $datos[] = [$row->sala, $row->cant];
+      
    }
    $a[0]=[1,2];
    $a[1]=[1,'2'];
