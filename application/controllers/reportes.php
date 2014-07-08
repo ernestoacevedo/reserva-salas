@@ -20,6 +20,7 @@ class Reportes extends CI_Controller {
        $total+=$row->cant;
        array_push($series,$point);
    }
+   $data['type'] = 'column';
    $data['title'] = 'Nº de Reservas';
    $data['series'] = $series;
    $data['total'] = $total;
@@ -59,6 +60,7 @@ public function ReporteSemanal(){
       $total+=$row->con;
       array_push($series,$point);
     }
+    $data['type'] = 'column';
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
     $data['total'] = $total;
@@ -90,6 +92,7 @@ public function ReporteMensual(){
       $total+=$row->cant;
       array_push($series,$point);
     }
+    $data['type'] = 'column';
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
     $data['total'] = $total;
@@ -106,16 +109,34 @@ public function ReporteCarrera(){
     $query = $this->mod_reportes->total_reservas_carrera($this->input->post('fecha'),$this->input->post('fecha_fin'));
     $series = array();
     $total = 0;
+   /* foreach($query->result() as $row){
+      $total+=$row->max;
+    }
+
     foreach($query->result() as $row){
       $name = $row->carrera_a;
-      $point = ['name'=>$name,'data'=>[(int)$row->max]];
+      $point = [$name, ((int)$row->max/$total) *100];
+      array_push($series,$point);
+    }
+
+    $data['type'] = 'pie';
+    $data['title'] = 'Nº de Reservas';
+    $data['series'] = $series;
+    $data['total'] = $total;
+    echo json_encode($data);*/
+
+foreach($query->result() as $row){
+      $name = $row->carrera_a;
+      $point = ['name' => $name, 'data' => [(int)$row->max]];
       $total+=$row->max;
       array_push($series,$point);
     }
+    $data['type'] = 'column';
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
     $data['total'] = $total;
     echo json_encode($data);
+
   }
 
 public function ReporteInasistencias(){
@@ -128,6 +149,7 @@ public function ReporteInasistencias(){
       $total+=$row->con;
       array_push($series,$point);
     }
+    $data['type'] = 'column';
     $data['title'] = 'Inasistencias';
     $data['series'] = $series;
     $data['total'] = $total;
@@ -159,6 +181,7 @@ public function ReporteHorariosPunta(){
       $total+=$row->con;
       array_push($series,$point);
     }
+    $data['type'] = 'column';
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
     $data['total'] = $total;
@@ -176,6 +199,7 @@ public function ReporteOcupacion(){
       $total+=$row->con;
       array_push($series,$point);
     }
+     $data['type'] = 'column';
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
     $data['total'] = $total;
@@ -192,6 +216,7 @@ public function ReporteEliminaciones(){
       $total+=$row->con;
       array_push($series,$point);
     }
+     $data['type'] = 'column';
     $data['title'] = 'Nº de Reservas';
     $data['series'] = $series;
     $data['total'] = $total;

@@ -142,7 +142,7 @@
             else{
                 window.chart = new Highcharts.Chart({  // muestra el pluging
                       chart: {
-                          type: 'column',
+                          type: data.type,
                           renderTo: 'grafico'
                       },
                       title: {
