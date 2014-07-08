@@ -125,6 +125,7 @@
       e.stopPropagation();
       console.log(url_reporte);
       console.log($('#fecha_inicio').find("input").val());
+      console.log($('#fecha_fin').find("input").val()); //
       if($('#fecha_inicio').find("input").val()==""){
         alert('Debe seleccionar una fecha');
       }

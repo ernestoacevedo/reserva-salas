@@ -91,10 +91,11 @@ public function ReporteMensual(){
     echo json_encode($data);
   }
 
-
+/*
 public function ReporteUsuario(){
 
   }
+*/
 
 public function ReporteCarrera(){
     $query = $this->mod_reportes->total_reservas_carrera($this->input->post('fecha'),$this->input->post('fecha_fin'));
@@ -181,7 +182,7 @@ public function ReporteEliminaciones(){
     $series = array();
     $total = 0;
     foreach($query->result() as $row){
-      $name = $row->carrera_a;
+      $name ='Módulo' .$row->modulo;
       $point = ['name'=>$name,'data'=>[(int)$row->con]];
       $total+=$row->con;
       array_push($series,$point);
