@@ -33,7 +33,7 @@ class Reportes extends CI_Controller {
    $datos = array();
    $i=0;
 
-log_message('debug',print_r($i,TRUE));
+  //log_message('debug',print_r($i,TRUE));
 
    foreach($query->result() as $row){
        $datos[] = [$row->sala, $row->cant];
