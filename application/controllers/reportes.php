@@ -32,7 +32,7 @@ class Reportes extends CI_Controller {
    $header = ['Sala','Reservas'];
    $datos = array();
    foreach($query->result() as $row){
-       $datos[] = [$row->sala,$row->cant];
+       $datos[] = [$row->sala,(int)$row->cant];
    }
    $a[0]=[1,2];
    $a[1]=[1,'2'];
