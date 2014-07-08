@@ -259,6 +259,5 @@ public function total_reservas_sala_mes($fecha)  // reservas sin eliminar //
 	 	 return $data;
 
 	}
-
-
+  
 }

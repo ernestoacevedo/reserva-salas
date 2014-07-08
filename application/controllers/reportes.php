@@ -1,13 +1,10 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Reportes extends CI_Controller {
-
-
   function __construct(){
        parent::__construct();
       $this->load->model('mod_reportes');
+      $this->load->helper("excel_helper");
   }
-
-
 
   public function index(){
     $this->load->view('view_reportes');
@@ -32,17 +29,19 @@ class Reportes extends CI_Controller {
 
  public function ReporteDiario_toExcel(){
    $query = $this->mod_reportes->total_reservas_sala_dia($this->input->post('fecha'));
-   $data = array();
-   $data['header'] = ['Sala','Reservas'];
-   $content = '';
+   $header = ['Sala','Reservas'];
+   $datos = array();
    foreach($query->result() as $row){
-       $sala = $row->sala;
-       $cant = $row->cant;
-       $content .= "<tr><td>$sala</td><td>$cant</td></tr>";
+       $datos[] = [$row->sala,$row->cant];
    }
-   $data['contenido'] = $content;
-   $data['titulo'] = 'reporte_diario';
-   $this->load->view('view_excel',$data);
+   $a[0]=[1,2];
+   $a[1]=[1,'2'];
+   $a[2]=[1,'3'];
+
+   //print_r($datos);
+   //print_r($a);
+   //$this->load->view('view_excel',$data);
+   to_excel_2007($header,$datos,'reporte_diario','Reporte Diario');
  }
 
 public function ReporteSemanal(){
