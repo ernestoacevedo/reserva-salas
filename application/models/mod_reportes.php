@@ -259,19 +259,4 @@ public function total_reservas_sala_mes($fecha)  // reservas sin eliminar // //P
 	}
 
 
-
-
-
-	    public function observaciones_no_eliminadas($finicio, $ffin)
-    {
-    	$q_string = "select fecha, sala, modulo, id_a, nombre_a, carrera_a, observacion from reservas where fecha between '".$finicio."' and '".$ffin."' and eliminada = '0' order by fecha";
-		//select fecha, sala, modulo, id_a, nombre_a, carrera_a, observacion
-		//from reservas
-		//where fecha between '2014/06/05' and '2014/06/30' and eliminada > '1' and confirmada = '0'
-		//order by fecha
-    	$data = $this->db->query($q_string);
-	 	 return $data;
-
-	}
-
 }
