@@ -22,6 +22,7 @@ if ( ! function_exists('to_excel')){
         for($i=0;$i<count($datos);$i++){
             $j=0;
             foreach($datos[$i] as $valor){
+                error_log($valor);
                 $cell=$i+2;
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue($columnas[$j].$cell,$valor);
                 $j++;
