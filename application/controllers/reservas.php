@@ -171,7 +171,7 @@ class Reservas extends CI_Controller {
       'confirmada' => 1,
       'observacion' => 'Confirmada'
       );
-
+// ejemplo
     $resultado = $this->mod_reserva->actualizar_reserva($fecha, $modulo, $sala, $data);
 
     $respuesta = array("error" => false,"confimado" => $resultado);
