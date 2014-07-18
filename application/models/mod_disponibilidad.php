@@ -4,7 +4,7 @@ Class mod_disponibilidad extends CI_Model
 
 
 
-
+  // inserta una reserva, con la bandera estado en 0, en una fecha, sala, módulo determinado.
 	public function bloquear($data)  // reservas sin eliminar //
     {
 	 	if($this->db->insert('reservas',$data)){ // hacer lo mismo con update
@@ -16,7 +16,7 @@ Class mod_disponibilidad extends CI_Model
 	}
 
 
-
+// inserta una reserva, con la bandera estado en 0, en una fecha, sala, módulo determinado.
 public function desbloquear($fecha, $modulo, $sala)  // reservas sin eliminar //
     {
 

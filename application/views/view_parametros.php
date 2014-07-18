@@ -107,7 +107,7 @@
                 ?>
                 </select><br>
                 <label for="modulo_inicio">Desde módulo</label>
-                <select name="modulo_inicio" id="modulo_inicio">
+                <select name="modulo_inicio" id="modulo_inicio"> 
                 <?php
                   $query = $this->mod_modulos->obtener_modulos();
                   foreach($query->result() as $row){
@@ -205,7 +205,7 @@
       "color": "green"
     }];
 
-    $('#calendar-disp').bic_calendar({
+    $('#calendar-disp').bic_calendar({ // calendario
       //list of events in array
       events: events,
       //enable select
@@ -226,7 +226,7 @@
 
     $('#calendar-disp').data('fecha',hoy);
 
-    var actualizarTabla = function($tabla) {
+    var actualizarTabla = function($tabla) { //llenar  solo colores en tabla
       $tabla.each(function(i, elemento) {
         switch ($(this).data('reservado')) {
 
@@ -256,13 +256,13 @@
       });
     };
 
-    document.addEventListener('bicCalendarSelect', function(e) {
+    document.addEventListener('bicCalendarSelect', function(e) { //evento del calendario
       moment.lang('es');
       $('#calendar-disp').data('fecha', new moment(e.detail.date).format('YYYY-MM-DD'));
       obtenerReservas($('#calendar-disp').data('fecha'));
     });
 
-    var inicializarTabla = function($tabla) {
+    var inicializarTabla = function($tabla) { // setear tabla en 0, limpiar
       $tabla.each(function(i, elemento) {
         $(this).data('reservado', 0);
         if ($(this).hasClass('horario')) {
@@ -271,7 +271,7 @@
       });
     };
 
-    var obtenerReservas = function($fecha) {
+    var obtenerReservas = function($fecha) { // carga las consultas 
       inicializarTabla($('#tabla_horarios td'));
       $.ajax({
         type: 'POST',
@@ -283,7 +283,7 @@
         success: function(respuesta) {
           console.log(respuesta);
           $.each(respuesta, function(key, value) {
-            if(value.reservado==3){
+            if(value.reservado==3){ // solo bloqueadas
               $('td[data-id-modulo=' + value.modulo + ']').siblings().eq(value.sala - 1).data('reservado', value.reservado);
             }
           });
@@ -294,7 +294,7 @@
 
     obtenerReservas($('#calendar-disp').data('fecha'));
 
-    var bloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){
+    var bloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){ // bloquear
       if($mod_ini>$mod_fin){
         alert("Seleccione un intervalo válido");
       }
@@ -343,7 +343,7 @@
       });
     };
 
-    var desbloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){
+    var desbloquearModulos = function($sala,$mod_ini,$mod_fin,$tabla){ //desbloquear
       if($mod_ini>$mod_fin){
         alert("Seleccione un intervalo válido");
       }
@@ -388,13 +388,13 @@
       });
     };
 
-    $(document).on('click','#btn_bloquear',function(e){
+    $(document).on('click','#btn_bloquear',function(e){ // botón bloquear
       e.preventDefault();
       e.stopPropagation()
       bloquearModulos($('#sala_bloq').val(),$('#modulo_inicio').val(),$('#modulo_fin').val(),$('#tabla_horarios td'));
     });
-
-    $(document).on('click','#btn_desbloquear',function(e){
+ 
+    $(document).on('click','#btn_desbloquear',function(e){ // botón desbloquear
       e.preventDefault();
       e.stopPropagation()
       desbloquearModulos($('#sala_bloq').val(),$('#modulo_inicio').val(),$('#modulo_fin').val(),$('#tabla_horarios td'));

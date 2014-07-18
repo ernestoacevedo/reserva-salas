@@ -2,7 +2,7 @@
 class Home extends CI_Controller {
 
 function __construct()
-	{
+	{	//se integran los modelos
    		parent::__construct();
    		$this->load->model('mod_alumno');
    		$this->load->model('mod_usuario');

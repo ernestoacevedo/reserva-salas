@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class mod_reportes extends CI_Model
 {
+// Las siguientes funciones obtienen las  consultas para los distintos tipos de reportes.
 // Reporte Diario
 
 // La suma total de reservas. //PDF

@@ -2,7 +2,7 @@
 Class mod_salas extends CI_Model
 {
 
-
+  // Obtiene el número de salas, almacenados en la BD.
  	public function obtener_salas() {
 
         $this->db->select('cant_salas');
@@ -15,7 +15,7 @@ Class mod_salas extends CI_Model
         
     }
 
-
+// Modifica el número de salas, almacenados en la BD.
     public function actualizar_salas($dataPK, $dataNEW) {
 
         $this->db->where('cant_salas', $dataPK['cant_salas']);

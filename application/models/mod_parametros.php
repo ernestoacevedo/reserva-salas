@@ -2,6 +2,7 @@
 Class mod_parametros extends CI_Model
 {
 
+    //Obtiene todos los valores de la tabla parámetros.
     public function obtener_parametros() {
 
         $this->db->select('*');
@@ -16,7 +17,7 @@ Class mod_parametros extends CI_Model
 
 
     }
-
+    //Obtiene sólo el número de reservas diarias de la tabla parámetros.
     public function obtener_alumxdia() {
 
         $this->db->select('n_reservas_diarias');
@@ -29,7 +30,7 @@ Class mod_parametros extends CI_Model
         }
 
     }
-
+    //Obtiene sólo el plazo máximo de la tabla parámetros.
     public function obtener_plazo() {
 
         $this->db->select('plazo_para_reservar');
@@ -45,7 +46,7 @@ Class mod_parametros extends CI_Model
     }
 
     
-
+    //Actualiza sólo el plazo máximo de la tabla parámetros.
     public function actualizar_plazo($dataPK, $dataNEW) {
 
         $this->db->where('cant_salas', $dataPK['cant_salas']);
@@ -56,7 +57,7 @@ Class mod_parametros extends CI_Model
       
 
     }
-
+    //Actualiza sólo el la cantidad de reservas diarias de la tabla parámetros.
     public function actualizar_alumxdia($dataPK, $dataNEW) {
 
         $this->db->where('cant_salas', $dataPK['cant_salas']);
