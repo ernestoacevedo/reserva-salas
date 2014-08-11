@@ -9,6 +9,7 @@ class Modulos extends CI_Controller {
   }
 
   public function index(){
+    $this->load->view('favicon');
     $this->load->view('view_modulos');
   }
 
@@ -71,7 +72,7 @@ class Modulos extends CI_Controller {
 
   public function EliminarModulo(){
 
-    $id_mod = $this->uri->segment(3);
+    $id_mod = $this->uri->segment(3); // se acciona el botón eliminar por metodo URI de codeigniter
 
     $resultado = $this->mod_modulos->eliminar_modulos($id_mod);
 

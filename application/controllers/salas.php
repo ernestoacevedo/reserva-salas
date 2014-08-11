@@ -12,6 +12,7 @@ class Salas extends CI_Controller {
 
   public function index(){
     $this->load->model('mod_salas');
+    $this->load->view('favicon');
     $this->load->view('view_parametros');
   }
 

@@ -7,6 +7,7 @@ class Reportes extends CI_Controller {
   }
 
   public function index(){
+    $this->load->view('favicon');
     $this->load->view('view_reportes');
   }
 

@@ -14,6 +14,7 @@ public function index(){
   $this->load->model('mod_parametros');
   $this->load->model('mod_salas');
   $this->load->model('mod_modulos');
+  $this->load->view('favicon');
   $this->load->view('view_parametros');
 }
 
